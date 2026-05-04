@@ -12,8 +12,7 @@ Funcionalidades
 - Gerenciamento de dados (CRUD futuramente)
 
 Equipe
-- Coloque seu nome
-- Nome dos integrantes
+- Bruno Leorci Moraes, Felipe Favero de Oliveira, Matheus Bernardo de Oliveira Rüeckl, Kauã Gabriel Borges.
   
 Tecnologias Utilizadas
 - HTML
