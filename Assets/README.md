@@ -12,7 +12,7 @@ Funcionalidades
 - Gerenciamento de dados (CRUD futuramente)
 
 Equipe
-- Bruno Leorci Moraes, Felipe Favero de Oliveira, Matheus Bernardo de Oliveira Rüeckl, Kauã Gabriel Borges.
+- Bruno Leorci Moraes, Felipe Favero de Oliveira, Matheus Bernardo de Oliveira Rüeckl, Kauã Gabriel Borges, André Foss Alflen
   
 Tecnologias Utilizadas
 - HTML
