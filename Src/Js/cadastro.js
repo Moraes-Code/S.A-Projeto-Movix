@@ -1,25 +1,21 @@
-const form = document.getElementById("formCadastro");
-
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
+document.getElementById("formCadastro").addEventListener("submit", function(event) {
+  event.preventDefault(); 
 
   const nome = document.getElementById("nome").value;
   const email = document.getElementById("email").value;
   const senha = document.getElementById("senha").value;
-  const confirmar = document.getElementById("confirmarSenha").value;
+  const confirmarSenha = document.getElementById("confirmarSenha").value;
 
-  if (nome === "" || email === "" || senha === "" || confirmar === "") {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  if (senha !== confirmar) {
+  
+  if (senha !== confirmarSenha) {
     alert("As senhas não coincidem!");
     return;
   }
 
-  alert("Cadastro realizado com sucesso!");
+  
+  localStorage.setItem("email", email);
+  localStorage.setItem("senha", senha);
 
   
-  window.location.href = "../login.html";
+  window.location.href = "login.html";
 });
