@@ -5,6 +5,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+img{
+    width: 200px;
+}
+
 body{
     background-color: #e5e5e5;
     padding: 40px;
@@ -26,32 +30,21 @@ body{
     gap: 15px;
 }
 
-.logo i{
-    font-size: 40px;
-    color: #1565c0;
-}
-
-.logo h1{
-    color: #1565c0;
-    font-size: 40px;
-}
 
 
 .hero{
-    width: 100%;
+    width: 1830px;
     height: 380px;
 
-    background: linear-gradient(90deg,#39b6d6,#003fb5);
-
-    border-radius: 0 20px 20px 0;
+    background: linear-gradient(90deg,#3851e4,#022c7a);
 
     display: flex;
     align-items: center;
 }
 
 .hero-content{
-    width: 600px;
-    margin-left: 260px;
+    width: 900px;
+    margin-left: 200px;
 }
 
 
