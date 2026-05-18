@@ -30,34 +30,30 @@ img{
 
 
 .texto{
-    margin-top: 250px;
-    margin-left: 40px;
+    margin-top: 200px;
+    margin-left: 50px;
 }
 
 .texto h2{
     font-size: 55px;
-    width: 700px;
+    width: 900px;
 }
 
 .texto p{
     margin-top: 20px;
-    font-size: 22px;
+    font-size: 20px;
 }
-
-/* LADO DIREITO */
 
 .right{
     width: 35%;
-
     background-color: white;
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .login-box{
-    width: 75%;
+    width: 70%;
 }
 
 .login-box h1{
@@ -83,40 +79,22 @@ form label{
 
 form input{
     padding: 18px;
-
     border: none;
-
     border-radius: 12px;
-
-    background-color: #f0f0f0;
-
+    background-color:white;
     font-size: 16px;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 15px black;
 }
 
 form button{
     margin-top: 35px;
-
     padding: 18px;
-
     border: none;
-
     border-radius: 12px;
-
     background: linear-gradient(90deg,#3851e4,#022c7a);
-
     color: white;
-
     font-size: 18px;
-
     cursor: pointer;
-
-    transition: 0.3s;
-}
-
-form button:hover{
-    transform: scale(1.02);
 }
 
 .cadastro{
@@ -125,6 +103,5 @@ form button:hover{
 }
 
 .cadastro a{
-    text-decoration: none;
     color: #4b5cff;
 }

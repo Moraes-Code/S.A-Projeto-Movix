@@ -16,9 +16,12 @@ form.addEventListener("submit", function(event) {
   if (email === "admin@movix.com" && senha === "1234") {
     alert("Login realizado com sucesso!");
 
-    
     window.location.href = "dashboard.html";
   } else {
     alert("E-mail ou senha incorretos!");
   }
 });
+
+function entrar(){
+    window.location.href = "home.html";
+}
