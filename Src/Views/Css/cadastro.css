@@ -1,58 +1,105 @@
-body {
-  height: 100vh;
-  background: linear-gradient(to right, #cfd8dc, #1e88e5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Arial, sans-serif;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.card-cadastro {
-  width: 600px;
-  padding: 40px;
-  border-radius: 30px;
-  background: linear-gradient(to bottom, #b0bec5, #42a5f5);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+body{
+    background-color: #e5e5e5;
 }
 
-.titulo {
-  background: #e0e0e0;
-  border-radius: 30px;
-  padding: 10px;
-  width: 180px;
-  margin: 0 auto 30px auto;
-  text-align: center;
-  font-weight: bold;
+.container{
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
 }
 
-.form-control {
-  border-radius: 25px;
-  padding: 12px;
+.left{
+  width: 65%;
+  background: linear-gradient(90deg,#3851e4,#022c7a);
+  color: white;
 }
 
-.btn-cadastrar {
-  border-radius: 25px;
-  padding: 10px;
-  font-weight: bold;
-  background-color: #0d6efd;
+img{
+  width: 200px;
 }
 
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #1976d2;
+
+.texto{
+    margin-top: 200px;
+    margin-left: 50px;
 }
 
-.logo span {
-  display: block;
-  font-size: 14px;
-  color: #333;
+.texto h2{
+    font-size: 55px;
+    width: 900px;
 }
 
-.link-login {
-  text-align: center;
-  margin-top: 15px;
+.texto p{
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.right{
+    width: 35%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box{
+    width: 70%;
+}
+
+.login-box h1{
+    font-size: 45px;
+    text-align: center;
+}
+
+.login-box p{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form label{
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+form input{
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    background-color:white;
+    font-size: 16px;
+    box-shadow: 0 5px 15px black;
+}
+
+form button{
+    margin-top: 35px;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg,#3851e4,#022c7a);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.cadastro{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.cadastro a{
+    color: #4b5cff;
 }
