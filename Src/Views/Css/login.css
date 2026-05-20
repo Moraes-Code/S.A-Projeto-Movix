@@ -83,7 +83,7 @@ form input{
     border-radius: 12px;
     background-color:white;
     font-size: 16px;
-    box-shadow: 0 5px 15px black;
+    box-shadow: 0 1px 10px black;
 }
 
 form button{
@@ -103,5 +103,5 @@ form button{
 }
 
 .cadastro a{
-    color: #4b5cff;
+    color: #2b3cdb;
 }

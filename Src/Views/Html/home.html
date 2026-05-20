@@ -1,169 +1,164 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Movix</title>
-
+    <title>Document</title>
     <link rel="stylesheet" href="../Css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+<body> 
 
-<body>
+<main class="main">
 
-    <!-- SIDEBAR -->
+    <!-- TOPO -->
 
-    <aside class="sidebar">
+    <header class="topbar">
 
-        <div class="logo">
-            <h2>MOVIX</h2>
+        <div>
+            <h1>Dashboard Movix</h1>
+            <p>Bem-vindo, Administrador Bruno</p>
         </div>
 
-        <nav>
+    </header>
 
-            <a href="#">Dashboard</a>
-            <a href="#">Cadastro de Sensores</a>
-            <a href="#">Cadastro de Trens</a>
-            <a href="#">Monitoramento</a>
-            <a href="#">Relatórios</a>
-            <a href="#">Sensores</a>
+    <!-- CARDS PRINCIPAIS -->
 
-        </nav>
+    <section class="dashboard-cards">
 
-        <button class="logout">
-            Sair
-        </button>
+    <div class="dashboard-card">
 
-    </aside>
+        <div>
 
-    <!-- CONTEÚDO -->
-
-    <main class="main">
-
-        <!-- TOPO -->
-
-        <header class="topbar">
-
-            <div>
-                <h1>Painel Administrativo</h1>
-                <p>Bem-vindo,  Administrador</p>
+            <div class="icon">
+                <i class="fa-solid fa-tower-broadcast"></i>
             </div>
 
-        </header>
+            <h2>Sensores</h2>
 
-        <!-- CARDS -->
+            <p>
+                Gerencie sensores ferroviários cadastrados.
+            </p>
 
-        <section class="cards">
+        </div>
 
-            <div class="card">
-                <h3>Sensores Ativos</h3>
-                <span>128</span>
+        <a href="sensores.html">
+            Acessar
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div>
+
+            <div class="icon">
+                <i class="fa-solid fa-train"></i>
             </div>
 
-            <div class="card">
-                <h3>Trens Operando</h3>
-                <span>24</span>
+            <h2>Trens</h2>
+
+            <p>
+                Cadastro e gerenciamento de trens operacionais.
+            </p>
+
+        </div>
+
+        <a href="trens.html">
+            Acessar
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div>
+
+            <div class="icon">
+                <i class="fa-solid fa-satellite-dish"></i>
             </div>
 
-            <div class="card alert">
-                <h3>Alertas</h3>
-                <span>3</span>
+            <h2>Monitoramento</h2>
+
+            <p>
+                Visualização em tempo real da operação.
+            </p>
+
+        </div>
+
+        <a href="monitoramento.html">
+            Acessar
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div>
+
+            <div class="icon">
+                <i class="fa-solid fa-chart-column"></i>
             </div>
 
-            <div class="card fail">
-                <h3>Falhas</h3>
-                <span>1</span>
+            <h2>Relatórios</h2>
+
+            <p>
+                Gráficos e análises operacionais da ferrovia.
+            </p>
+
+        </div>
+
+        <a href="relatorios.html">
+            Acessar
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div>
+
+            <div class="icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
 
-        </section>
+            <h2>Alertas</h2>
 
-        <!-- MONITORAMENTO -->
+            <p>
+                Falhas críticas e ocorrências registradas.
+            </p>
 
-        <section class="monitoramento">
+        </div>
 
-            <div class="monitor-card">
+        <a href="#">
+            Acessar
+        </a>
 
-                <h2>Monitoramento em Tempo Real</h2>
+    </div>
 
-                <div class="monitor-grid">
+    <div class="dashboard-card">
 
-                    <div class="info">
-                        <h3>Velocidade</h3>
-                        <p>82 km/h</p>
-                    </div>
+        <div>
 
-                    <div class="info">
-                        <h3>Status</h3>
-                        <p class="status normal">Normal</p>
-                    </div>
-
-                    <div class="info">
-                        <h3>Localização</h3>
-                        <p>Joinville - SC</p>
-                    </div>
-
-                </div>
-
+            <div class="icon">
+                <i class="fa-solid fa-users"></i>
             </div>
 
-        </section>
+            <h2>Usuários</h2>
 
-        <section class="table-section">
+            <p>
+                Controle de administradores e acessos.
+            </p>
 
-            <div class="table-header">
-                <h2>Sensores da Ferrovia</h2>
-            </div>
+        </div>
 
-            <table>
+        <a href="#">
+            Acessar
+        </a>
 
-                <thead>
+    </div>
 
-                    <tr>
-                        <th>ID</th>
-                        <th>Localização</th>
-                        <th>Tipo de Dado</th>
-                        <th>Trem</th>
-                    </tr>
+</section>
 
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>001</td>
-                        <td>Joinville Norte</td>
-                        <td>Velocidade</td>
-                        <td>Trem A12</td>
-                    </tr>
-
-                    <tr>
-                        <td>002</td>
-                        <td>Terminal Central</td>
-                        <td>Temperatura</td>
-                        <td>Trem B07</td>
-
-
-                    </tr>
-
-                    <tr>
-
-                        <td>003</td>
-                        <td>Zona Sul</td>
-                        <td>Falha Mecânica</td>
-                        <td>Trem C15</td>
-
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </section>
-
-
-    </main>
-
+</main>
 </body>
-
 </html>
