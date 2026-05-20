@@ -6,176 +6,103 @@
     box-sizing: border-box;
 }
 
-/* BODY */
-
 body{
-
     font-family: Arial, Helvetica, sans-serif;
-
-     background: linear-gradient(90deg,#3851e4,#022c7a);
-
+    background: linear-gradient(90deg,#3851e4,#022c7a);
     height: 100vh;
-
     overflow: hidden;
 }
 
-/* MAIN */
-
 .main{
-
     padding: 30px;
-
     height: 100vh;
-
     display: flex;
     flex-direction: column;
 }
 
-/* TOPO */
-
 .topbar{
-
     margin-bottom: 25px;
 }
 
 .topbar h1{
-
     color: white;
-
     font-size: 38px;
-
     margin-bottom: 8px;
 }
 
 .topbar p{
-
     color: #dbe5ff;
-
     font-size: 17px;
 }
 
-/* GRID DOS CARDS */
-
 .dashboard-cards{
-
     flex: 1;
-
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     grid-template-rows: repeat(2, 1fr);
-
     gap: 22px;
 }
 
-/* CARD */
-
 .dashboard-card{
-
     background: rgba(255,255,255,0.08);
-
     border: 1px solid rgba(255,255,255,0.1);
-
     backdrop-filter: blur(10px);
-
     border-radius: 24px;
-
     padding: 28px;
-
     display: flex;
-
     flex-direction: column;
-
     justify-content: space-between;
-
     transition: 0.3s;
-
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* HOVER */
-
 .dashboard-card:hover{
-
     transform: translateY(-6px);
-
     box-shadow: 0 12px 28px rgba(0,0,0,0.35);
 }
 
-/* TITULO */
-
 .dashboard-card h2{
-
     color: white;
-
     font-size: 30px;
-
     margin-bottom: 14px;
 }
 
-/* TEXTO */
-
 .dashboard-card p{
-
     color: #dce6ff;
-
     line-height: 1.6;
-
     font-size: 15px;
 }
-
-/* BOTÃO */
 
 .dashboard-card a{
 
     text-decoration: none;
-
     background: white;
-
     color: #0d2d7a;
-
     padding: 14px;
-
     border-radius: 14px;
-
     text-align: center;
-
     font-weight: bold;
-
     transition: 0.3s;
 }
 
-/* HOVER BOTÃO */
-
 .dashboard-card a:hover{
-
     background: #dce6ff;
 }
-
-/* ICONES */
 
 .icon{
 
     width: 70px;
     height: 70px;
-
     border-radius: 18px;
-
     background: rgba(255,255,255,0.12);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     margin-bottom: 22px;
-
     border: 1px solid rgba(255,255,255,0.1);
 }
 
 .icon i{
-
     font-size: 30px;
-
     color: white;
 }
