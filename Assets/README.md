@@ -123,5 +123,5 @@ R: Acesse o Site Oficial do XAMPP  ,baixe o instalador no site oficial e Selecio
 
 ### 5. Importância do ambiente para desenvolvimento local:
 
-R: O XAMPP é importante porque permite criar, testar e executar sites e sistemas diretamente no computador, sem precisar de hospedagem na internet. Ele facilita o desenvolvimento de aplicações PHP ao reunir ferramentas como Apache, MariaDB e PHP em um único ambiente, tornando os testes mais rápidos, seguros e práticos para os desenvolvedores.
+R: O XAMPP pode ser utilizado em um projeto de ferrorama como servidor local para gerenciar o cadastro e o monitoramento de sensores. Com ele, é possível usar PHP e MySQL para criar páginas onde o usuário cadastra novos sensores, salva as informações em um banco de dados e visualiza o funcionamento do sistema em tempo real. Dessa forma, o XAMPP funciona como a parte responsável pelo armazenamento, organização e exibição das informações do projeto.
 
