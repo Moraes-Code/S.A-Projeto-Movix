@@ -1,29 +1,26 @@
 const form = document.getElementById("formLogin");
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function(event){
 
-  event.preventDefault();
+    event.preventDefault();
 
-  const email = document.getElementById("email").value;
-  const senha = document.getElementById("senha").value;
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
 
- 
-  if (email === "" || senha === "") {
+    if(!email.includes("@")){
 
-    alert("Preencha todos os campos!");
-    return;
-  }
+        alert("Digite um e-mail válido!");
+        return;
 
+    }
 
-  if (email === "admin@movix.com" && senha === "1234") {
+    if(senha.length < 6){
 
-    alert("Login realizado com sucesso!");
+        alert("A senha precisa ter no mínimo 6 caracteres!");
+        return;
 
-    window.location.href = "dashboard.html";
+    }
 
-  } else {
-
-    alert("E-mail ou senha incorretos!");
-  }
+    window.location.href = "home.html";
 
 });
