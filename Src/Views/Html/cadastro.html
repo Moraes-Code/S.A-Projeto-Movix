@@ -9,8 +9,6 @@
 
     <link rel="stylesheet" href="../Css/login.css">
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -49,34 +47,37 @@
                     Preencha seus dados para começar a usar o Movix
                 </p>
 
-                <form id="formLogin">
+        <form id="formLogin">
 
-                    <label>Nome Completo</label>
+        <label>Nome Completo</label>
 
-                    <input
-                    type="name"
-                    placeholder="Ex: mínimo 6 caracteres"
-                    required>
+            <input
+            type="text"
+            id="nome"
+            placeholder="Ex: mínimo 6 caracteres"
+            required>
 
-                    <label>E-mail</label>
+            <label>E-mail</label>
 
-                    <input
-                    type="email"
-                    placeholder="Ex: joao@gmail.com"
-                    required>
+            <input
+            type="email"
+            id="email"
+            placeholder="Ex: joao@gmail.com"
+            required>
 
-                    <label>Senha</label>
+            <label>Senha</label>
 
-                    <input
-                    type="password"
-                    placeholder="******"
-                    required>
+            <input
+            type="password"
+            id="senha"
+            placeholder="******"
+            required>
 
-                    <button class="btn" onclick="entrar()">
-                      Criar Conta
-                    </button>
+            <button type="submit" class="btn">
+             Criar Conta
+            </button>
 
-                </form>
+        </form>
 
                 <div class="cadastro">
                     Ja tem conta ?

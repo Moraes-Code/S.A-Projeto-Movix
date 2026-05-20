@@ -1,0 +1,211 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fc;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width: 250px;
+    height: 948px;
+    background: linear-gradient(90deg,#3851e4,#022c7a);
+    color: white;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo h2{
+    font-size: 32px;
+}
+
+.sidebar nav{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 40px;
+}
+
+.sidebar nav a{
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.sidebar nav a:hover{
+    background: rgba(3, 4, 85, 0.15);
+}
+
+.logout{
+    background: rgb(255, 255, 255);
+    border: none;
+    color:#022c7a;
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.main{
+    flex: 1;
+    padding: 30px;
+}
+
+
+.topbar{
+    margin-bottom: 30px;
+}
+
+.topbar h1{
+    color:#022c7a;
+}
+
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card{
+    background: linear-gradient(90deg,#3851e4,#022c7a);
+    padding: 25px;
+    border-radius: 15px;
+    
+}
+
+.card span{
+    font-size: 35px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.alert span{
+    color: rgb(255, 255, 255);
+}
+
+.fail span{
+    color: rgb(255, 255, 255);
+}
+
+
+
+.monitor-card{
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.monitor-grid{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.info{
+    background: #f4f7fc;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.status{
+    font-weight: bold;
+}
+
+.normal{
+    color: green;
+}
+
+/* TABELA */
+
+.table-section{
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.table-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.add-btn{
+    background: #0d2d7a;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.details-btn{
+    background: #0d6efd;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete-btn{
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* RELATÓRIOS */
+
+.relatorio-card{
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+}
+
+.grafico{
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    height: 200px;
+    margin: 30px 0;
+}
+
+.barra{
+    width: 60px;
+    background: #0d2d7a;
+    border-radius: 10px 10px 0 0;
+}
+
+.b1{ height: 70px; }
+.b2{ height: 120px; }
+.b3{ height: 160px; }
+.b4{ height: 90px; }
+.b5{ height: 180px; }
