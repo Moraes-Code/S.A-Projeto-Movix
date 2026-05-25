@@ -1,16 +1,12 @@
-/* RESET */
+
 
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body{
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(90deg,#3851e4,#022c7a);
-    height: 100vh;
-    overflow: hidden;
 }
 
 .main{
@@ -20,14 +16,9 @@ body{
     flex-direction: column;
 }
 
-.topbar{
-    margin-bottom: 25px;
-}
-
 .topbar h1{
     color: white;
     font-size: 38px;
-    margin-bottom: 8px;
 }
 
 .topbar p{
@@ -44,21 +35,16 @@ body{
 }
 
 .dashboard-card{
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
+    border-radius: 25px;
     padding: 28px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: 0.3s;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.60);
 }
 
 .dashboard-card:hover{
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    box-shadow: 0 1px 15px rgba(0,0,0,0.60);
 }
 
 .dashboard-card h2{
@@ -74,27 +60,23 @@ body{
 }
 
 .dashboard-card a{
-
     text-decoration: none;
     background: white;
     color: #0d2d7a;
-    padding: 14px;
-    border-radius: 14px;
+    padding: 15px;
+    border-radius: 15px;
     text-align: center;
-    font-weight: bold;
-    transition: 0.3s;
 }
 
 .dashboard-card a:hover{
-    background: #dce6ff;
+    background: #cddbfc;
 }
 
 .icon{
-
     width: 70px;
     height: 70px;
     border-radius: 18px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.60);
     display: flex;
     align-items: center;
     justify-content: center;
