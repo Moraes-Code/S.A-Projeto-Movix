@@ -1,100 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Movix</title>
 
-    <title>Login Movix</title>
-
-    <link rel="stylesheet" href="../Css/login.css">
-
+    <link rel="stylesheet" href="../assets/style/style.css">
 </head>
-
 <body>
-
-    <div class="container">
-
-        <div class="left">
-
-            <div class="logo">
-
-              <img src="../Css/Imgs/Logo-Movix__1_-removebg-preview.png" alt="Logo Movix">
-
-            </div>
-
-            <div class="texto">
-
-                <h2>
-                    Gerencie sua malha ferroviária da melhor forma
-                </h2>
-
-                <p>
-                    Plataforma de diversas operações e dados em tempo real.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="right">
-
-            <div class="login-box">
-
-                <h1>Crie sua conta</h1>
-
-                <p>
-                    Preencha seus dados para começar a usar o Movix
-                </p>
-
+    <header class="header">
+        <img src="../assets/imgs/logo_movix_semfundoazul.png" alt="Logo Movix">
+    </header>
+    <div class="hero">
+        <h1>Crie sua conta</h1>
+        <p>
+            Preencha seus dados para começar a utilizar o sistema Movix.
+        </p>
         <form id="formLogin">
+            <p>Nome Completo</p>
+            <input type="text" id="nome" required>
 
-        <label>Nome Completo</label>
+            <p>E-mail</p>
+            <input type="email" id="email" required>
 
-            <input
-            type="text"
-            id="nome"
-            placeholder="Ex: mínimo 6 caracteres"
-            required>
+            <p>Senha</p>
+            <input type="password" id="senha" required>
 
-            <label>E-mail</label>
-
-            <input
-            type="email"
-            id="email"
-            placeholder="Ex: joao@gmail.com"
-            required>
-
-            <label>Senha</label>
-
-            <input
-            type="password"
-            id="senha"
-            placeholder="******"
-            required>
+            <br><br>
 
             <button type="submit" class="btn">
-             Criar Conta
+                Criar Conta
             </button>
-
         </form>
-
-                <div class="cadastro">
-                    Ja tem conta ?
-                    <a href="login.html">
-                        Login
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+        <br>
+        <p>
+            Já tem conta?
+            <a href="login.html">Login</a>
+        </p>
     </div>
-
-    <script src="../Js/cadastro.js"></script>
-
+    <script src="../scripts/cadastro.js"></script>
 </body>
-
 </html>

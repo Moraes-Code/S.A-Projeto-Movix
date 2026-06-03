@@ -39,3 +39,21 @@ img{
     border-radius: 5px;
     font-size: 20px;
 }
+/* INPUTS */
+#nome{
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+#email{
+    width: 300px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+#senha{
+    width: 300px;
+    background-color: lightgray;
+    border-radius: 15px;
+}
