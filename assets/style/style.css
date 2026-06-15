@@ -1,4 +1,63 @@
 :root{
+    --azul-escuro:#0D1B2A;
+    --azul-medio:#1B4F72;
+    --azul-claro:#5DADE2;
+    --branco:#FFFFFF;
+    --cinza:#F4F6F9;
+}
+
+body{
+    background:var(--cinza);
+    font-family:'Poppins',sans-serif;
+}
+
+.sidebar{
+    width:260px;
+    height:100vh;
+    background:var(--azul-escuro);
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.sidebar h3{
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.sidebar a{
+    color:white;
+    display:block;
+    padding:15px 25px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:var(--azul-medio);
+}
+
+.main{
+    margin-left:260px;
+}
+
+.topbar{
+    background:white;
+    padding:15px 30px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.content{
+    padding:30px;
+}
+
+.card-dashboard{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+:root{
     --primary:#0D1B2A;
     --secondary:#1B4F72;
     --accent:#5DADE2;
