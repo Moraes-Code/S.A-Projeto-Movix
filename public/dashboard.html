@@ -1,153 +1,125 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
-<html lang="pt-br">
-=======
-<html lang="en">
 
->>>>>>> e85934f3f27976d0d782f54a2febbf13d695b860
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Movix</title>
-    <link rel="stylesheet" href="../assets/style/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Movix</title>
+
+
+<link rel="stylesheet" href="../assets/style/style.css">
+
+
 </head>
-<<<<<<< HEAD
-<body>
-    <header class="header">
-        <img src="../assets/imgs/logo_movix_semfundoazul.png" alt="Logo Movix">
-    </header>
-
-    <div class="principal">
-        <h1>Olá, Administrador</h1>
-        
-        <br>
-        <a href="sensores.html"><button class="btn">Cadastrar Sensores e Trens</button></a>
-        <br><br>
-
-        <h2>Lista de Sensores</h2>
-        
-        <p>
-            ID: 01 | Local: KM 42 | Dado: Velocidade 
-            <button class="btn" onclick="alert('Visualizando detalhes do Sensor 01')">Detalhes</button>
-            <button class="btn" onclick="excluirSensor(1)">Excluir</button>
-        </p>
-
-        <p>
-            ID: 02 | Local: KM 80 | Dado: Temperatura 
-            <button class="btn" onclick="alert('Visualizando detalhes do Sensor 02')">Detalhes</button>
-            <button class="btn" onclick="excluirSensor(2)">Excluir</button>
-        </p>
-
-        <p>
-            ID: 03 | Local: KM 105 | Dado: Falha 
-            <button class="btn" onclick="alert('Visualizando detalhes do Sensor 03')">Detalhes</button>
-            <button class="btn" onclick="excluirSensor(3)">Excluir</button>
-        </p>
-        <br><br>
-
-        <button class="btn" onclick="fazerLogout()">Sair do Sistema</button>
-    </div>
-
-    <script src="../scripts/index.js"></script>
-=======
-
 <body>
 
-    <main class="main">
-        <header class="topbar">
-            <div>
-                <h1>Dashboard Movix</h1>
-                <p>Bem-vindo, Administrador</p>
-            </div>
-        </header>
-        <section class="dashboard-cards">
-            <div class="dashboard-card">
-                <div>
-                    <div class="icon">
-                        <i class="fa-solid fa-tower-broadcast"></i>
-                    </div>
-                    <h2>Sensores</h2>
-                    <p>
-                        Gerencie sensores ferroviários.
-                    </p>
-                </div>
-                <a href="sensores.html">
-                    Acessar
-                </a>
-            </div>
-            <div class="dashboard-card">
-                <div>
-                    <div class="icon">
-                        <i class="fa-solid fa-train"></i>
-                    </div>
-                    <h2>Trens</h2>
-                    <p>
-                        Cadastro e gerenciamento de trens operacionais.
-                    </p>
-                </div>
-                <a href="trens.html">
-                    Acessar
-                </a>
-            </div>
-            <div class="dashboard-card">
-                <div>
-                    <div class="icon">
-                        <i class="fa-solid fa-satellite-dish"></i>
-                    </div>
-                    <h2>Monitoramento</h2>
-                    <p>
-                        Visualização em tempo real da operação.
-                    </p>
-                </div>
-                <a href="monitoramento.html">
-                    Acessar
-                </a>
-            </div>
-            <div class="dashboard-card">
-                <div>
-                    <div class="icon">
-                        <i class="fa-solid fa-chart-column"></i>
-                    </div>
-                    <h2>Relatórios</h2>
-                    <p>
-                        Gráficos e análises operacionais da ferrovia.
-                    </p>
-                </div>
-                <a href="relatorios.html">
-                    Acessar
-                </a>
-            </div>
-            <div class="dashboard-card">
-                <div>
-                    <div class="icon">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                    <h2>Alertas</h2>
-                    <p>
-                        Falhas críticas e ocorrências registradas.
-                    </p>
-                </div>
-                <a href="alertas.html">
-                    Acessar
-                </a>
-            </div>
-            <div class="dashboard-card">
-                <div>
-                    <div class="icon">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <h2>Usuários</h2>
-                    <p>
-                        Controle de administradores e acessos.
-                    </p>
-                </div>
-                <a href="usuários.html">
-                    Acessar
-                </a>
-            </div>
-        </section>
 
-    </main>
->>>>>>> e85934f3f27976d0d782f54a2febbf13d695b860
+<header class="header">
+    <img src="../assets/imgs/logo_movix_semfundoazul.png" alt="Logo Movix">
+</header>
+
+<div class="principal">
+
+    <h1>Painel do Administrador</h1>
+
+    <p>
+        Bem-vindo ao sistema Movix.
+    </p>
+
+    <p>
+        Administrador: Bruno Moraes
+    </p>
+
+    <button class="btn" onclick="location.href='sensores.html'">
+        Cadastro de Sensores
+    </button>
+
+    <br><br>
+
+    <button class="btn" onclick="location.href='trens.html'">
+        Cadastro de Trens
+    </button>
+
+    <br><br>
+
+    <button class="btn" onclick="location.href='login.html'">
+        Sair do Sistema
+    </button>
+
+    <br><br><br>
+
+    <h2>Sensores Cadastrados</h2>
+
+    <table class="tabela">
+
+        <tr>
+            <th>ID</th>
+            <th>Localização</th>
+            <th>Tipo</th>
+            <th>Excluir</th>
+            <th>Detalhes</th>
+        </tr>
+
+        <tr>
+            <td>001</td>
+            <td>Estação Central</td>
+            <td>Temperatura</td>
+
+            <td>
+                <button class="btn">
+                    Excluir
+                </button>
+            </td>
+
+            <td>
+                <button class="btn">
+                    Ver
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>002</td>
+            <td>Ponte Norte</td>
+            <td>Velocidade</td>
+
+            <td>
+                <button class="btn">
+                    Excluir
+                </button>
+            </td>
+
+            <td>
+                <button class="btn">
+                    Ver
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>003</td>
+            <td>Túnel Sul</td>
+            <td>Falha</td>
+
+            <td>
+                <button class="btn">
+                    Excluir
+                </button>
+            </td>
+
+            <td>
+                <button class="btn">
+                    Ver
+                </button>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+<script src="../scripts/index.js"></script>
+
+
 </body>
-
 </html>
