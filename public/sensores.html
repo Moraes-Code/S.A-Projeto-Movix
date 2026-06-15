@@ -1,39 +1,43 @@
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/style/style.css">
-</head>
-<body>
-    <div class="principal">
+<div class="content">
 
-    <h1>Cadastro de Sensores</h1>
+<div class="table-container">
 
-    <p>Nome do Sensor</p>
-    <input type="text" id="SensorNome">
+<button class="btn btn-success mb-3">
+Novo Sensor
+</button>
 
-    <p>Localização</p>
-    <input type="text" id="SensorNome">
+<table class="table">
 
-    <p>Tipo de Dado</p>
-    <input type="text" id="SensorNome">
+<thead>
 
-    <p>Trem Vinculado</p>
-    <input type="text" id="SensorNome">
+<tr>
+<th>ID</th>
+<th>Nome</th>
+<th>Tipo</th>
+<th>Localização</th>
+<th>Status</th>
+</tr>
 
-    <br><br>
+</thead>
 
-    <button class="btn">
-        Cadastrar Sensor
-    </button>
+<tbody>
 
-    <br><br>
+<tr>
+<td>001</td>
+<td>Sensor Norte</td>
+<td>Temperatura</td>
+<td>Estação A</td>
+<td>
+<span class="badge bg-success">
+Online
+</span>
+</td>
+</tr>
 
-    <button class="btn" onclick="location.href='dashboard.html'">
-        Voltar
-    </button>
+</tbody>
+
+</table>
 
 </div>
-</body>
-</html>
+
+</div>

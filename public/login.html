@@ -1,65 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Movix</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../assets/style/style.css">
+<title>Login - Movix</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
-
 <body>
 
-    <header class="header">
-        <img src="../assets/imgs/logo_movix_semfundoazul.png" alt="Logo Movix">
-    </header>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
 
-    <div class="principal">
+<div class="card mvx-login-card p-4 shadow">
 
-        <h1>Bem-vindo</h1>
+<h1 class="text-center text-primary">MOVIX</h1>
+<p class="text-center text-muted">
+Sistema de Monitoramento Ferroviário
+</p>
 
-        <p>
-            Entre com suas credenciais para acessar o painel.
-        </p>
+<form>
 
-        <form id="Login">
+<div class="mb-3">
+<label>E-mail</label>
+<input type="email" class="form-control">
+</div>
 
-            <p>E-mail</p>
+<div class="mb-3">
+<label>Senha</label>
+<input type="password" class="form-control">
+</div>
 
-            <input
-                type="email"
-                id="email"
-                required>
+<button class="btn btn-primary w-100">
+Entrar
+</button>
 
-            <p>Senha</p>
+<a href="cadastroUsuario.html"
+class="btn btn-outline-secondary w-100 mt-2">
+Cadastrar Usuário
+</a>
 
-            <input
-                type="password"
-                id="senha"
-                required>
+</form>
 
-            <br><br>
+</div>
 
-            <button type="submit" class="btn">
-                Entrar
-            </button>
-
-        </form>
-
-        <br>
-
-        <p>
-            Não tem conta?
-            <a href="cadastro.html">
-                Cadastre-se
-            </a>
-        </p>
-
-    </div>
-
-    <script src="../scripts/dashboard.js"></script>
+</div>
 
 </body>
-
 </html>
