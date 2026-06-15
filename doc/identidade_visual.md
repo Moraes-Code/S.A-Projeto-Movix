@@ -8,10 +8,9 @@ A equipe Movix desenvolveu uma identidade visual moderna e intuitiva, focada na 
 
 A paleta de cores utiliza:
 
-- **Azul (#2563EB):** cor principal, associada à confiança e tecnologia;
-- **Branco (#FFFFFF):** fundo principal para melhor legibilidade;
-- **Cinza (#F3F4F6 e #374151):** elementos secundários e textos;
-- **Verde, amarelo e vermelho:** utilizados para mensagens de sucesso, alertas e erros.
+- **Azul (#0d47a1):** cor principal, associada à confiança e tecnologia;
+- **Azul claro (#5eaef0):** elementos secundários;
+- **Branco (#FFFFFF):** Textos e caixas de input ;
 
 ## Tipografia
 
