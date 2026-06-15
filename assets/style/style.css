@@ -1,71 +1,61 @@
 body{
-    margin: 0;
-    background-color: #0d47a1;
-    font-family: Arial, sans-serif;
-    color: white;
+    background-color:#f4f6f9;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.header{
-    width: 1812px;
-    background-color:  #5eaef0;
-    padding: 20px 50px;
+.mvx-navbar{
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
 }
 
-img{
-    width: 200px;
+.mvx-logo{
+    font-size:1.5rem;
+    font-weight:bold;
 }
 
-.principal{
-    text-align: center;
-    margin-top: 100px;
+.mvx-card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
-.principal h1{
-    font-size: 60px;
-    max-width: 900px;
-    margin: auto;
+.mvx-login-card{
+    width:400px;
+    border-radius:20px;
 }
 
-.principal p{
-    font-size: 25px;
-    max-width: 700px;
-    margin: 30px auto;
+.mvx-stat{
+    padding:20px;
+    text-align:center;
 }
 
-.btn{
-    background-color: #42a5f5;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-size: 20px;
-}
-/* INPUTS */
-#nome{
-    width: 300px;
-    background-color: rgb(255, 255, 255);
-    
+.mvx-stat h2{
+    font-size:2rem;
 }
 
-#email{
-    width: 300px;
-    background-color: white;
-    
+.mvx-container{
+    padding-top:30px;
 }
 
-#senha{
-    width: 300px;
-    background-color: lightgray;
-    
+.mvx-table{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
 }
 
-#sensorNome{
-    width: 300px;
-    background-color: white;
-    margin-bottom: 30px;
+.mvx-title{
+    margin-bottom:20px;
+    font-weight:bold;
 }
 
-#tremNome{
-    width: 300px;
-    background-color: white;
-    margin-bottom: 30px;
+.mvx-form-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+footer{
+    margin-top:50px;
+    padding:20px;
+    text-align:center;
 }
