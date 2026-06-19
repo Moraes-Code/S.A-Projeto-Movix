@@ -4,45 +4,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro Movix</title>
+    <title>Cadastro de Usuário - MOVIX</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body>
-    <header class="header">
-        <img src="../assets/imgs/logo_movix_semfundoazul.png" alt="Logo Movix">
-    </header>
-    <div class="principal">
-        <h1>Crie sua conta</h1>
-        <p>
-            Preencha seus dados para começar a utilizar o sistema Movix.
-        </p>
-        <form id="Login">
-            <p>Nome Completo</p>
-            <input type="text" id="nome" required>
+<body class="login-bg">
 
-            <p>E-mail</p>
-            <input type="email" id="email" required>
+    <div class="container">
 
-            <p>Senha</p>
-            <input type="password" id="senha" required>
+        <div class="row justify-content-center align-items-center min-vh-100">
 
-            <br><br>
+            <div class="col-lg-7">
 
-            <button type="submit" class="btn">
-                Criar Conta
-            </button>
-        </form>
-        <br>
-        <p>
-            Já tem conta?
-            <a href="#" onclick="location.href='login.html'">Login</a>
-        </p>
+                <div class="card cadastro-card">
+
+                    <div class="card-body p-5">
+
+                        <div class="text-center mb-4">
+
+                            <h1 class="logo-title">
+                                MOVIX
+                            </h1>
+
+                            <p class="text-muted">
+                                Cadastro de Usuário
+                            </p>
+
+                        </div>
+
+                        <form>
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Nome Completo
+                                    </label>
+
+                                    <input type="text" class="form-control">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        E-mail
+                                    </label>
+
+                                    <input type="email" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Telefone
+                                    </label>
+
+                                    <input type="text" class="form-control">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+
+                                    <label class="form-label">
+                                        Tipo de Usuário
+                                    </label>
+
+                                    <select class="form-select">
+                                        <option>Administrador</option>
+                                        <option>Operador</option>
+                                        <option>Supervisor</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mb-4">
+
+                                <label class="form-label">
+                                    Senha
+                                </label>
+
+                                <input type="password" class="form-control">
+
+                            </div>
+
+                            <div class="d-grid">
+
+                                <button class="btn btn-movix">
+                                    Cadastrar Usuário
+                                </button>
+
+                            </div>
+
+                            <div class="text-center mt-3">
+
+                                <a href="login.html">
+                                    Voltar para Login
+                                </a>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-    <script src="../scripts/index.js"></script>
+
 </body>
 
 </html>
