@@ -6,31 +6,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard - Movix</title>
+    <title>Dashboard - MOVIX</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../assets/style/style.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-    <!-- Sidebar -->
-
     <div class="sidebar">
 
         <div class="logo-area">
 
-            <img src="../assets/img/logo.png" width="70">
+            <img src="../assets/imgs/logo_movix_semfundoazul.png">
 
-            <h3>Movix</h3>
+            <h3>MOVIX</h3>
+
+            <small>Centro Ferroviário</small>
 
         </div>
 
-        <a href="dashboard.html">
+        <a href="dashboard.html" class="active">
             <i class="fa-solid fa-chart-line"></i>
             Dashboard
         </a>
@@ -67,43 +68,43 @@
 
     </div>
 
-    <!-- Conteúdo -->
-
     <div class="main">
-
-        <!-- Topo -->
 
         <div class="topbar">
 
             <div>
-                <h4>Dashboard Geral</h4>
+
+                <h3>Dashboard Geral</h3>
+
+                <small>Visão geral do sistema ferroviário</small>
+
             </div>
 
             <div>
-                Bem-vindo, Administrador
+
+                <strong>Administrador</strong>
+
             </div>
 
         </div>
-
-        <!-- Conteúdo -->
 
         <div class="content">
 
             <div class="row g-4">
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
 
-                    <div class="card dashboard-card">
+                    <div class="card dashboard-card sensor-card">
 
                         <div class="card-body">
 
-                            <h6>Total de Sensores</h6>
+                            <i class="fa-solid fa-microchip dashboard-icon"></i>
+
+                            <h6>Sensores Online</h6>
 
                             <h2>145</h2>
 
-                            <small class="text-success">
-                                +12 este mês
-                            </small>
+                            <small>98% Operacionais</small>
 
                         </div>
 
@@ -111,19 +112,19 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
 
-                    <div class="card dashboard-card">
+                    <div class="card dashboard-card trem-card">
 
                         <div class="card-body">
+
+                            <i class="fa-solid fa-train dashboard-icon"></i>
 
                             <h6>Trens Ativos</h6>
 
                             <h2>18</h2>
 
-                            <small class="text-primary">
-                                Operando normalmente
-                            </small>
+                            <small>Todos em operação</small>
 
                         </div>
 
@@ -131,19 +132,19 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
 
-                    <div class="card dashboard-card">
+                    <div class="card dashboard-card alerta-card">
 
                         <div class="card-body">
+
+                            <i class="fa-solid fa-triangle-exclamation dashboard-icon"></i>
 
                             <h6>Alertas</h6>
 
-                            <h2>7</h2>
+                            <h2>07</h2>
 
-                            <small class="text-danger">
-                                Necessitam atenção
-                            </small>
+                            <small>2 críticos</small>
 
                         </div>
 
@@ -151,19 +152,19 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-lg-3">
 
-                    <div class="card dashboard-card">
+                    <div class="card dashboard-card usuario-card">
 
                         <div class="card-body">
+
+                            <i class="fa-solid fa-users dashboard-icon"></i>
 
                             <h6>Usuários</h6>
 
                             <h2>12</h2>
 
-                            <small class="text-secondary">
-                                Cadastrados
-                            </small>
+                            <small>Ativos</small>
 
                         </div>
 
@@ -173,65 +174,186 @@
 
             </div>
 
-            <!-- Tabela -->
+            <div class="row mt-4">
 
-            <div class="table-container mt-5">
+                <div class="col-lg-8">
 
-                <h4 class="mb-4">
-                    Últimos Alertas
-                </h4>
+                    <div class="table-container">
 
-                <table class="table table-hover">
+                        <h4 class="mb-4">
 
-                    <thead>
+                            Últimos Alertas
 
-                        <tr>
+                        </h4>
 
-                            <th>ID</th>
-                            <th>Tipo</th>
-                            <th>Sensor</th>
-                            <th>Data</th>
-                            <th>Status</th>
+                        <table class="table table-hover">
 
-                        </tr>
+                            <thead>
 
-                    </thead>
+                                <tr>
 
-                    <tbody>
+                                    <th>ID</th>
+                                    <th>Tipo</th>
+                                    <th>Local</th>
+                                    <th>Data</th>
+                                    <th>Status</th>
 
-                        <tr>
+                                </tr>
 
-                            <td>AL001</td>
-                            <td>Falha</td>
-                            <td>Sensor Norte</td>
-                            <td>16/06/2026</td>
+                            </thead>
 
-                            <td>
-                                <span class="badge bg-danger">
-                                    Crítico
-                                </span>
-                            </td>
+                            <tbody>
 
-                        </tr>
+                                <tr>
 
-                        <tr>
+                                    <td>AL001</td>
+                                    <td>Falha Sensor</td>
+                                    <td>Linha Norte</td>
+                                    <td>19/06/2026</td>
 
-                            <td>AL002</td>
-                            <td>Temperatura</td>
-                            <td>Sensor Sul</td>
-                            <td>16/06/2026</td>
+                                    <td>
+                                        <span class="badge bg-danger">
+                                            Crítico
+                                        </span>
+                                    </td>
 
-                            <td>
-                                <span class="badge bg-warning">
-                                    Médio
-                                </span>
-                            </td>
+                                </tr>
 
-                        </tr>
+                                <tr>
 
-                    </tbody>
+                                    <td>AL002</td>
+                                    <td>Temperatura</td>
+                                    <td>Linha Sul</td>
+                                    <td>19/06/2026</td>
 
-                </table>
+                                    <td>
+                                        <span class="badge bg-warning">
+                                            Médio
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>AL003</td>
+                                    <td>Comunicação</td>
+                                    <td>Linha Centro</td>
+                                    <td>19/06/2026</td>
+
+                                    <td>
+                                        <span class="badge bg-success">
+                                            Resolvido
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="table-container">
+
+                        <h4 class="mb-4">
+
+                            Status da Rede
+
+                        </h4>
+
+                        <div class="status-item">
+
+                            <span>🟢 Linha Norte</span>
+
+                            <strong>Operando</strong>
+
+                        </div>
+
+                        <div class="status-item">
+
+                            <span>🟢 Linha Sul</span>
+
+                            <strong>Operando</strong>
+
+                        </div>
+
+                        <div class="status-item">
+
+                            <span>🟡 Linha Centro</span>
+
+                            <strong>Atenção</strong>
+
+                        </div>
+
+                        <div class="status-item">
+
+                            <span>🔴 Linha Leste</span>
+
+                            <strong>Falha</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row mt-4">
+
+                <div class="col-lg-6">
+
+                    <div class="table-container">
+
+                        <h4>Atividades Recentes</h4>
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                Sensor SN001 atualizado
+                            </li>
+
+                            <li class="list-group-item">
+                                Trem TR008 iniciou operação
+                            </li>
+
+                            <li class="list-group-item">
+                                Alerta AL003 resolvido
+                            </li>
+
+                            <li class="list-group-item">
+                                Novo usuário cadastrado
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div class="table-container">
+
+                        <h4>Resumo Operacional</h4>
+
+                        <p><strong>Malha Monitorada:</strong> 480 km</p>
+
+                        <p><strong>Estações Ativas:</strong> 22</p>
+
+                        <p><strong>Sensores Instalados:</strong> 145</p>
+
+                        <p><strong>Disponibilidade:</strong> 98,7%</p>
+
+                    </div>
+
+                </div>
 
             </div>
 

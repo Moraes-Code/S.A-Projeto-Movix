@@ -1,45 +1,142 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>usuarios</title>
+
+    <title>Usuários - MOVIX</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
- <link rel="stylesheet" href="../assets/style/style.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
 
-</body>
+<div class="sidebar">
 
-</html>
+    <div class="logo-area">
+
+        <img src="../assets/imgs/logo_movix_semfundoazul.png">
+
+        <h3>MOVIX</h3>
+
+    </div>
+
+    <a href="dashboard.html">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+    </a>
+
+    <a href="monitoramento.html">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Monitoramento
+    </a>
+
+    <a href="alertas.html">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Alertas
+    </a>
+
+    <a href="sensores.html">
+        <i class="fa-solid fa-microchip"></i>
+        Sensores
+    </a>
+
+    <a href="trens.html">
+        <i class="fa-solid fa-train"></i>
+        Trens
+    </a>
+
+    <a href="usuarios.html" class="active">
+        <i class="fa-solid fa-users"></i>
+        Usuários
+    </a>
+
+    <a href="relatorios.html">
+        <i class="fa-solid fa-file-lines"></i>
+        Relatórios
+    </a>
+
+</div>
 
 <div class="main">
 
     <div class="topbar">
-        <h4>Usuários</h4>
+
+        <div>
+
+            <h3>Gerenciamento de Usuários</h3>
+
+            <small>Controle de acesso ao sistema MOVIX</small>
+
+        </div>
+
     </div>
 
     <div class="content">
 
         <div class="table-container">
 
-            <button class="btn btn-primary mb-3">
-                Novo Usuário
-            </button>
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <table class="table table-striped">
+                <h4>Usuários Cadastrados</h4>
+
+                <button class="btn btn-movix">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Novo Usuário
+
+                </button>
+
+            </div>
+
+            <div class="row mb-4">
+
+                <div class="col-md-8">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Pesquisar usuário...">
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <select class="form-select">
+
+                        <option>Todos os Perfis</option>
+                        <option>Administrador</option>
+                        <option>Supervisor</option>
+                        <option>Operador</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <table class="table table-hover align-middle">
 
                 <thead>
 
                     <tr>
-                        <th>Nome</th>
+
+                        <th>Usuário</th>
                         <th>Email</th>
                         <th>Telefone</th>
                         <th>Perfil</th>
+                        <th>Status</th>
                         <th>Ações</th>
+
                     </tr>
 
                 </thead>
@@ -47,14 +144,123 @@
                 <tbody>
 
                     <tr>
-                        <td>João Silva</td>
-                        <td>joao@email.com</td>
-                        <td>(47)99999-9999</td>
-                        <td>Administrador</td>
+
                         <td>
-                            <button class="btn btn-warning btn-sm">Editar</button>
-                            <button class="btn btn-danger btn-sm">Excluir</button>
+                            <strong>André Silva</strong>
                         </td>
+
+                        <td>
+                            andre@movix.com
+                        </td>
+
+                        <td>
+                            (47) 99999-9999
+                        </td>
+
+                        <td>
+                            <span class="badge bg-primary">
+                                Administrador
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-success">
+                                Ativo
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>Maria Souza</strong>
+                        </td>
+
+                        <td>
+                            maria@movix.com
+                        </td>
+
+                        <td>
+                            (47) 98888-8888
+                        </td>
+
+                        <td>
+                            <span class="badge bg-info">
+                                Supervisor
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-success">
+                                Ativo
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <strong>Carlos Lima</strong>
+                        </td>
+
+                        <td>
+                            carlos@movix.com
+                        </td>
+
+                        <td>
+                            (47) 97777-7777
+                        </td>
+
+                        <td>
+                            <span class="badge bg-secondary">
+                                Operador
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-danger">
+                                Inativo
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                        </td>
+
                     </tr>
 
                 </tbody>
@@ -66,3 +272,7 @@
     </div>
 
 </div>
+
+</body>
+
+</html>

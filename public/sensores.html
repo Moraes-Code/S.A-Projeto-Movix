@@ -1,60 +1,234 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sensores</title>
+
+    <title>Sensores - MOVIX</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../assets/style/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
 
-</body>
+<div class="sidebar">
 
-</html>
+    <div class="logo-area">
 
-<div class="content">
+        <img src="../assets/imgs/logo_movix_semfundoazul.png">
 
-    <div class="table-container">
+        <h3>MOVIX</h3>
 
-        <button class="btn btn-success mb-3">
-            Novo Sensor
-        </button>
+    </div>
 
-        <table class="table">
+    <a href="dashboard.html">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+    </a>
 
-            <thead>
+    <a href="monitoramento.html">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Monitoramento
+    </a>
 
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Localização</th>
-                    <th>Status</th>
-                </tr>
+    <a href="alertas.html">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Alertas
+    </a>
 
-            </thead>
+    <a href="sensores.html" class="active">
+        <i class="fa-solid fa-microchip"></i>
+        Sensores
+    </a>
 
-            <tbody>
+    <a href="trens.html">
+        <i class="fa-solid fa-train"></i>
+        Trens
+    </a>
 
-                <tr>
-                    <td>001</td>
-                    <td>Sensor Norte</td>
-                    <td>Temperatura</td>
-                    <td>Estação A</td>
-                    <td>
-                        <span class="badge bg-success">
-                            Online
-                        </span>
-                    </td>
-                </tr>
+    <a href="usuarios.html">
+        <i class="fa-solid fa-users"></i>
+        Usuários
+    </a>
 
-            </tbody>
+    <a href="relatorios.html">
+        <i class="fa-solid fa-file-lines"></i>
+        Relatórios
+    </a>
 
-        </table>
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+
+            <h3>Gerenciamento de Sensores</h3>
+
+            <small>Controle e monitoramento dos sensores ferroviários</small>
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <div class="table-container">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h4>Sensores Cadastrados</h4>
+
+                <button class="btn btn-movix">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Novo Sensor
+
+                </button>
+
+            </div>
+
+            <div class="mb-4">
+
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Pesquisar sensor...">
+
+            </div>
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Localização</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>SN001</td>
+                        <td>Sensor Norte</td>
+                        <td>Temperatura</td>
+                        <td>KM 25</td>
+
+                        <td>
+                            <span class="badge bg-success">
+                                Online
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-warning btn-sm">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="btn btn-danger btn-sm">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>SN002</td>
+                        <td>Sensor Sul</td>
+                        <td>Vibração</td>
+                        <td>KM 48</td>
+
+                        <td>
+                            <span class="badge bg-warning">
+                                Atenção
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-warning btn-sm">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="btn btn-danger btn-sm">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>SN003</td>
+                        <td>Sensor Centro</td>
+                        <td>Pressão</td>
+                        <td>KM 80</td>
+
+                        <td>
+                            <span class="badge bg-danger">
+                                Offline
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-warning btn-sm">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                            </button>
+
+                            <button class="btn btn-danger btn-sm">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
 </div>
+
+</body>
+
+</html>

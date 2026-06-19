@@ -1,47 +1,268 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>alertas</title>
+
+    <title>Alertas - MOVIX</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-   <link rel="stylesheet" href="../assets/style/style.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
+<div class="sidebar">
+
+    <div class="logo-area">
+
+        <img src="../assets/imgs/logo_movix_semfundoazul.png">
+
+        <h3>MOVIX</h3>
+
+    </div>
+
+    <a href="dashboard.html">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+    </a>
+
+    <a href="monitoramento.html">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Monitoramento
+    </a>
+
+    <a href="alertas.html" class="active">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Alertas
+    </a>
+
+    <a href="sensores.html">
+        <i class="fa-solid fa-microchip"></i>
+        Sensores
+    </a>
+
+    <a href="trens.html">
+        <i class="fa-solid fa-train"></i>
+        Trens
+    </a>
+
+    <a href="usuarios.html">
+        <i class="fa-solid fa-users"></i>
+        Usuários
+    </a>
+
+    <a href="relatorios.html">
+        <i class="fa-solid fa-file-lines"></i>
+        Relatórios
+    </a>
+
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+
+            <h3>Central de Alertas</h3>
+
+            <small>Monitoramento de ocorrências do sistema</small>
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-md-4">
+
+                <div class="card monitor-card offline">
+
+                    <div class="card-body">
+
+                        <h5>🔴 Críticos</h5>
+
+                        <h1>02</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card monitor-card warning">
+
+                    <div class="card-body">
+
+                        <h5>🟡 Médios</h5>
+
+                        <h1>05</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="card monitor-card online">
+
+                    <div class="card-body">
+
+                        <h5>🟢 Resolvidos</h5>
+
+                        <h1>18</h1>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="table-container">
+
+            <h4 class="mb-4">Ocorrências Registradas</h4>
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Local</th>
+                        <th>Data</th>
+                        <th>Prioridade</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>AL001</td>
+                        <td>Falha de Sensor</td>
+                        <td>Linha Norte</td>
+                        <td>19/06/2026</td>
+
+                        <td>
+                            <span class="badge bg-danger">
+                                Crítica
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning">
+                                Aberto
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-success btn-sm">
+                                Resolver
+                            </button>
+
+                            <button class="btn btn-primary btn-sm">
+                                Ver
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>AL002</td>
+                        <td>Temperatura Elevada</td>
+                        <td>Linha Sul</td>
+                        <td>19/06/2026</td>
+
+                        <td>
+                            <span class="badge bg-warning">
+                                Média
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning">
+                                Aberto
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-success btn-sm">
+                                Resolver
+                            </button>
+
+                            <button class="btn btn-primary btn-sm">
+                                Ver
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>AL003</td>
+                        <td>Perda de Comunicação</td>
+                        <td>Linha Centro</td>
+                        <td>18/06/2026</td>
+
+                        <td>
+                            <span class="badge bg-info">
+                                Baixa
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge bg-success">
+                                Resolvido
+                            </span>
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-secondary btn-sm">
+                                Histórico
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 
 </html>
-
-<table class="table">
-
-    <thead>
-
-        <tr>
-            <th>ID</th>
-            <th>Tipo</th>
-            <th>Data</th>
-            <th>Prioridade</th>
-        </tr>
-
-    </thead>
-
-    <tbody>
-
-        <tr>
-            <td>AL001</td>
-            <td>Falha Sensor</td>
-            <td>15/06/2026</td>
-            <td>
-                <span class="badge bg-danger">
-                    Alta
-                </span>
-            </td>
-        </tr>
-
-    </tbody>
-
-</table>

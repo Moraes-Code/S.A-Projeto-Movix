@@ -1,112 +1,32 @@
-/* =========================
-   MOVIX - SISTEMA FERROVIÁRIO
-========================= */
-
 :root{
     --azul-escuro:#0D1B2A;
     --azul-medio:#1B4F72;
     --azul-claro:#5DADE2;
     --cinza:#F4F6F9;
     --branco:#FFFFFF;
+    --verde:#22C55E;
+    --vermelho:#EF4444;
+    --amarelo:#F59E0B;
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
     background:var(--cinza);
-    font-family:'Segoe UI',sans-serif;
 }
-
-/* =========================
-   LOGIN E CADASTRO
-========================= */
-
-.login-bg{
-    background:var(--cinza);
-    min-height:100vh;
-}
-
-.logo-title{
-    color:var(--azul-escuro);
-    font-size:2.8rem;
-    font-weight:700;
-}
-
-.login-card,
-.cadastro-card{
-    background:white;
-    border:none;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
-}
-
-.form-control,
-.form-select{
-    border-radius:12px;
-    padding:12px;
-}
-
-.form-control:focus,
-.form-select:focus{
-    border-color:var(--azul-medio);
-    box-shadow:0 0 0 .2rem rgba(27,79,114,.20);
-}
-
-.btn-movix{
-    background:var(--azul-medio);
-    color:white;
-    border:none;
-    padding:12px;
-    border-radius:12px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.btn-movix:hover{
-    background:var(--azul-escuro);
-    color:white;
-}
-
-/* =========================
-   LANDING PAGE
-========================= */
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-}
-
-.hero-title{
-    font-size:3.2rem;
-    font-weight:700;
-    color:var(--azul-escuro);
-}
-
-.hero-text{
-    color:#555;
-    font-size:1.1rem;
-}
-
-.logo{
-    max-width:320px;
-}
-
-/* =========================
-   SIDEBAR
-========================= */
 
 .sidebar{
-    width:260px;
-    height:100vh;
-    background:var(--azul-escuro);
     position:fixed;
     left:0;
     top:0;
+    width:260px;
+    height:100vh;
+    background:var(--azul-escuro);
     overflow-y:auto;
 }
 
@@ -116,30 +36,33 @@ body{
     color:white;
 }
 
+.logo-area img{
+    width:90px;
+}
+
 .logo-area h3{
     margin-top:10px;
-    font-weight:600;
 }
 
 .sidebar a{
-    display:block;
-    padding:15px 25px;
+    display:flex;
+    align-items:center;
+    gap:12px;
     color:white;
     text-decoration:none;
+    padding:15px 25px;
     transition:.3s;
 }
 
 .sidebar a:hover{
     background:var(--azul-medio);
+    padding-left:35px;
 }
 
-.sidebar i{
-    margin-right:10px;
+.sidebar a.active{
+    background:var(--azul-medio);
+    border-left:4px solid var(--azul-claro);
 }
-
-/* =========================
-   MAIN
-========================= */
 
 .main{
     margin-left:260px;
@@ -151,115 +74,166 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .content{
     padding:30px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
-
 .dashboard-card{
     border:none;
-    border-radius:15px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    border-radius:18px;
+    color:white;
     transition:.3s;
 }
 
 .dashboard-card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-8px);
 }
 
-.dashboard-card h2{
-    color:var(--azul-medio);
-    font-weight:bold;
+.dashboard-icon{
+    font-size:2rem;
+    margin-bottom:15px;
 }
 
-/* =========================
-   TABELAS
-========================= */
+.sensor-card{
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.trem-card{
+    background:linear-gradient(135deg,#0891B2,#22D3EE);
+}
+
+.alerta-card{
+    background:linear-gradient(135deg,#DC2626,#F87171);
+}
+
+.usuario-card{
+    background:linear-gradient(135deg,#7C3AED,#A78BFA);
+}
 
 .table-container{
     background:white;
     padding:25px;
-    border-radius:15px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    border-radius:18px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
 
-.table thead{
-    background:var(--azul-escuro);
-    color:white;
+.status-item{
+    display:flex;
+    justify-content:space-between;
+    padding:12px;
+    border-bottom:1px solid #eee;
 }
-
-.table{
-    margin-bottom:0;
-}
-
-/* =========================
-   FORMULÁRIOS
-========================= */
 
 .form-container{
     background:white;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
 
-/* =========================
-   BADGES
-========================= */
-
-.badge{
-    padding:8px 12px;
-    font-size:.8rem;
-}
-
-/* =========================
-   CARDS MONITORAMENTO
-========================= */
-
-.monitor-card{
-    border:none;
-    border-radius:15px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
-}
-
-.monitor-card h2{
-    color:var(--azul-medio);
-}
-
-/* =========================
-   BOTÕES
-========================= */
-
-.btn-primary{
+.btn-movix{
     background:var(--azul-medio);
+    color:white;
     border:none;
+    border-radius:10px;
+    padding:12px;
+    font-weight:600;
 }
 
-.btn-primary:hover{
+.btn-movix:hover{
     background:var(--azul-escuro);
-}
-
-.btn-success{
-    border:none;
-}
-
-.btn-warning{
     color:white;
 }
 
-.btn-danger{
-    border:none;
+.btn-outline-movix{
+    border:2px solid var(--azul-medio);
+    color:var(--azul-medio);
+    border-radius:10px;
+    padding:12px;
 }
 
-/* =========================
-   RESPONSIVO
-========================= */
+.btn-outline-movix:hover{
+    background:var(--azul-medio);
+    color:white;
+}
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+}
+
+.login-card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.login-logo{
+    width:300px;
+}
+
+.form-control{
+    padding:12px;
+    border-radius:10px;
+}
+
+.hero-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-logo{
+    width:320px;
+}
+
+.hero-title{
+    font-size:3rem;
+    font-weight:700;
+    color:var(--azul-escuro);
+}
+
+.hero-description{
+    font-size:1.1rem;
+    color:#555;
+}
+
+.hero-card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.feature-item{
+    background:var(--cinza);
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.monitor-card{
+    border:none;
+    border-radius:18px;
+    color:white;
+}
+
+.online{
+    background:linear-gradient(135deg,#16A34A,#4ADE80);
+}
+
+.warning{
+    background:linear-gradient(135deg,#D97706,#FBBF24);
+}
+
+.offline{
+    background:linear-gradient(135deg,#B91C1C,#EF4444);
+}
 
 @media(max-width:991px){
 
@@ -276,14 +250,17 @@ body{
     .topbar{
         flex-direction:column;
         gap:10px;
-        text-align:center;
     }
 
     .hero-title{
         font-size:2rem;
     }
+}
 
-    .logo{
-        max-width:220px;
-    }
+.btn-sm{
+    margin-right:5px;
+}
+
+.table-hover tbody tr:hover{
+    background:#f5f9ff;
 }
