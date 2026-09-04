@@ -58,7 +58,7 @@
     Trens
 </a>
 
-<a href="usuarios.html" class="active">
+<a href="usuarios.php" class="active">
     <i class="fa-solid fa-users"></i>
     Usuários
 </a>
