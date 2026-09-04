@@ -1,3 +1,6 @@
+<?php
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -6,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Trens - MOVIX</title>
+    <title>Sensores - MOVIX</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -44,12 +47,12 @@
         Alertas
     </a>
 
-    <a href="sensores.html">
+    <a href="sensores.html" class="active">
         <i class="fa-solid fa-microchip"></i>
         Sensores
     </a>
 
-    <a href="trens.html" class="active">
+    <a href="trens.html">
         <i class="fa-solid fa-train"></i>
         Trens
     </a>
@@ -72,9 +75,9 @@
 
         <div>
 
-            <h3>Gerenciamento de Trens</h3>
+            <h3>Gerenciamento de Sensores</h3>
 
-            <small>Controle operacional da frota ferroviária</small>
+            <small>Controle e monitoramento dos sensores ferroviários</small>
 
         </div>
 
@@ -82,69 +85,17 @@
 
     <div class="content">
 
-        <div class="row g-4 mb-4">
-
-            <div class="col-md-4">
-
-                <div class="card monitor-card online">
-
-                    <div class="card-body">
-
-                        <h5>🚆 Trens em Operação</h5>
-
-                        <h1>18</h1>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card monitor-card warning">
-
-                    <div class="card-body">
-
-                        <h5>🟡 Em Manutenção</h5>
-
-                        <h1>03</h1>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card monitor-card offline">
-
-                    <div class="card-body">
-
-                        <h5>🔴 Fora de Serviço</h5>
-
-                        <h1>01</h1>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
         <div class="table-container">
 
             <div class="d-flex justify-content-between align-items-center mb-4">
 
-                <h4>Frota de Trens</h4>
+                <h4>Sensores Cadastrados</h4>
 
                 <button class="btn btn-movix">
 
                     <i class="fa-solid fa-plus"></i>
 
-                    Novo Trem
+                    Novo Sensor
 
                 </button>
 
@@ -155,7 +106,7 @@
                 <input
                     type="text"
                     class="form-control"
-                    placeholder="Pesquisar trem...">
+                    placeholder="Pesquisar sensor...">
 
             </div>
 
@@ -165,11 +116,10 @@
 
                     <tr>
 
-                        <th>Código</th>
+                        <th>ID</th>
                         <th>Nome</th>
-                        <th>Linha</th>
-                        <th>Destino</th>
-                        <th>Velocidade</th>
+                        <th>Tipo</th>
+                        <th>Localização</th>
                         <th>Status</th>
                         <th>Ações</th>
 
@@ -181,26 +131,29 @@
 
                     <tr>
 
-                        <td>TR001</td>
-                        <td>Trem Alpha</td>
-                        <td>Norte</td>
-                        <td>Joinville</td>
-                        <td>80 km/h</td>
+                        <td>SN001</td>
+                        <td>Sensor Norte</td>
+                        <td>Temperatura</td>
+                        <td>KM 25</td>
 
                         <td>
                             <span class="badge bg-success">
-                                Operando
+                                Online
                             </span>
                         </td>
 
                         <td>
 
                             <button class="btn btn-warning btn-sm">
+
                                 <i class="fa-solid fa-pen"></i>
+
                             </button>
 
                             <button class="btn btn-danger btn-sm">
+
                                 <i class="fa-solid fa-trash"></i>
+
                             </button>
 
                         </td>
@@ -209,26 +162,29 @@
 
                     <tr>
 
-                        <td>TR002</td>
-                        <td>Trem Beta</td>
-                        <td>Sul</td>
-                        <td>Curitiba</td>
-                        <td>72 km/h</td>
+                        <td>SN002</td>
+                        <td>Sensor Sul</td>
+                        <td>Vibração</td>
+                        <td>KM 48</td>
 
                         <td>
                             <span class="badge bg-warning">
-                                Manutenção
+                                Atenção
                             </span>
                         </td>
 
                         <td>
 
                             <button class="btn btn-warning btn-sm">
+
                                 <i class="fa-solid fa-pen"></i>
+
                             </button>
 
                             <button class="btn btn-danger btn-sm">
+
                                 <i class="fa-solid fa-trash"></i>
+
                             </button>
 
                         </td>
@@ -237,26 +193,29 @@
 
                     <tr>
 
-                        <td>TR003</td>
-                        <td>Trem Gama</td>
-                        <td>Centro</td>
-                        <td>Blumenau</td>
-                        <td>0 km/h</td>
+                        <td>SN003</td>
+                        <td>Sensor Centro</td>
+                        <td>Pressão</td>
+                        <td>KM 80</td>
 
                         <td>
                             <span class="badge bg-danger">
-                                Parado
+                                Offline
                             </span>
                         </td>
 
                         <td>
 
                             <button class="btn btn-warning btn-sm">
+
                                 <i class="fa-solid fa-pen"></i>
+
                             </button>
 
                             <button class="btn btn-danger btn-sm">
+
                                 <i class="fa-solid fa-trash"></i>
+
                             </button>
 
                         </td>
