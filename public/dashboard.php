@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Se não estiver logado, redireciona para o login
+// (ajuste o caminho conforme a estrutura do seu projeto)
+if (!isset($_SESSION['usuario'])) {
+    // header('Location: login.php');
+    // exit;
+}
+
+$nomeUsuario = $_SESSION['usuario']['nome'] ?? 'Administrador';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -27,27 +39,27 @@
 
         </div>
 
-        <a href="dashboard.html" class="active">
+        <a href="dashboard.php" class="active">
             <i class="fa-solid fa-chart-line"></i>
             Dashboard
         </a>
 
-        <a href="monitoramento.html">
+        <a href="monitoramento.php">
             <i class="fa-solid fa-satellite-dish"></i>
             Monitoramento
         </a>
 
-        <a href="alertas.html">
+        <a href="alertas.php">
             <i class="fa-solid fa-triangle-exclamation"></i>
             Alertas
         </a>
 
-        <a href="sensores.html">
+        <a href="sensores.php">
             <i class="fa-solid fa-microchip"></i>
             Sensores
         </a>
 
-        <a href="trens.html">
+        <a href="trens.php">
             <i class="fa-solid fa-train"></i>
             Trens
         </a>
@@ -57,7 +69,7 @@
             Usuários
         </a>
 
-        <a href="relatorios.html">
+        <a href="relatorios.php">
             <i class="fa-solid fa-file-lines"></i>
             Relatórios
         </a>
@@ -78,7 +90,7 @@
 
             <div>
 
-                <strong>Administrador</strong>
+                <strong><?php echo htmlspecialchars($nomeUsuario); ?></strong>
 
             </div>
 
@@ -200,50 +212,46 @@
 
                             <tbody>
 
+                                <?php
+                                // Exemplo de dados dinâmicos - substitua pela sua consulta ao banco
+                                $alertas = [
+                                    ['id' => 'AL001', 'tipo' => 'Falha Sensor', 'local' => 'Linha Norte', 'data' => '19/06/2026', 'status' => 'Crítico'],
+                                    ['id' => 'AL002', 'tipo' => 'Temperatura', 'local' => 'Linha Sul', 'data' => '19/06/2026', 'status' => 'Médio'],
+                                    ['id' => 'AL003', 'tipo' => 'Comunicação', 'local' => 'Linha Centro', 'data' => '19/06/2026', 'status' => 'Resolvido'],
+                                ];
+
+                                foreach ($alertas as $alerta):
+                                    switch ($alerta['status']) {
+                                        case 'Crítico':
+                                            $badgeClass = 'bg-danger';
+                                            break;
+                                        case 'Médio':
+                                            $badgeClass = 'bg-warning';
+                                            break;
+                                        case 'Resolvido':
+                                            $badgeClass = 'bg-success';
+                                            break;
+                                        default:
+                                            $badgeClass = 'bg-secondary';
+                                    }
+                                ?>
+
                                 <tr>
 
-                                    <td>AL001</td>
-                                    <td>Falha Sensor</td>
-                                    <td>Linha Norte</td>
-                                    <td>19/06/2026</td>
+                                    <td><?php echo htmlspecialchars($alerta['id']); ?></td>
+                                    <td><?php echo htmlspecialchars($alerta['tipo']); ?></td>
+                                    <td><?php echo htmlspecialchars($alerta['local']); ?></td>
+                                    <td><?php echo htmlspecialchars($alerta['data']); ?></td>
 
                                     <td>
-                                        <span class="badge bg-danger">
-                                            Crítico
+                                        <span class="badge <?php echo $badgeClass; ?>">
+                                            <?php echo htmlspecialchars($alerta['status']); ?>
                                         </span>
                                     </td>
 
                                 </tr>
 
-                                <tr>
-
-                                    <td>AL002</td>
-                                    <td>Temperatura</td>
-                                    <td>Linha Sul</td>
-                                    <td>19/06/2026</td>
-
-                                    <td>
-                                        <span class="badge bg-warning">
-                                            Médio
-                                        </span>
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td>AL003</td>
-                                    <td>Comunicação</td>
-                                    <td>Linha Centro</td>
-                                    <td>19/06/2026</td>
-
-                                    <td>
-                                        <span class="badge bg-success">
-                                            Resolvido
-                                        </span>
-                                    </td>
-
-                                </tr>
+                                <?php endforeach; ?>
 
                             </tbody>
 
@@ -263,37 +271,26 @@
 
                         </h4>
 
-                        <div class="status-item">
+                        <?php
+                        $linhas = [
+                            ['nome' => 'Linha Norte', 'status' => 'Operando', 'cor' => '🟢'],
+                            ['nome' => 'Linha Sul', 'status' => 'Operando', 'cor' => '🟢'],
+                            ['nome' => 'Linha Centro', 'status' => 'Atenção', 'cor' => '🟡'],
+                            ['nome' => 'Linha Leste', 'status' => 'Falha', 'cor' => '🔴'],
+                        ];
 
-                            <span>🟢 Linha Norte</span>
-
-                            <strong>Operando</strong>
-
-                        </div>
-
-                        <div class="status-item">
-
-                            <span>🟢 Linha Sul</span>
-
-                            <strong>Operando</strong>
-
-                        </div>
+                        foreach ($linhas as $linha):
+                        ?>
 
                         <div class="status-item">
 
-                            <span>🟡 Linha Centro</span>
+                            <span><?php echo $linha['cor']; ?> <?php echo htmlspecialchars($linha['nome']); ?></span>
 
-                            <strong>Atenção</strong>
-
-                        </div>
-
-                        <div class="status-item">
-
-                            <span>🔴 Linha Leste</span>
-
-                            <strong>Falha</strong>
+                            <strong><?php echo htmlspecialchars($linha['status']); ?></strong>
 
                         </div>
+
+                        <?php endforeach; ?>
 
                     </div>
 
@@ -311,21 +308,22 @@
 
                         <ul class="list-group list-group-flush">
 
-                            <li class="list-group-item">
-                                Sensor SN001 atualizado
-                            </li>
+                            <?php
+                            $atividades = [
+                                'Sensor SN001 atualizado',
+                                'Trem TR008 iniciou operação',
+                                'Alerta AL003 resolvido',
+                                'Novo usuário cadastrado',
+                            ];
+
+                            foreach ($atividades as $atividade):
+                            ?>
 
                             <li class="list-group-item">
-                                Trem TR008 iniciou operação
+                                <?php echo htmlspecialchars($atividade); ?>
                             </li>
 
-                            <li class="list-group-item">
-                                Alerta AL003 resolvido
-                            </li>
-
-                            <li class="list-group-item">
-                                Novo usuário cadastrado
-                            </li>
+                            <?php endforeach; ?>
 
                         </ul>
 
