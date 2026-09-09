@@ -182,7 +182,7 @@ body{
     border-radius:10px;
 }
 
-.hero-section{
+.Principal{
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -192,7 +192,7 @@ body{
     width:320px;
 }
 
-.hero-title{
+.Texto-P{
     font-size:3rem;
     font-weight:700;
     color:var(--azul-escuro);

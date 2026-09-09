@@ -1,85 +1,4 @@
-<?php
-session_start();
 
-$erros = [];
-$sucesso = false;
-
-// Valores enviados (para repopular o formulário em caso de erro)
-$nome = '';
-$email = '';
-$telefone = '';
-$tipo = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $nome     = trim($_POST['nome'] ?? '');
-    $email    = trim($_POST['email'] ?? '');
-    $telefone = trim($_POST['telefone'] ?? '');
-    $tipo     = trim($_POST['tipo'] ?? '');
-    $senha    = $_POST['senha'] ?? '';
-
-    // Validações básicas
-    if ($nome === '') {
-        $erros[] = 'O nome completo é obrigatório.';
-    }
-
-    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erros[] = 'Informe um e-mail válido.';
-    }
-
-    if ($telefone === '') {
-        $erros[] = 'O telefone é obrigatório.';
-    }
-
-    if (!in_array($tipo, ['Administrador', 'Operador', 'Supervisor'], true)) {
-        $erros[] = 'Selecione um tipo de usuário válido.';
-    }
-
-    if (strlen($senha) < 6) {
-        $erros[] = 'A senha deve ter no mínimo 6 caracteres.';
-    }
-
-    // Se não houver erros, tenta cadastrar
-    if (empty($erros)) {
-
-        // Ajuste o caminho conforme a estrutura do seu projeto
-        require_once __DIR__ . '/../config/db.php'; // deve fornecer $pdo (PDO)
-
-        try {
-            // Verifica se o e-mail já está cadastrado
-            $stmt = $pdo->prepare('SELECT id FROM usuarios WHERE email = :email');
-            $stmt->execute(['email' => $email]);
-
-            if ($stmt->fetch()) {
-                $erros[] = 'Já existe um usuário cadastrado com este e-mail.';
-            } else {
-                $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-                $stmt = $pdo->prepare(
-                    'INSERT INTO usuarios (nome, email, telefone, tipo, senha, criado_em)
-                     VALUES (:nome, :email, :telefone, :tipo, :senha, NOW())'
-                );
-
-                $stmt->execute([
-                    'nome'     => $nome,
-                    'email'    => $email,
-                    'telefone' => $telefone,
-                    'tipo'     => $tipo,
-                    'senha'    => $senhaHash,
-                ]);
-
-                $sucesso = true;
-
-                // Limpa os campos após sucesso
-                $nome = $email = $telefone = $tipo = '';
-            }
-        } catch (PDOException $e) {
-            $erros[] = 'Erro ao cadastrar usuário. Tente novamente mais tarde.';
-            // Em produção, registre $e->getMessage() em log, não exiba ao usuário.
-        }
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -115,22 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </p>
 
                         </div>
-
-                        <?php if ($sucesso): ?>
-                            <div class="alert alert-success">
-                                Usuário cadastrado com sucesso!
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if (!empty($erros)): ?>
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    <?php foreach ($erros as $erro): ?>
-                                        <li><?php echo htmlspecialchars($erro); ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
-                        <?php endif; ?>
 
                         <form method="POST" action="">
 
