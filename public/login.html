@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -20,7 +21,6 @@
 
         <div class="row min-vh-100 align-items-center">
 
-            <!-- Lado esquerdo -->
 
             <div class="col-lg-6">
 
@@ -44,7 +44,6 @@
 
             </div>
 
-            <!-- Lado direito -->
 
             <div class="col-lg-5 offset-lg-1">
 
@@ -54,7 +53,15 @@
                         Entrar
                     </h2>
 
-                    <form>
+                    
+                        <div class="">
+                            <ul class="">
+                                <li>
+                            </ul>
+                        </div>
+                    
+
+                    <form method="POST" action="">
 
                         <div class="mb-3">
 
@@ -63,8 +70,11 @@
                             </label>
 
                             <input type="email"
+                                   name="email"
                                    class="form-control"
-                                   placeholder="Digite seu e-mail">
+                                   placeholder="Digite seu e-mail"
+                                   value=""
+                                   required>
 
                         </div>
 
@@ -75,8 +85,10 @@
                             </label>
 
                             <input type="password"
+                                   name="senha"
                                    class="form-control"
-                                   placeholder="Digite sua senha">
+                                   placeholder="Digite sua senha"
+                                   required>
 
                         </div>
 
@@ -97,7 +109,7 @@
                             Ainda não possui uma conta?
                         </p>
 
-                        <a href="cadastro.html"
+                        <a href="cadastro.php"
                            class="btn btn-outline-movix">
 
                             Cadastrar Agora
