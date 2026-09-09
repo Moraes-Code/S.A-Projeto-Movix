@@ -79,7 +79,7 @@
             </div>
 
             <div>
-                <strong>Atualizado agora</strong>
+                <button>Atualizado agora</button>
             </div>
 
         </div>
