@@ -16,25 +16,25 @@
         <img src="../assets/imgs/logo_movix_semfundoazul.png">
         <h3>MOVIX</h3>
     </div>
-    <a href="dashboard.html">
+    <a href="dashboard.php">
         Dashboard
     </a>
-    <a href="monitoramento.html">
+    <a href="monitoramento.php">
         Monitoramento
     </a>
-    <a href="alertas.html">
+    <a href="alertas.php">
         Alertas
     </a>
-    <a href="sensores.html">
+    <a href="sensores.php">
         Sensores
     </a>
-    <a href="trens.html">
+    <a href="trens.php">
         Trens
     </a>
-    <a href="usuarios.html">
+    <a href="usuarios.php">
         Usuários
     </a>
-    <a href="relatorios.html">
+    <a href="relatorios.php">
         Relatórios
     </a>
 </div>

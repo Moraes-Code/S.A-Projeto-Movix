@@ -32,23 +32,23 @@
 
     </div>
 
-    <a href="dashboard.html">
+    <a href="dashboard.php">
         Dashboard
     </a>
 
-    <a href="monitoramento.html">
+    <a href="monitoramento.php">
         Monitoramento
     </a>
 
-    <a href="alertas.html">
+    <a href="alertas.php">
         Alertas
     </a>
 
-    <a href="sensores.html" class="active">
+    <a href="sensores.php" class="active">
         Sensores
     </a>
 
-    <a href="trens.html">
+    <a href="trens.php">
         Trens
     </a>
 
@@ -56,7 +56,7 @@
         Usuários
     </a>
 
-    <a href="relatorios.html">
+    <a href="relatorios.php">
         Relatórios
     </a>
 

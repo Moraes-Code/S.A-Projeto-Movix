@@ -66,7 +66,7 @@
 
                             <div class="text-center mt-3">
 
-                                <a href="public/login.html">
+                                <a href="public/login.php">
                                     Voltar para Login
                                 </a>
 
