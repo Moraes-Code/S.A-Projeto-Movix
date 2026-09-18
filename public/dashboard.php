@@ -10,23 +10,15 @@
     <link rel="stylesheet" href="../assets/style/style.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
-
 <body>
-
     <div class="sidebar">
-
         <div class="logo-area">
-
             <img src="../assets/imgs/logo_movix_semfundoazul.png">
-
             <h3>MOVIX</h3>
-
             <small>Centro Ferroviário</small>
-
         </div>
-        <a href="dashboard.html" class="active">
+        <a href="dashboard.php">
             Dashboard
         </a>
         <a href="monitoramento.php">
@@ -58,39 +50,35 @@
         <div class="content">
             <div class="row g-4">
                 <div class="col-lg-3">
-                    <div class="card dashboard-card sensor-card">
+                    <div class="card sensor-card">
                         <div class="card-body">
                             <h6>Sensores Online</h6>
                             <h2>145</h2>
-                            <small>98% Operacionais</small>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <div class="card dashboard-card trem-card">
+                    <div class="card trem-card">
                         <div class="card-body">
                             <h6>Trens Ativos</h6>
                             <h2>18</h2>
-                            <small>Todos em operação</small>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <div class="card dashboard-card alerta-card">
+                    <div class="card alerta-card">
                         <div class="card-body">
                             <h6>Alertas</h6>
                             <h2>07</h2>
-                            <small>2 críticos</small>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-3">
-                    <div class="card dashboard-card usuario-card">
+                    <div class="card usuario-card">
                         <div class="card-body">
                             <h6>Usuários</h6>
                             <h2>12</h2>
-                            <small>Ativos</small>
                         </div>
                     </div>
                 </div>
@@ -137,10 +125,10 @@
                 <div class="col-lg-6">
                     <div class="table-container">
                         <h4>Resumo Operacional</h4>
-                        <p><strong>Malha Monitorada:</strong> 480 km</p>
-                        <p><strong>Estações Ativas:</strong> 22</p>
-                        <p><strong>Sensores Instalados:</strong> 145</p>
-                        <p><strong>Disponibilidade:</strong> 98,7%</p>
+                        <p><strong>Malha Monitorada:</strong></p>
+                        <p><strong>Estações Ativas:</strong></p>
+                        <p><strong>Sensores Instalados:</strong></p>
+                        <p><strong>Disponibilidade:</strong></p>
                     </div>
                 </div>
             </div>
