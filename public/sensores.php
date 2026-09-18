@@ -38,6 +38,9 @@
     <a href="relatorios.php">
         Relatórios
     </a>
+     <a href="Rotas.php">
+            Rotas
+        </a>
 </div>
 <div class="main">
     <div class="topbar">
