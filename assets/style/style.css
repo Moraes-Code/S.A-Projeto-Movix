@@ -41,14 +41,6 @@ body{
     margin-top:10px;
 }
 
-.sidebar a{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color:white;
-    text-decoration:none;
-    padding:15px 25px;
-}
 
 .main{
     margin-left:260px;
@@ -72,78 +64,17 @@ body{
     color:white;
 }
 
-.sensor-card{
-    background:linear-gradient(135deg,#2563eb,#60a5fa);
-}
-.trem-card{
-    background:linear-gradient(135deg,#0891B2,#22D3EE);
-}
-.alerta-card{
-    background:linear-gradient(135deg,#DC2626,#F87171);
-}
-.usuario-card{
-    background:linear-gradient(135deg,#7C3AED,#A78BFA);
-}
 .table-container{
     background:white;
     padding:25px;
     border-radius:18px;
-    box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
-.status-item{
-    display:flex;
-    justify-content:space-between;
-    padding:12px;
-    border-bottom:1px solid #eee;
-}
+
 .form-container{
     background:white;
     padding:30px;
     border-radius:18px;
     box-shadow:0 3px 15px rgba(0,0,0,.08);
-}
-
-.btn-movix{
-    background:var(--azul-medio);
-    color:white;
-    border:none;
-    border-radius:10px;
-    padding:12px;
-    font-weight:600;
-}
-
-.btn-movix:hover{
-    background:var(--azul-escuro);
-    color:white;
-}
-
-.btn-outline-movix{
-    border:2px solid var(--azul-medio);
-    color:var(--azul-medio);
-    border-radius:10px;
-    padding:12px;
-}
-
-.btn-outline-movix:hover{
-    background:var(--azul-medio);
-    color:white;
-}
-
-.login-page{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-}
-
-.login-card{
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
-
-.login-logo{
-    width:300px;
 }
 
 .form-control{
@@ -159,12 +90,6 @@ body{
 
 .hero-logo{
     width:320px;
-}
-
-.Texto-P{
-    font-size:3rem;
-    font-weight:700;
-    color:var(--azul-escuro);
 }
 
 .hero-description{
@@ -190,46 +115,4 @@ body{
     border:none;
     border-radius:18px;
     color:white;
-}
-
-.online{
-    background:linear-gradient(135deg,#16A34A,#4ADE80);
-}
-
-.warning{
-    background:linear-gradient(135deg,#D97706,#FBBF24);
-}
-
-.offline{
-    background:linear-gradient(135deg,#B91C1C,#EF4444);
-}
-
-@media(max-width:991px){
-
-    .sidebar{
-        width:100%;
-        height:auto;
-        position:relative;
-    }
-
-    .main{
-        margin-left:0;
-    }
-
-    .topbar{
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .hero-title{
-        font-size:2rem;
-    }
-}
-
-.btn-sm{
-    margin-right:5px;
-}
-
-.table-hover tbody tr:hover{
-    background:#f5f9ff;
 }
