@@ -1,286 +1,175 @@
 
-
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Usuários - MOVIX</title>
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="../assets/style/style.css">
-
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
-
 <body>
-
 <div class="sidebar">
-
 <div class="logo-area">
-
     <img src="../assets/imgs/logo_movix_semfundoazul.png">
-
     <h3>MOVIX</h3>
-
 </div>
-
 <a href="dashboard.php">
     Dashboard
 </a>
-
 <a href="monitoramento.php">
     Monitoramento
 </a>
-
 <a href="alertas.php">
     Alertas
 </a>
-
 <a href="sensores.php">
     Sensores
 </a>
-
 <a href="trens.php">
     Trens
 </a>
-
-<a href="usuarios.php" class="active">
+<a href="usuarios.php">
     Usuários
 </a>
-
 <a href="relatorios.php">
     Relatórios
 </a>
-
 </div>
-
 <div class="main">
-
 <div class="topbar">
-
     <div>
-
         <h3>Gerenciamento de Usuários</h3>
-
-        <small>Controle de acesso ao sistema MOVIX</small>
-
     </div>
-
 </div>
-
 <div class="content">
-
     <div class="table-container">
-
-        <div class="d-flex justify-content-between align-items-center mb-4">
-
+        <div >
             <h4>Usuários Cadastrados</h4>
-
-            <button class="btn btn-movix">
-
-                <i class="fa-solid fa-user-plus"></i>
-
+            <button>
                 Novo Usuário
-
             </button>
-
         </div>
-
         <div class="row mb-4">
-
             <div class="col-md-8">
-
                 <input
                     type="text"
-                    class="form-control"
-                    placeholder="Pesquisar usuário...">
-
+                    placeholder="Pesquisar usuário">
             </div>
-
             <div class="col-md-4">
-
-                <select class="form-select">
-
+                <select >
                     <option>Todos os Perfis</option>
                     <option>Administrador</option>
                     <option>Supervisor</option>
                     <option>Operador</option>
-
                 </select>
-
             </div>
-
         </div>
-
-        <table class="table table-hover">
-
+        <table class="table">
             <thead>
-
                 <tr>
-
                     <th>Usuário</th>
                     <th>Email</th>
                     <th>Telefone</th>
                     <th>Perfil</th>
                     <th>Status</th>
                     <th>Ações</th>
-
                 </tr>
-
             </thead>
-
             <tbody>
-
                 <tr>
-
                     <td>
                         <strong>André Silva</strong>
                     </td>
-
                     <td>
                         andre@movix.com
                     </td>
-
                     <td>
                         (47) 99999-9999
                     </td>
-
                     <td>
-
-                        <span class="badge bg-primary">
+                        <span>
                             Administrador
                         </span>
-
                     </td>
-
                     <td>
-
-                        <span class="badge bg-success">
+                        <span>
                             Ativo
                         </span>
-
                     </td>
-
                     <td>
-
-                        <button class="btn btn-warning btn-sm">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-
-                        <button class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-
+                        <button>
+                                Editar
+                            </button>
+                            <button>
+                               Excluir
+                            </button>
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
                         <strong>Maria Souza</strong>
                     </td>
-
                     <td>
                         maria@movix.com
                     </td>
-
                     <td>
                         (47) 98888-8888
                     </td>
-
                     <td>
-
-                        <span class="badge bg-info">
+                        <span>
                             Supervisor
                         </span>
-
                     </td>
-
                     <td>
-
-                        <span class="badge bg-success">
+                        <span>
                             Ativo
                         </span>
-
                     </td>
-
                     <td>
-
-                        <button class="btn btn-warning btn-sm">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-
-                        <button class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-
+                        <button>
+                                Editar
+                            </button>
+                            <button>
+                               Excluir
+                            </button>
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
                         <strong>Carlos Lima</strong>
                     </td>
-
                     <td>
                         carlos@movix.com
                     </td>
-
                     <td>
                         (47) 97777-7777
                     </td>
-
                     <td>
-
-                        <span class="badge bg-secondary">
+                        <span>
                             Operador
                         </span>
-
                     </td>
-
                     <td>
-
-                        <span class="badge bg-danger">
+                        <span>
                             Inativo
                         </span>
-
                     </td>
-
                     <td>
-
-                        <button class="btn btn-warning btn-sm">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-
-                        <button class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-
+                        <button>
+                                Editar
+                            </button>
+                            <button>
+                               Excluir
+                            </button>
                     </td>
-
                 </tr>
-
             </tbody>
-
         </table>
-
     </div>
-
 </div>
-
 </div>
-
 </body>
- 
 </html>

@@ -11,75 +11,54 @@
 
     <link rel="stylesheet" href="../assets/style/style.css">
 </head>
-
 <body>
-
     <div class="sidebar">
-
         <div class="logo-area">
             <img src="../assets/imgs/logo_movix_semfundoazul.png">
             <h3>MOVIX</h3>
         </div>
-
         <a href="dashboard.php">Dashboard</a>
         <a href="monitoramento.php">Monitoramento</a>
         <a href="alertas.php">Alertas</a>
         <a href="sensores.php">Sensores</a>
-        <a href="trens.php" class="active">Trens</a>
+        <a href="trens.php" >Trens</a>
         <a href="usuarios.php">Usuários</a>
         <a href="relatorios.php">Relatórios</a>
-
     </div>
-
     <div class="main">
-
         <div class="topbar">
             <h3>Gerenciamento de Trens</h3>
-            <small>Controle operacional da frota ferroviária</small>
         </div>
-
         <div class="content">
-
             <div class="row">
-
                 <div class="col-md-4">
-                    <div class="card monitor-card online">
+                    <div class="card  online">
                         <h5>Trens em Operação</h5>
                         <h1>18</h1>
                     </div>
                 </div>
-
                 <div class="col-md-4">
-                    <div class="card monitor-card warning">
+                    <div class="card warning">
                         <h5>Em Manutenção</h5>
                         <h1>03</h1>
                     </div>
                 </div>
-
                 <div class="col-md-4">
-                    <div class="card monitor-card offline">
+                    <div class="card offline">
                         <h5>Fora de Serviço</h5>
                         <h1>01</h1>
                     </div>
                 </div>
-
             </div>
-
             <div class="table-container">
-
                 <h4>Frota de Trens</h4>
-
-                <button class="btn btn-movix">
+                <button>
                     Novo Trem
                 </button>
-
                 <input
                     type="text"
-                    class="form-control"
                     placeholder="Pesquisar trem...">
-
                 <table class="table">
-
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -91,91 +70,75 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
-
                     <tbody>
-
                         <tr>
-                            <td>TR001</td>
+                            <td>Trem 01</td>
                             <td>Trem Alpha</td>
                             <td>Norte</td>
                             <td>Joinville</td>
                             <td>80 km/h</td>
-
                             <td>
-                                <span class="badge bg-success">
+                                <span>
                                     Operando
                                 </span>
                             </td>
-
                             <td>
-                                <button class="btn btn-warning btn-sm">
+                                <button >
                                     Editar
                                 </button>
 
-                                <button class="btn btn-danger btn-sm">
+                                <button >
                                     Excluir
                                 </button>
                             </td>
                         </tr>
-
                         <tr>
-                            <td>TR002</td>
+                            <td>Trem 02</td>
                             <td>Trem Beta</td>
                             <td>Sul</td>
                             <td>Curitiba</td>
                             <td>72 km/h</td>
-
                             <td>
-                                <span class="badge bg-warning">
+                                <span>
                                     Manutenção
                                 </span>
                             </td>
-
                             <td>
-                                <button class="btn btn-warning btn-sm">
+                                <button>
                                     Editar
                                 </button>
 
-                                <button class="btn btn-danger btn-sm">
+                                <button>
                                     Excluir
                                 </button>
                             </td>
                         </tr>
-
                         <tr>
-                            <td>TR003</td>
+                            <td>Trem 03</td>
                             <td>Trem Gama</td>
                             <td>Centro</td>
                             <td>Blumenau</td>
                             <td>0 km/h</td>
-
                             <td>
-                                <span class="badge bg-danger">
+                                <span>
                                     Parado
                                 </span>
                             </td>
-
                             <td>
-                                <button class="btn btn-warning btn-sm">
+                                <button>
                                     Editar
                                 </button>
 
-                                <button class="btn btn-danger btn-sm">
+                                <button>
                                     Excluir
                                 </button>
                             </td>
                         </tr>
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>
