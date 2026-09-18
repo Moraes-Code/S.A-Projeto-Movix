@@ -1,11 +1,7 @@
-<?php
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,260 +10,171 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../assets/style/style.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
 
 <body>
 
-<div class="sidebar">
+    <div class="sidebar">
 
-    <div class="logo-area">
+        <div class="logo-area">
+            <img src="../assets/imgs/logo_movix_semfundoazul.png">
+            <h3>MOVIX</h3>
+        </div>
 
-        <img src="../assets/imgs/logo_movix_semfundoazul.png">
-
-        <h3>MOVIX</h3>
+        <a href="dashboard.php">Dashboard</a>
+        <a href="monitoramento.php">Monitoramento</a>
+        <a href="alertas.php">Alertas</a>
+        <a href="sensores.php">Sensores</a>
+        <a href="trens.php" class="active">Trens</a>
+        <a href="usuarios.php">Usuários</a>
+        <a href="relatorios.php">Relatórios</a>
 
     </div>
 
-    <a href="dashboard.php">
-        Dashboard
-    </a>
+    <div class="main">
 
-    <a href="monitoramento.php">
-        Monitoramento
-    </a>
-
-    <a href="alertas.php">
-        Alertas
-    </a>
-
-    <a href="sensores.php">
-        Sensores
-    </a>
-
-    <a href="trens.php" class="active">
-        Trens
-    </a>
-
-    <a href="usuarios.php">
-        Usuários
-    </a>
-
-    <a href="relatorios.php">
-        Relatórios
-    </a>
-
-</div>
-
-<div class="main">
-
-    <div class="topbar">
-
-        <div>
-
+        <div class="topbar">
             <h3>Gerenciamento de Trens</h3>
-
             <small>Controle operacional da frota ferroviária</small>
-
         </div>
 
-    </div>
+        <div class="content">
 
-    <div class="content">
+            <div class="row">
 
-        <div class="row g-4 mb-4">
-
-            <div class="col-md-4">
-
-                <div class="card monitor-card online">
-
-                    <div class="card-body">
-
-                        <h5>🚆 Trens em Operação</h5>
-
+                <div class="col-md-4">
+                    <div class="card monitor-card online">
+                        <h5>Trens em Operação</h5>
                         <h1>18</h1>
-
                     </div>
-
                 </div>
 
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card monitor-card warning">
-
-                    <div class="card-body">
-
-                        <h5>🟡 Em Manutenção</h5>
-
+                <div class="col-md-4">
+                    <div class="card monitor-card warning">
+                        <h5>Em Manutenção</h5>
                         <h1>03</h1>
-
                     </div>
-
                 </div>
 
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="card monitor-card offline">
-
-                    <div class="card-body">
-
-                        <h5>🔴 Fora de Serviço</h5>
-
+                <div class="col-md-4">
+                    <div class="card monitor-card offline">
+                        <h5>Fora de Serviço</h5>
                         <h1>01</h1>
-
                     </div>
-
                 </div>
 
             </div>
 
-        </div>
-
-        <div class="table-container">
-
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="table-container">
 
                 <h4>Frota de Trens</h4>
 
                 <button class="btn btn-movix">
-
-                    <i class="fa-solid fa-plus"></i>
-
                     Novo Trem
-
                 </button>
-
-            </div>
-
-            <div class="mb-4">
 
                 <input
                     type="text"
                     class="form-control"
                     placeholder="Pesquisar trem...">
 
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Linha</th>
+                            <th>Destino</th>
+                            <th>Velocidade</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>TR001</td>
+                            <td>Trem Alpha</td>
+                            <td>Norte</td>
+                            <td>Joinville</td>
+                            <td>80 km/h</td>
+
+                            <td>
+                                <span class="badge bg-success">
+                                    Operando
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-warning btn-sm">
+                                    Editar
+                                </button>
+
+                                <button class="btn btn-danger btn-sm">
+                                    Excluir
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>TR002</td>
+                            <td>Trem Beta</td>
+                            <td>Sul</td>
+                            <td>Curitiba</td>
+                            <td>72 km/h</td>
+
+                            <td>
+                                <span class="badge bg-warning">
+                                    Manutenção
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-warning btn-sm">
+                                    Editar
+                                </button>
+
+                                <button class="btn btn-danger btn-sm">
+                                    Excluir
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>TR003</td>
+                            <td>Trem Gama</td>
+                            <td>Centro</td>
+                            <td>Blumenau</td>
+                            <td>0 km/h</td>
+
+                            <td>
+                                <span class="badge bg-danger">
+                                    Parado
+                                </span>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-warning btn-sm">
+                                    Editar
+                                </button>
+
+                                <button class="btn btn-danger btn-sm">
+                                    Excluir
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
             </div>
-
-            <table class="table table-hover">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>Linha</th>
-                        <th>Destino</th>
-                        <th>Velocidade</th>
-                        <th>Status</th>
-                        <th>Ações</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td>TR001</td>
-                        <td>Trem Alpha</td>
-                        <td>Norte</td>
-                        <td>Joinville</td>
-                        <td>80 km/h</td>
-
-                        <td>
-                            <span class="badge bg-success">
-                                Operando
-                            </span>
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-
-                            <button class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>TR002</td>
-                        <td>Trem Beta</td>
-                        <td>Sul</td>
-                        <td>Curitiba</td>
-                        <td>72 km/h</td>
-
-                        <td>
-                            <span class="badge bg-warning">
-                                Manutenção
-                            </span>
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-
-                            <button class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>TR003</td>
-                        <td>Trem Gama</td>
-                        <td>Centro</td>
-                        <td>Blumenau</td>
-                        <td>0 km/h</td>
-
-                        <td>
-                            <span class="badge bg-danger">
-                                Parado
-                            </span>
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-
-                            <button class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
 
         </div>
 
     </div>
-
-</div>
 
 </body>
 
