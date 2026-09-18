@@ -10,45 +10,54 @@
     <title>Monitoramento - MOVIX</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/style/style.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
     <div class="sidebar">
         <div class="logo-area">
             <img src="../assets/imgs/logo_movix_semfundoazul.png">
             <h3>MOVIX</h3>
+            <small>Centro Ferroviário</small>
         </div>
-        <a href="dashboard.php">
-            Dashboard
-        </a>
-        <a href="monitoramento.php">
-            Monitoramento
-        </a>
-        <a href="alertas.php">
-            Alertas
-        </a>
-        <a href="sensores.php">
-            Sensores
-        </a>
-        <a href="trens.php">
-            Trens
-        </a>
-        <a href="usuarios.php">
-            Usuários
-        </a>
-        <a href="relatorios.php">
-            Relatórios
-        </a>
-         <a href="Rotas.php">
-            Rotas
-        </a>
+       <ul>
+    <li>
+        <a href="dashboard.php">Dashboard</a>
+    </li>
+
+    <li>
+        <a href="monitoramento.php">Monitoramento</a>
+    </li>
+
+    <li>
+        <a href="alertas.php">Alertas</a>
+    </li>
+
+    <li>
+        <a href="sensores.php">Sensores</a>
+    </li>
+
+    <li>
+        <a href="trens.php">Trens</a>
+    </li>
+
+    <li>
+        <a href="usuarios.php">Usuários</a>
+    </li>
+
+    <li>
+        <a href="relatorios.php">Relatórios</a>
+    </li>
+
+    <li>
+        <a href="Rotas.php">Rotas</a>
+    </li>
+</ul>
     </div>
     <div class="main">
         <div class="topbar">
             <div>
                 <h3>Central de Monitoramento</h3>
-                <small>Status em tempo real da operação ferroviária</small>
             </div>
             <div>
                 <button>Atualizado agora</button>
@@ -107,7 +116,7 @@
                                     <td>SN002</td>
                                     <td>Sensor Sul</td>
                                     <td>KM 47</td>
-                                    <td><span >Atenção</span></td>
+                                    <td><span>Atenção</span></td>
                                 </tr>
                                 <tr>
                                     <td>SN003</td>

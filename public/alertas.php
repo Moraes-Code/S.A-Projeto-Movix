@@ -15,37 +15,46 @@
     <div class="logo-area">
         <img src="../assets/imgs/logo_movix_semfundoazul.png">
         <h3>MOVIX</h3>
+        <small>Centro Ferroviário</small>
     </div>
-    <a href="dashboard.php">
-        Dashboard
-    </a>
-    <a href="monitoramento.php">
-        Monitoramento
-    </a>
-    <a href="alertas.php">
-        Alertas
-    </a>
-    <a href="sensores.php">
-        Sensores
-    </a>
-    <a href="trens.php">
-        Trens
-    </a>
-    <a href="usuarios.php">
-        Usuários
-    </a>
-    <a href="relatorios.php">
-        Relatórios
-    </a>
-     <a href="Rotas.php">
-            Rotas
-        </a>
+    <ul>
+    <li>
+        <a href="dashboard.php">Dashboard</a>
+    </li>
+
+    <li>
+        <a href="monitoramento.php">Monitoramento</a>
+    </li>
+
+    <li>
+        <a href="alertas.php">Alertas</a>
+    </li>
+
+    <li>
+        <a href="sensores.php">Sensores</a>
+    </li>
+
+    <li>
+        <a href="trens.php">Trens</a>
+    </li>
+
+    <li>
+        <a href="usuarios.php">Usuários</a>
+    </li>
+
+    <li>
+        <a href="relatorios.php">Relatórios</a>
+    </li>
+
+    <li>
+        <a href="Rotas.php">Rotas</a>
+    </li>
+</ul>
 </div>
 <div class="main">
     <div class="topbar">
         <div>
             <h3>Central de Alertas</h3>
-            <small>Monitoramento de ocorrências do sistema</small>
         </div>
     </div>
     <div class="content">
