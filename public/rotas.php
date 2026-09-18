@@ -49,6 +49,11 @@
     <li>
         <a href="Rotas.php">Rotas</a>
     </li>
+    <div class="botao-sair">
+    <a href="../index.html">
+        Sair
+    </a>
+</div>
 </ul>
     </div>
 <<<<<<< HEAD
