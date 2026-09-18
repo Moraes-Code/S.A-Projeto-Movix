@@ -43,7 +43,7 @@
             Rotas
         </a>
         <div class="botao-sair">
-    <a href="index.html">
+    <a href="../index.html">
         Sair
     </a>
 </div>
