@@ -5,286 +5,178 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Monitoramento - MOVIX</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="../assets/style/style.css">
-
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
 </head>
-
 <body>
-
     <div class="sidebar">
-
         <div class="logo-area">
-
             <img src="../assets/imgs/logo_movix_semfundoazul.png">
-
             <h3>MOVIX</h3>
-
         </div>
-
         <a href="dashboard.php">
             Dashboard
         </a>
-
-        <a href="monitoramento.php" class="active">
+        <a href="monitoramento.php">
             Monitoramento
         </a>
-
         <a href="alertas.php">
             Alertas
         </a>
-
         <a href="sensores.php">
             Sensores
         </a>
-
         <a href="trens.php">
             Trens
         </a>
-
         <a href="usuarios.php">
             Usuários
         </a>
-
         <a href="relatorios.php">
             Relatórios
         </a>
-
     </div>
-
     <div class="main">
-
         <div class="topbar">
-
             <div>
                 <h3>Central de Monitoramento</h3>
                 <small>Status em tempo real da operação ferroviária</small>
             </div>
-
             <div>
                 <button>Atualizado agora</button>
             </div>
-
         </div>
-
         <div class="content">
-
             <div class="row g-4">
-
                 <div class="col-lg-4">
-
-                    <div class="card monitor-card online">
-
+                    <div class="card  online">
                         <div class="card-body">
-
-                            <h5>🟢 Sensores Online</h5>
-
+                            <h5>Sensores Online</h5>
                             <h1>142</h1>
-
-                            <small>Funcionando normalmente</small>
-
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="col-lg-4">
-
-                    <div class="card monitor-card warning">
-
+                    <div class="card warning">
                         <div class="card-body">
-
-                            <h5>🟡 Em Atenção</h5>
-
+                            <h5> Em Atenção</h5>
                             <h1>08</h1>
-
-                            <small>Necessitam verificação</small>
-
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="col-lg-4">
-
-                    <div class="card monitor-card offline">
-
+                    <div class="card offline">
                         <div class="card-body">
-
-                            <h5>🔴 Offline</h5>
-
+                            <h5>Offline</h5>
                             <h1>03</h1>
-
-                            <small>Falha detectada</small>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
             <div class="row mt-4">
-
                 <div class="col-lg-7">
-
                     <div class="table-container">
-
                         <h4 class="mb-4">
                             Sensores Monitorados
                         </h4>
-
-                        <table class="table table-hover">
-
+                        <table class="table">
                             <thead>
-
                                 <tr>
-
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>Local</th>
                                     <th>Status</th>
-
                                 </tr>
-
                             </thead>
-
                             <tbody>
-
                                 <tr>
                                     <td>SN001</td>
                                     <td>Sensor Norte</td>
                                     <td>KM 25</td>
-                                    <td><span class="badge bg-success">Online</span></td>
+                                    <td><span>Online</span></td>
                                 </tr>
-
                                 <tr>
                                     <td>SN002</td>
                                     <td>Sensor Sul</td>
                                     <td>KM 47</td>
-                                    <td><span class="badge bg-warning">Atenção</span></td>
+                                    <td><span >Atenção</span></td>
                                 </tr>
-
                                 <tr>
                                     <td>SN003</td>
                                     <td>Sensor Centro</td>
                                     <td>KM 80</td>
-                                    <td><span class="badge bg-danger">Offline</span></td>
+                                    <td><span>Offline</span></td>
                                 </tr>
-
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </div>
-
                 <div class="col-lg-5">
-
                     <div class="table-container">
-
                         <h4 class="mb-4">
                             Trens em Operação
                         </h4>
-
                         <div class="status-item">
-                            <span>🚆 Trem 001</span>
+                            <span>Trem 001</span>
                             <strong>80 km/h</strong>
                         </div>
-
                         <div class="status-item">
-                            <span>🚆 Trem 002</span>
+                            <span>Trem 002</span>
                             <strong>72 km/h</strong>
                         </div>
-
                         <div class="status-item">
-                            <span>🚆 Trem 003</span>
+                            <span>Trem 003</span>
                             <strong>Parado</strong>
                         </div>
-
                         <div class="status-item">
-                            <span>🚆 Trem 004</span>
+                            <span>Trem 004</span>
                             <strong>65 km/h</strong>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
             <div class="row mt-4">
-
                 <div class="col-lg-12">
-
                     <div class="table-container">
-
                         <h4 class="mb-4">
                             Eventos Recentes
                         </h4>
-
                         <table class="table">
-
                             <thead>
-
                                 <tr>
-
                                     <th>Horário</th>
                                     <th>Evento</th>
                                     <th>Local</th>
-
                                 </tr>
-
                             </thead>
-
                             <tbody>
-
                                 <tr>
                                     <td>09:42</td>
                                     <td>Falha detectada no Sensor SN003</td>
                                     <td>Linha Centro</td>
                                 </tr>
-
                                 <tr>
                                     <td>09:35</td>
                                     <td>Trem 004 entrou em operação</td>
                                     <td>Estação Sul</td>
                                 </tr>
-
                                 <tr>
                                     <td>09:28</td>
                                     <td>Alerta de temperatura resolvido</td>
                                     <td>Linha Norte</td>
                                 </tr>
-
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>

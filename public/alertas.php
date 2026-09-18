@@ -48,21 +48,21 @@
     <div class="content">
         <div class="row g-4 mb-4">
             <div class="col-md-4">
-                <div class="card monitor-card offline">
+                <div class="card offline">
                     <div class="card-body">
                         <h5>Críticos</h5>              
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card monitor-card warning">
+                <div class="card warning">
                     <div class="card-body">
                         <h5>Médios</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card monitor-card online">
+                <div class="card online">
                     <div class="card-body">
                         <h5>Resolvidos</h5>
                     </div>
@@ -71,7 +71,7 @@
         </div>
         <div class="table-container">
             <h4 class="mb-4">Ocorrências Registradas</h4>
-            <table class="table table-hover">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
