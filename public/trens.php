@@ -16,17 +16,41 @@
         <div class="logo-area">
             <img src="../assets/imgs/logo_movix_semfundoazul.png">
             <h3>MOVIX</h3>
+            <small>Centro Ferroviário</small>
         </div>
+       <ul>
+    <li>
         <a href="dashboard.php">Dashboard</a>
+    </li>
+
+    <li>
         <a href="monitoramento.php">Monitoramento</a>
+    </li>
+
+    <li>
         <a href="alertas.php">Alertas</a>
+    </li>
+
+    <li>
         <a href="sensores.php">Sensores</a>
-        <a href="trens.php" >Trens</a>
+    </li>
+
+    <li>
+        <a href="trens.php">Trens</a>
+    </li>
+
+    <li>
         <a href="usuarios.php">Usuários</a>
+    </li>
+
+    <li>
         <a href="relatorios.php">Relatórios</a>
-         <a href="Rotas.php">
-            Rotas
-        </a>
+    </li>
+
+    <li>
+        <a href="Rotas.php">Rotas</a>
+    </li>
+</ul>
     </div>
     <div class="main">
         <div class="topbar">
