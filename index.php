@@ -1,4 +1,6 @@
-
+<?php
+include("infra/conexao.php");
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -10,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/style/style.css">
 </head>
+
 <body>
     <section class="Principal">
         <div class="container">
@@ -17,10 +20,7 @@
 
                 <div class="col-lg-6">
 
-                    <img
-                        src="assets/imgs/logo_movix_semfundoazul.png"
-                        class="hero-logo mb-4"
-                        alt="Logo Movix">
+                    <img src="assets/imgs/logo_movix_semfundoazul.png" class="hero-logo mb-4" alt="Logo Movix">
 
                     <h1>
                         Gestão ferroviária
@@ -37,25 +37,15 @@
                             <label for="email" class="form-label">
                                 E-mail
                             </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                class="form-control"
-                                placeholder="Digite seu e-mail"
-                                required>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="Digite seu e-mail" required>
                         </div>
                         <div class="mb-3">
                             <label for="senha" class="form-label">
                                 Senha
                             </label>
-                            <input
-                                type="password"
-                                id="senha"
-                                name="senha"
-                                class="form-control"
-                                placeholder="Digite sua senha"
-                                required>
+                            <input type="password" id="senha" name="senha" class="form-control"
+                                placeholder="Digite sua senha" required>
                         </div>
                         <a href="public/dashboard.php">
                             Entrar
@@ -72,4 +62,5 @@
         </div>
     </section>
 </body>
+
 </html>

@@ -1,89 +1,112 @@
+<?php
+
+include("../infra/conexao.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $email = $_POST["email"];
+    $senha = $_POST["senha"];
+    $cpf = $_POST["cpf"];
+    $telefone = $_POST["telefone"];
+
+    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO usuarios (email, senha, cpf, telefone)
+            VALUES (?, ?, ?, ?)";
+
+    $stmt = $conexao->prepare($sql);
+
+    $stmt->bind_param(
+        "ssss",
+        $email,
+        $senhaHash,
+        $cpf,
+        $telefone
+    );
+
+    if ($stmt->execute()) {
+
+        header("Location: ../index.html");
+        exit;
+
+    } else {
+
+        echo "Erro ao criar conta: " . $stmt->error;
+
+    }
+
+    $stmt->close();
+}
+
+?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário - MOVIX</title>
-
+    <title>Movix - Gestão Ferroviária Inteligente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
- <link rel="stylesheet" href="../assets/style/style.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
 </head>
-<body class="login-bg">
-    <div class="container">
-        <div class="row justify-content-center align-items-center min-vh-100">
-            <div class="col-lg-7">
-                <div class="card cadastro-card">
-                    <div class="card-body p-5">
-                        <div class="text-center mb-4">
-                            <h1 class="logo-title">
-                                MOVIX
-                            </h1>
-                            <p class="text-muted">
-                                Cadastro de Usuário
-                            </p>
+
+<body>
+    <section class="Principal">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+
+                <div class="col-lg-6">
+
+                    <img src="../assets/imgs/logo_movix_semfundoazul.png" class="hero-logo mb-4" alt="Logo Movix">
+
+                    <h1>
+                        Gestão ferroviária
+                    </h1>
+
+                    <p class="hero-description mt-4">
+                        O Movix é uma plataforma desenvolvida para monitorar,
+                        gerenciar e controlar operações ferroviárias em tempo
+                        real, oferecendo maior segurança, eficiência e tomada
+                        de decisão baseada em dados.
+                    </p>
+                    <form method="POST" class="mt-4">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">
+                                E-mail
+                            </label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="Digite seu e-mail" required>
                         </div>
-                        <form method="POST" action="">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">
-                                        Nome Completo
-                                    </label>
-                                    <input type="text" name="nome" class="form-control" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">
-                                        E-mail
-                                    </label>
-                                    <input type="email" name="email" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">
-                                        Telefone
-                                    </label>
-                                    <input type="text" name="telefone" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-
-                                <label class="form-label">
-                                    Senha
-                                </label>
-
-                                <input type="password" name="senha" class="form-control" required minlength="6">
-
-                            </div>
-
-                            <div class="d-grid">
-
-                                <button type="submit" class="btn btn-movix">
-                                    Cadastrar Usuário
-                                </button>
-
-                            </div>
-
-                            <div class="text-center mt-3">
-
-                                <a href="public/login.php">
-                                    Voltar para Login
-                                </a>
-
-                            </div>
-
-                        </form>
-
-                    </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">
+                                Senha
+                            </label>
+                            <input type="password" id="senha" name="senha" class="form-control"
+                                placeholder="Digite sua senha" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">
+                                CPF
+                            </label>
+                            <input type="password" id="CPF" name="cpf" class="form-control" placeholder="Digite seu CPF"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Telefone" class="form-label">
+                                Telefone
+                            </label>
+                            <input type="password" id="CPF" name="telefone" class="form-control"
+                                placeholder="Ex: (99)9999-9999" required>
+                        </div>
+                        <a href="../index.php">
+                            Cadastrar
+                        </a>
+                    </form>
 
                 </div>
-
             </div>
-
         </div>
-
-    </div>
-
+    </section>
 </body>
 
 </html>
