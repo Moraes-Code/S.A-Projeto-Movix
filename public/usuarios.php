@@ -50,7 +50,7 @@
         <a href="Rotas.php">Rotas</a>
     </li>
     <div class="botao-sair">
-    <a href="../index.html">
+    <a href="../index.php">
         Sair
     </a>
 </div>
