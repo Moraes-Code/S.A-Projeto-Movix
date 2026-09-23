@@ -47,9 +47,11 @@ include("infra/conexao.php");
                             <input type="password" id="senha" name="senha" class="form-control"
                                 placeholder="Digite sua senha" required>
                         </div>
-                        <a href="public/dashboard.php">
-                            Entrar
-                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <a href="public/dashboard.php">
+                                Entrar
+                            </a>
+                        </button>
                     </form>
                     <p class="mt-3 text-center">
                         Não tem uma conta?

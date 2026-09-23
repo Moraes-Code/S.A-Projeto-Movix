@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
 
-        header("Location: ../index.html");
+        header("Location: ../index.php");
         exit;
 
     } else {
@@ -37,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -88,19 +87,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="senha" class="form-label">
                                 CPF
                             </label>
-                            <input type="password" id="CPF" name="cpf" class="form-control" placeholder="Digite seu CPF"
-                                required>
+                            <input type="password" id="CPF" name="cpf" class="form-control"
+                                placeholder="Digite seu CPF" required>
                         </div>
                         <div class="mb-3">
                             <label for="Telefone" class="form-label">
                                 Telefone
                             </label>
-                            <input type="password" id="CPF" name="telefone" class="form-control"
+                            <input type="tel" id="telefone" name="telefone" class="form-control"
                                 placeholder="Ex: (99)9999-9999" required>
                         </div>
-                        <a href="../index.php">
-                            Cadastrar
-                        </a>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
 
                 </div>
