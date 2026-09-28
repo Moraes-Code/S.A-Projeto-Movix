@@ -19,7 +19,7 @@
 </div>
 <ul>
     <li>
-        <a href="dashboard.php">Dashboard</a>
+        <a href="dashboard_usuario.php">Dashboard</a>
     </li>
 
     <li>
@@ -50,7 +50,7 @@
         <a href="Rotas.php">Rotas</a>
     </li>
     <div class="botao-sair">
-    <a href="../index.php">
+    <a href="cadastro.php">
         Sair
     </a>
 </div>

@@ -32,7 +32,7 @@ include("infra/conexao.php");
                         real, oferecendo maior segurança, eficiência e tomada
                         de decisão baseada em dados.
                     </p>
-                    <form action="dashboard.php" method="POST" class="mt-4">
+                    <form action="public/dashboard_usuario.php" method="POST" class="mt-4">
                         <div class="mb-3">
                             <label for="email" class="form-label">
                                 E-mail
