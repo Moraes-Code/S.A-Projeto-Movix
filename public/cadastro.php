@@ -99,6 +99,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
+                    <p class="text-center mt-3">
+    Já tem uma conta? <a href="../index.php">Fazer login</a>
+</p>
 
                 </div>
             </div>
