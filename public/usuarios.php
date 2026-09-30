@@ -106,31 +106,43 @@ $resultado = mysqli_query($conexao, $sql);
             <tbody>
                 <?php if ($resultado && mysqli_num_rows($resultado) > 0): ?>
                     <?php while ($usuario = mysqli_fetch_assoc($resultado)): ?>
+                        <?php 
+                            // Tenta pegar o nome direto do banco ou extrai do e-mail
+                            if (!empty($usuario['nome'])) {
+                                $nomeExibir = $usuario['nome'];
+                            } else {
+                                $partesEmail = explode('@', $usuario['email']);
+                                $nomeExibir  = ucfirst(str_replace(['.', '_'], ' ', $partesEmail[0]));
+                            }
+
+                            $perfilExibir = $usuario['perfil'] ?? 'Operador';
+                            $statusExibir = $usuario['status'] ?? 'Ativo';
+                        ?>
                         <tr>
                             <td>
-                                <strong><?= htmlspecialchars($usuario['nome']) ?></strong>
+                                <strong><?= htmlspecialchars($nomeExibir) ?></strong>
                             </td>
                             <td>
-                                <?= htmlspecialchars($usuario['email']) ?>
+                                <?= htmlspecialchars($usuario['email'] ?? '') ?>
                             </td>
                             <td>
-                                <?= htmlspecialchars($usuario['telefone']) ?>
+                                <?= htmlspecialchars($usuario['telefone'] ?? '') ?>
                             </td>
                             <td>
                                 <span>
-                                    <?= htmlspecialchars($usuario['perfil']) ?>
+                                    <?= htmlspecialchars($perfilExibir) ?>
                                 </span>
                             </td>
                             <td>
                                 <span>
-                                    <?= htmlspecialchars($usuario['status']) ?>
+                                    <?= htmlspecialchars($statusExibir) ?>
                                 </span>
                             </td>
                             <td>
                                 <button>
                                     Editar
                                 </button>
-                                <a href="excluir_usuario.php?id=<?= $usuario['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário <?= htmlspecialchars($usuario['nome']) ?>?');">
+                                <a href="excluir_usuarios.php?id=<?= $usuario['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário <?= htmlspecialchars($nomeExibir) ?>?');">
                                     Excluir
                                 </a>
                             </td>
