@@ -49,8 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_usuario'])) 
             $mensagemErro = 'Usuário, e-mail ou CPF já cadastrados.';
         } else {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+            $statusAtivo = 'Ativo';
             $stmt = mysqli_prepare($conexao, 'INSERT INTO usuarios (nome, usuario, email, cpf, telefone, cargo, senha, perfil, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-            mysqli_stmt_bind_param($stmt, 'ssssssss', $nome, $usuario, $email, $cpf, $telefone, $cargo, $senhaHash, $cargo, 'Ativo');
+            mysqli_stmt_bind_param($stmt, 'sssssssss', $nome, $usuario, $email, $cpf, $telefone, $cargo, $senhaHash, $cargo, $statusAtivo);
 
             if (mysqli_stmt_execute($stmt)) {
                 $mensagemSucesso = 'Usuário cadastrado com sucesso.';
@@ -107,14 +108,6 @@ $resultado = mysqli_query($conexao, $sql);
     <div class="content">
         <div class="table-container">
             <h4 class="mb-3">Usuários Cadastrados</h4>
-
-            <?php if (!empty($mensagemSucesso)): ?>
-                <div class="alert alert-success"><?= htmlspecialchars($mensagemSucesso) ?></div>
-            <?php elseif (!empty($mensagemErro)): ?>
-                <div class="alert alert-danger"><?= htmlspecialchars($mensagemErro) ?></div>
-            <?php elseif (isset($_GET['msg']) && $_GET['msg'] === 'sucesso'): ?>
-                <div class="alert alert-success">Usuário cadastrado com sucesso.</div>
-            <?php endif; ?>
 
             <div class="form-container mb-4">
                 <form method="POST">
