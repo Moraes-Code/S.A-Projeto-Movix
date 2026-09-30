@@ -13,7 +13,7 @@ function garantirColunasUsuarios(mysqli $conexao): void
         'cargo' => "VARCHAR(50) NOT NULL DEFAULT 'Operador'",
         'perfil' => "VARCHAR(30) NOT NULL DEFAULT 'Operador'",
         'status' => "VARCHAR(20) NOT NULL DEFAULT 'Ativo'"
-    ];
+    ] ;
 
     foreach ($colunas as $nomeColuna => $tipo) {
         $resultado = mysqli_query($conexao, "SHOW COLUMNS FROM usuarios LIKE '" . $nomeColuna . "'");
