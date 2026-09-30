@@ -121,9 +121,9 @@
                         <button>
                                 Editar
                             </button>
-                            <button>
-                               Excluir
-                            </button>
+                            <a href="excluir_usuario.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">
+    Excluir
+</a>
                     </td>
                 </tr>
                 <tr>
@@ -150,9 +150,9 @@
                         <button>
                                 Editar
                             </button>
-                            <button>
-                               Excluir
-                            </button>
+                            <a href="excluir_usuario.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">
+    Excluir
+</a>
                     </td>
                 </tr>
                 <tr>
@@ -179,9 +179,9 @@
                         <button>
                                 Editar
                             </button>
-                            <button>
-                               Excluir
-                            </button>
+                            <a href="excluir_usuario.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">
+    Excluir
+</a>
                     </td>
                 </tr>
             </tbody>
