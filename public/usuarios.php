@@ -1,4 +1,11 @@
 
+<?php
+session_start();
+require_once '../infra/conexao.php';
+
+$sql = "SELECT * FROM usuarios";
+$resultado = mysqli_query($conexao, $sql);
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -97,93 +104,43 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <strong>André Silva</strong>
-                    </td>
-                    <td>
-                        andre@movix.com
-                    </td>
-                    <td>
-                        (47) 99999-9999
-                    </td>
-                    <td>
-                        <span>
-                            Administrador
-                        </span>
-                    </td>
-                    <td>
-                        <span>
-                            Ativo
-                        </span>
-                    </td>
-                    <td>
-                        <button>
-                                Editar
-                            </button>
-                            <a href="excluir_usuario.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">
-    Excluir
-</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Maria Souza</strong>
-                    </td>
-                    <td>
-                        maria@movix.com
-                    </td>
-                    <td>
-                        (47) 98888-8888
-                    </td>
-                    <td>
-                        <span>
-                            Supervisor
-                        </span>
-                    </td>
-                    <td>
-                        <span>
-                            Ativo
-                        </span>
-                    </td>
-                    <td>
-                        <button>
-                                Editar
-                            </button>
-                            <a href="excluir_usuario.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">
-    Excluir
-</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Carlos Lima</strong>
-                    </td>
-                    <td>
-                        carlos@movix.com
-                    </td>
-                    <td>
-                        (47) 97777-7777
-                    </td>
-                    <td>
-                        <span>
-                            Operador
-                        </span>
-                    </td>
-                    <td>
-                        <span>
-                            Inativo
-                        </span>
-                    </td>
-                    <td>
-                        <button>
-                                Editar
-                            </button>
-                            <a href="excluir_usuario.php?id=1" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">
-    Excluir
-</a>
-                    </td>
-                </tr>
+                <?php if ($resultado && mysqli_num_rows($resultado) > 0): ?>
+                    <?php while ($usuario = mysqli_fetch_assoc($resultado)): ?>
+                        <tr>
+                            <td>
+                                <strong><?= htmlspecialchars($usuario['nome']) ?></strong>
+                            </td>
+                            <td>
+                                <?= htmlspecialchars($usuario['email']) ?>
+                            </td>
+                            <td>
+                                <?= htmlspecialchars($usuario['telefone']) ?>
+                            </td>
+                            <td>
+                                <span>
+                                    <?= htmlspecialchars($usuario['perfil']) ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    <?= htmlspecialchars($usuario['status']) ?>
+                                </span>
+                            </td>
+                            <td>
+                                <button>
+                                    Editar
+                                </button>
+                                <a href="excluir_usuario.php?id=<?= $usuario['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário <?= htmlspecialchars($usuario['nome']) ?>?');">
+                                    Excluir
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="text-center">Nenhum usuário encontrado.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
