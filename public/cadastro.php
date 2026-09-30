@@ -2,33 +2,12 @@
 
 include("../infra/conexao.php");
 
-function garantirColunasUsuarios(mysqli $conexao): void
-{
-    $colunas = [
-        'nome' => "VARCHAR(150) NOT NULL DEFAULT ''",
-        'perfil' => "VARCHAR(30) NOT NULL DEFAULT 'Operador'",
-        'status' => "VARCHAR(20) NOT NULL DEFAULT 'Ativo'"
-    ];
-
-    foreach ($colunas as $nomeColuna => $tipo) {
-        $resultado = mysqli_query($conexao, "SHOW COLUMNS FROM usuarios LIKE '" . $nomeColuna . "'");
-
-        if ($resultado && mysqli_num_rows($resultado) === 0) {
-            mysqli_query($conexao, "ALTER TABLE usuarios ADD COLUMN {$nomeColuna} {$tipo}");
-        }
-    }
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    garantirColunasUsuarios($conexao);
-
     $nome = trim($_POST["nome"] ?? '');
     $email = trim($_POST["email"] ?? '');
     $senha = $_POST["senha"] ?? '';
     $cpf = trim($_POST["cpf"] ?? '');
     $telefone = trim($_POST["telefone"] ?? '');
-    $perfil = $_POST["perfil"] ?? 'Operador';
-    $status = $_POST["status"] ?? 'Ativo';
 
     if ($nome === '' || $email === '' || $senha === '' || $cpf === '' || $telefone === '') {
         echo "Preencha todos os campos obrigatórios.";
@@ -42,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($resultado) > 0) {
             echo "Já existe um usuário com este e-mail ou CPF.";
         } else {
-            $sql = "INSERT INTO usuarios (nome, email, senha, cpf, telefone, perfil, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO usuarios (nome, email, senha, cpf, telefone) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conexao->prepare($sql);
-            $stmt->bind_param("sssssss", $nome, $email, $senhaHash, $cpf, $telefone, $perfil, $status);
+            $stmt->bind_param("sssss", $nome, $email, $senhaHash, $cpf, $telefone);
 
             if ($stmt->execute()) {
                 header("Location: ../index.php");
@@ -103,30 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="telefone" class="form-label">Telefone</label>
                             <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="Ex: (99) 99999-9999" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="perfil" class="form-label">Perfil</label>
-                            <select id="perfil" name="perfil" class="form-control">
-                                <option value="Operador">Operador</option>
-                                <option value="Supervisor">Supervisor</option>
-                                <option value="Administrador">Administrador</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select id="status" name="status" class="form-control">
-                                <option value="Ativo">Ativo</option>
-                                <option value="Inativo">Inativo</option>
-                            </select>
-                        </div>
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
-<<<<<<< HEAD
                     <p class="text-center mt-3">
-    Já tem uma conta? <a href="../index.php">Fazer login</a>
-</p>
-
-=======
->>>>>>> 3165631686b8795a40e2b55ac75674eb355a1bf1
+                        Já tem uma conta? <a href="../index.php">Fazer login</a>
+                    </p>
                 </div>
             </div>
         </div>
