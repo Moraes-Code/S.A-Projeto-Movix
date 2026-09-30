@@ -1,5 +1,43 @@
 <?php
+session_start();
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    $_SESSION = [];
+}
+
 include("infra/conexao.php");
+
+if (isset($_SESSION['usuario_id'])) {
+    header('Location: public/dashboard_usuario.php');
+    exit;
+}
+
+$mensagemErro = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $senha = $_POST['senha'] ?? '';
+
+    if ($email === '' || $senha === '') {
+        $mensagemErro = 'Preencha e-mail e senha.';
+    } else {
+        $stmt = mysqli_prepare($conexao, 'SELECT id, nome, senha FROM usuarios WHERE email = ? LIMIT 1');
+        mysqli_stmt_bind_param($stmt, 's', $email);
+        mysqli_stmt_execute($stmt);
+        $resultado = mysqli_stmt_get_result($stmt);
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            $_SESSION['usuario_id'] = (int) $usuario['id'];
+            $_SESSION['usuario_nome'] = $usuario['nome'];
+            header('Location: public/dashboard_usuario.php');
+            exit;
+        }
+
+        $mensagemErro = 'E-mail ou senha inválidos.';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +70,7 @@ include("infra/conexao.php");
                         real, oferecendo maior segurança, eficiência e tomada
                         de decisão baseada em dados.
                     </p>
-                    <form action="public/dashboard_usuario.php" method="POST" class="mt-4">
+                    <form method="POST" class="mt-4">
                         <div class="mb-3">
                             <label for="email" class="form-label">
                                 E-mail
@@ -47,6 +85,13 @@ include("infra/conexao.php");
                             <input type="password" id="senha" name="senha" class="form-control"
                                 placeholder="Digite sua senha" required>
                         </div>
+
+                        <?php if ($mensagemErro !== ''): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= htmlspecialchars($mensagemErro) ?>
+                            </div>
+                        <?php endif; ?>
+
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </form>
                     <p class="mt-3 text-center">

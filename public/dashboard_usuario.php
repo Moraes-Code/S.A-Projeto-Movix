@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -51,7 +59,7 @@
         <a href="Rotas.php">Rotas</a>
     </li>
     <div class="botao-sair">
-    <a href="../index.php" >
+    <a href="../index.php?logout=1" >
         Sair
     </a>
 </div>
