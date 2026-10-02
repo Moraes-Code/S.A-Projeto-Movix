@@ -17,28 +17,82 @@
 }
 
 body{
-    background:var(--cinza);
+    background:linear-gradient(180deg, #edf4fb 0%, #e7eef8 100%);
 }
 
 .sidebar{
     position:fixed;
     width:260px;
     height:100vh;
-    background:var(--azul-escuro);
+    background:linear-gradient(180deg, #0b1628 0%, #0d1b2a 100%);
+    border-right:1px solid rgba(93,173,226,0.22);
+    box-shadow:16px 0 30px rgba(11,22,40,0.18);
+    padding:20px 16px;
 }
 
 .logo-area{
     text-align:center;
-    padding:25px;
+    padding:18px 12px 22px;
     color:white;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    margin-bottom:18px;
 }
 
 .logo-area img{
-    width:90px;
+    width:98px;
+    filter:drop-shadow(0 10px 18px rgba(93,173,226,0.2));
 }
 
 .logo-area h3{
     margin-top:10px;
+    font-size:2.2rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+}
+
+.logo-area small{
+    color:rgba(255,255,255,0.72);
+    letter-spacing:0.05em;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.sidebar li{
+    margin:0;
+}
+
+.sidebar a{
+    display:block;
+    padding:10px 12px;
+    color:#dfeeff;
+    text-decoration:none;
+    font-weight:500;
+    transition:all 0.2s ease;
+}
+
+.sidebar a:hover,
+.sidebar a:focus{
+    background:rgba(255,255,255,0.03);
+    color:#ffffff;
+}
+
+.botao-sair{
+    margin-top:18px;
+}
+
+.botao-sair a{
+    background:transparent;
+    color:#ffffff;
+    text-align:left;
+    border:none;
+    padding:10px 12px;
 }
 
 .main{
