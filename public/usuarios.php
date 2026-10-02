@@ -107,7 +107,7 @@ $resultado = mysqli_query($conexao, $sql);
     </div>
     <div class="content">
         <div class="table-container">
-            <h4 class="mb-3">Usuários Cadastrados</h4>
+            <h4 class="mb-3">Cadastrar Usuarios</h4>
 
             <div class="form-container mb-4">
                 <form method="POST">
