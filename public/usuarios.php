@@ -95,7 +95,7 @@ $resultado = mysqli_query($conexao, $sql);
         <li><a href="relatorios.php">Relatórios</a></li>
         <li><a href="Rotas.php">Rotas</a></li>
         <div class="botao-sair">
-            <a href="cadastro.php">Sair</a>
+            <a href="../index.php?logout=1">Sair</a>
         </div>
     </ul>
 </div>
