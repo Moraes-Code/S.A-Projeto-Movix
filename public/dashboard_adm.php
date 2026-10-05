@@ -137,3 +137,22 @@ require_once 'protecao_admin.php';
                     </div>
 
                 </div>
+
+                  <div class="col-md-4">
+
+                <div class="card dashboard-card bg-success p-4">
+
+                    <h5>Monitoramento</h5>
+
+                    <p>
+                        Acompanhar informações ferroviárias.
+                    </p>
+
+                    <a href="monitoramento.php" class="btn btn-light">
+                        Acessar
+                    </a>
+
+                </div>
+
+            </div>
+
