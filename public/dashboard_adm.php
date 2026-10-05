@@ -138,21 +138,48 @@ require_once 'protecao_admin.php';
 
                 </div>
 
-                  <div class="col-md-4">
+                <div class="col-md-4">
 
-                <div class="card dashboard-card bg-success p-4">
+                    <div class="card dashboard-card bg-success p-4">
 
-                    <h5>Monitoramento</h5>
+                        <h5>Monitoramento</h5>
 
-                    <p>
-                        Acompanhar informações ferroviárias.
-                    </p>
+                        <p>
+                            Acompanhar informações ferroviárias.
+                        </p>
 
-                    <a href="monitoramento.php" class="btn btn-light">
-                        Acessar
-                    </a>
+                        <a href="monitoramento.php" class="btn btn-light">
+                            Acessar
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card dashboard-card bg-dark p-4">
+
+                        <h5>Relatórios</h5>
+
+                        <p>
+                            Visualizar os relatórios do sistema.
+                        </p>
+
+                        <a href="relatorios.php" class="btn btn-light">
+                            Acessar
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
 
+        </div>
+
+    </div>
+
+</body>
+
+</html>
