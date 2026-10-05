@@ -121,9 +121,7 @@
                     </select>
                 </div>
                 <div class="col-md-3 d-flex align-items-end">
-                    <button>
-                        Gerar Relatório
-                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-primary">Gerar relátorio</button>
                 </div>
             </div>
         </div>
@@ -148,12 +146,8 @@
                         <td>19/06/2026</td>
                         <td>Administrador</td>
                         <td>
-                            <button>
-                                PDF
-                            </button>
-                            <button >
-                                Excel
-                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
                         </td>
                     </tr>
                     <tr>
@@ -162,12 +156,8 @@
                         <td>24/08/2026</td>
                         <td>Supervisor</td>
                         <td>
-                            <button >
-                                PDF
-                            </button>
-                            <button>
-                                Excel
-                            </button>
+                           <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
                         </td>
                     </tr>
                     <tr>
@@ -176,12 +166,8 @@
                         <td>04/04/2026</td>
                         <td>Operador</td>
                         <td>
-                            <button>
-                                PDF
-                            </button>
-                            <button>
-                                Excel
-                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
+                            <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
                         </td>
                     </tr>
                 </tbody>

@@ -22,31 +22,24 @@
     <li>
         <a href="dashboard_usuario.php">Dashboard</a>
     </li>
-
     <li>
         <a href="monitoramento.php">Monitoramento</a>
     </li>
-
     <li>
         <a href="alertas.php">Alertas</a>
     </li>
-
     <li>
         <a href="sensores.php">Sensores</a>
     </li>
-
     <li>
         <a href="trens.php">Trens</a>
     </li>
-
     <li>
         <a href="usuarios.php">Usuários</a>
     </li>
-
     <li>
         <a href="relatorios.php">Relatórios</a>
     </li>
-
     <li>
         <a href="Rotas.php">Rotas</a>
     </li>
@@ -84,9 +77,7 @@
             </div>
             <div class="table-container">
                 <h4>Frota de Trens</h4>
-                <button>
-                    Novo Trem
-                </button>
+                <button type="button" class="btn btn-sm btn-outline-primary">Novo trem</button>
                 <input
                     type="text"
                     placeholder="Pesquisar trem...">
@@ -115,13 +106,8 @@
                                 </span>
                             </td>
                             <td>
-                                <button >
-                                    Editar
-                                </button>
-
-                                <button >
-                                    Excluir
-                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
                             </td>
                         </tr>
                         <tr>
@@ -136,13 +122,8 @@
                                 </span>
                             </td>
                             <td>
-                                <button>
-                                    Editar
-                                </button>
-
-                                <button>
-                                    Excluir
-                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
                             </td>
                         </tr>
                         <tr>
@@ -157,13 +138,8 @@
                                 </span>
                             </td>
                             <td>
-                                <button>
-                                    Editar
-                                </button>
-
-                                <button>
-                                    Excluir
-                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
                             </td>
                         </tr>
                     </tbody>
