@@ -1,4 +1,4 @@
-```php
+
 <?php
 
 session_start();
@@ -46,4 +46,4 @@ header("Location: usuarios.php?msg=erro");
 exit();
 
 ?>
-```
+
