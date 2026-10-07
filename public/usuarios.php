@@ -188,7 +188,7 @@ $resultado = mysqli_query($conexao, $sql);
                             <?php
                                 $nomeExibir = !empty($usuario['nome']) ? $usuario['nome'] : 'Usuário';
                                 $usuarioExibir = $usuario['usuario'] ?? '';
-                                $cargoExibir = $usuario['cargo'] ?? ($usuario['perfil'] ?? 'Operador');
+                                $cargoExibir = $usuario['nome_perfil'] ?? 'Usuário';
                             ?>
                             <tr>
                                 <td><strong><?= htmlspecialchars($nomeExibir) ?></strong></td>

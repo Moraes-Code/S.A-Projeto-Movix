@@ -9,7 +9,7 @@ if (isset($_GET['logout'])) {
 include("infra/conexao.php");
 
 if (isset($_SESSION['usuario_id'])) {
-    header('Location: public/dashboard_usuario.php');
+    header('Location: public/usuarios.php');
     exit;
 }
 
