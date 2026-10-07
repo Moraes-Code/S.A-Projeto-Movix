@@ -1,46 +1,35 @@
-
 <?php
 session_start();
 require_once '../infra/conexao.php';
 
-function garantirColunasUsuarios(mysqli $conexao): void
-{
-    $colunas = [
-        'nome' => "VARCHAR(150) NOT NULL DEFAULT ''",
-        'usuario' => "VARCHAR(100) NOT NULL DEFAULT ''",
-        'cpf' => "VARCHAR(14) NOT NULL DEFAULT ''",
-        'telefone' => "VARCHAR(20) NOT NULL DEFAULT ''",
-        'cargo' => "VARCHAR(50) NOT NULL DEFAULT 'Operador'",
-        'perfil' => "VARCHAR(30) NOT NULL DEFAULT 'Operador'",
-        'status' => "VARCHAR(20) NOT NULL DEFAULT 'Ativo'"
-    ] ;
-
-    foreach ($colunas as $nomeColuna => $tipo) {
-        $resultado = mysqli_query($conexao, "SHOW COLUMNS FROM usuarios LIKE '" . $nomeColuna . "'");
-        if ($resultado && mysqli_num_rows($resultado) === 0) {
-            mysqli_query($conexao, "ALTER TABLE usuarios ADD COLUMN {$nomeColuna} {$tipo}");
-        }
-    }
+// Somente administradores podem acessar esta página
+if (!isset($_SESSION['id_perfil']) || $_SESSION['id_perfil'] != 1) {
+    header('Location: dashboard_usuario.php');
+    exit;
 }
 
 $mensagemSucesso = '';
 $mensagemErro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_usuario'])) {
-    garantirColunasUsuarios($conexao);
 
     $nome = trim($_POST['nome'] ?? '');
     $usuario = trim($_POST['usuario'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $cpf = trim($_POST['cpf'] ?? '');
     $telefone = trim($_POST['telefone'] ?? '');
-    $cargo = trim($_POST['cargo'] ?? 'Operador');
+    $id_perfil = (int)($_POST['id_perfil'] ?? 3);
     $senha = $_POST['senha'] ?? '';
 
-    if ($nome === '' || $usuario === '' || $email === '' || $cpf === '' || $telefone === '' || $cargo === '' || $senha === '') {
+    if ($nome === '' || $usuario === '' || $email === '' || $cpf === '' || $telefone === '' || $senha === '') {
         $mensagemErro = 'Preencha todos os campos obrigatórios.';
     } else {
-        $verifica = mysqli_prepare($conexao, 'SELECT id FROM usuarios WHERE usuario = ? OR email = ? OR cpf = ?');
+
+        $verifica = mysqli_prepare(
+            $conexao,
+            'SELECT id FROM usuarios WHERE usuario = ? OR email = ? OR cpf = ?'
+        );
+
         mysqli_stmt_bind_param($verifica, 'sss', $usuario, $email, $cpf);
         mysqli_stmt_execute($verifica);
         $resultadoBusca = mysqli_stmt_get_result($verifica);
@@ -48,13 +37,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_usuario'])) 
         if (mysqli_num_rows($resultadoBusca) > 0) {
             $mensagemErro = 'Usuário, e-mail ou CPF já cadastrados.';
         } else {
+
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
             $statusAtivo = 'Ativo';
-            $stmt = mysqli_prepare($conexao, 'INSERT INTO usuarios (nome, usuario, email, cpf, telefone, cargo, senha, perfil, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-            mysqli_stmt_bind_param($stmt, 'sssssssss', $nome, $usuario, $email, $cpf, $telefone, $cargo, $senhaHash, $cargo, $statusAtivo);
+
+            $stmt = mysqli_prepare(
+                $conexao,
+                'INSERT INTO usuarios 
+                (nome, usuario, email, cpf, telefone, senha, id_perfil, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+            );
+
+            mysqli_stmt_bind_param(
+                $stmt,
+                'ssssssis',
+                $nome,
+                $usuario,
+                $email,
+                $cpf,
+                $telefone,
+                $senhaHash,
+                $id_perfil,
+                $statusAtivo
+            );
 
             if (mysqli_stmt_execute($stmt)) {
-                $mensagemSucesso = 'Usuário cadastrado com sucesso.';
                 header('Location: usuarios.php?msg=sucesso');
                 exit;
             } else {
@@ -64,9 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_usuario'])) 
     }
 }
 
-garantirColunasUsuarios($conexao);
+$sql = 'SELECT usuarios.*, perfis.nome AS nome_perfil
+        FROM usuarios
+        LEFT JOIN perfis ON usuarios.id_perfil = perfis.id
+        ORDER BY usuarios.id DESC';
 
-$sql = 'SELECT * FROM usuarios ORDER BY id DESC';
 $resultado = mysqli_query($conexao, $sql);
 ?>
 <!DOCTYPE html>
@@ -134,11 +143,13 @@ $resultado = mysqli_query($conexao, $sql);
                             <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(99) 99999-9999" required>
                         </div>
                         <div class="col-md-4">
-                            <label for="cargo" class="form-label">Cargo</label>
-                            <select id="cargo" name="cargo" class="form-control">
-                                <option value="Operador">Operador</option>
-                                <option value="Supervisor">Supervisor</option>
-                                <option value="Administrador">Administrador</option>
+    <label for="id_perfil" class="form-label">Perfil</label>
+    <select id="id_perfil" name="id_perfil" class="form-control">
+        <option value="3">Usuário</option>
+        <option value="2">Operário</option>
+        <option value="1">Administrador</option>
+    </select>
+</div>
                             </select>
                         </div>
                         <div class="col-md-4">

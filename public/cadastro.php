@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($resultado) > 0) {
             echo "Já existe um usuário com este e-mail ou CPF.";
         } else {
-            $sql = "INSERT INTO usuarios (nome, email, senha, cpf, telefone) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO usuarios (nome, email, senha, cpf, telefone, id_perfil) VALUES (?, ?, ?, ?, ?, 3)";
             $stmt = $conexao->prepare($sql);
             $stmt->bind_param("sssss", $nome, $email, $senhaHash, $cpf, $telefone);
 
