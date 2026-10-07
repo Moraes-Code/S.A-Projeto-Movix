@@ -19,43 +19,18 @@
         <small>Centro Ferroviário</small>
     </div>
     <ul>
-    <li>
-        <a href="dashboard_usuario.php">Dashboard</a>
-    </li>
-
-    <li>
-        <a href="monitoramento.php">Monitoramento</a>
-    </li>
-
-    <li>
-        <a href="alertas.php">Alertas</a>
-    </li>
-
-    <li>
-        <a href="sensores.php">Sensores</a>
-    </li>
-
-    <li>
-        <a href="trens.php">Trens</a>
-    </li>
-
-    <li>
-        <a href="usuarios.php">Usuários</a>
-    </li>
-
-    <li>
-        <a href="relatorios.php">Relatórios</a>
-    </li>
-
-    <li>
-        <a href="Rotas.php">Rotas</a>
-    </li>
-    <div class="botao-sair">
-    <a href="../index.php">
-        Sair
-    </a>
-</div>
-</ul>
+        <li><a href="dashboard_usuario.php">Dashboard</a></li>
+        <li><a href="monitoramento.php">Monitoramento</a></li>
+        <li><a href="alertas.php">Alertas</a></li>
+        <li><a href="sensores.php">Sensores</a></li>
+        <li><a href="trens.php">Trens</a></li>
+        <li><a href="usuarios.php">Usuários</a></li>
+        <li><a href="relatorios.php">Relatórios</a></li>
+        <li><a href="Rotas.php">Rotas</a></li>
+        <div class="botao-sair">
+            <a href="../index.php?logout=1">Sair</a>
+        </div>
+    </ul>
 </div>
 <div class="main">
     <div class="topbar">
