@@ -8,7 +8,5 @@ CREATE TABLE usuarios (
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
-    telefone VARCHAR(20) NOT NULL,
-    perfil VARCHAR(30) NOT NULL DEFAULT 'Operador',
-    status VARCHAR(20) NOT NULL DEFAULT 'Ativo'
+    telefone VARCHAR(20) NOT NULL
 );
