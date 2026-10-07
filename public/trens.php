@@ -38,27 +38,34 @@
         <div class="topbar">
             <h3>Gerenciamento de Trens</h3>
         </div>
-        <div class="content">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card  online">
-                        <h5>Trens em Operação</h5>
-                        <h1>18</h1>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card warning">
-                        <h5>Em Manutenção</h5>
-                        <h1>03</h1>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card offline">
-                        <h5>Fora de Serviço</h5>
-                        <h1>01</h1>
+       <div class="content">
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card sensor-card">
+                    <div class="card-body">
+                        <h6>Em operação</h6>
+                        <h2>18</h2>
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card trem-card">
+                    <div class="card-body">
+                        <h6>Em Manutenção</h6>
+                        <h2>04</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card alerta-card">
+                    <div class="card-body">
+                        <h6>Fora de serviço</h6>
+                        <h2>02</h2>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
             <div class="table-container">
                 <h4>Frota de Trens</h4>
                 <button type="button" class="btn btn-sm btn-outline-primary">Novo trem</button>
