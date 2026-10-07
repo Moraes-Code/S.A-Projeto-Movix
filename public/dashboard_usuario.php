@@ -32,7 +32,6 @@ if (!isset($_SESSION['usuario_id'])) {
             <li><a href="alertas.php">Alertas</a></li>
             <li><a href="sensores.php">Sensores</a></li>
             <li><a href="trens.php">Trens</a></li>
-            <li><a href="usuarios.php">Usuários</a></li>
             <li><a href="relatorios.php">Relatórios</a></li>
             <li><a href="Rotas.php">Rotas</a></li>
             <div class="botao-sair">
