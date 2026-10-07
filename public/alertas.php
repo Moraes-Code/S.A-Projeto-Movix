@@ -42,21 +42,24 @@
             <div class="col-md-4">
                 <div class="card offline">
                     <div class="card-body">
-                        <h5>Críticos</h5>              
+                        <h6>Críticos</h6> 
+                        <h4>02</h4>             
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card warning">
                     <div class="card-body">
-                        <h5>Médios</h5>
+                        <h6>Médios</h6>
+                        <h4>09</h4>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card online">
                     <div class="card-body">
-                        <h5>Resolvidos</h5>
+                        <h6>Resolvidos</h6>
+                        <h4>21</h4>
                     </div>
                 </div>
             </div>

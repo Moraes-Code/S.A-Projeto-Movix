@@ -2,7 +2,6 @@
 <?php
 session_start();
 require_once '../infra/conexao.php';
-require_once 'protecao_admin.php';
 
 function garantirColunasUsuarios(mysqli $conexao): void
 {

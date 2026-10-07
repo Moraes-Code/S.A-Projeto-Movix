@@ -16,9 +16,9 @@ if (!isset($_SESSION['usuario_id'])) {
     <title>Dashboard - MOVIX</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
 <body>
     <div class="sidebar">
         <div class="logo-area">
@@ -26,19 +26,19 @@ if (!isset($_SESSION['usuario_id'])) {
             <h3>MOVIX</h3>
             <small>Centro Ferroviário</small>
         </div>
-       <ul>
-        <li><a href="dashboard_usuario.php">Dashboard</a></li>
-        <li><a href="monitoramento.php">Monitoramento</a></li>
-        <li><a href="alertas.php">Alertas</a></li>
-        <li><a href="sensores.php">Sensores</a></li>
-        <li><a href="trens.php">Trens</a></li>
-        <li><a href="usuarios.php">Usuários</a></li>
-        <li><a href="relatorios.php">Relatórios</a></li>
-        <li><a href="Rotas.php">Rotas</a></li>
-        <div class="botao-sair">
-            <a href="../index.php?logout=1">Sair</a>
-        </div>
-    </ul>
+        <ul>
+            <li><a href="dashboard_usuario.php">Dashboard</a></li>
+            <li><a href="monitoramento.php">Monitoramento</a></li>
+            <li><a href="alertas.php">Alertas</a></li>
+            <li><a href="sensores.php">Sensores</a></li>
+            <li><a href="trens.php">Trens</a></li>
+            <li><a href="usuarios.php">Usuários</a></li>
+            <li><a href="relatorios.php">Relatórios</a></li>
+            <li><a href="Rotas.php">Rotas</a></li>
+            <div class="botao-sair">
+                <a href="../index.php?logout=1">Sair</a>
+            </div>
+        </ul>
     </div>
     <div class="main">
         <div class="topbar">
@@ -97,7 +97,7 @@ if (!isset($_SESSION['usuario_id'])) {
                                     <th>Data</th>
                                     <th>Status</th>
                                 </tr>
-                            </thead>                          
+                            </thead>
                         </table>
                     </div>
                 </div>
@@ -134,4 +134,5 @@ if (!isset($_SESSION['usuario_id'])) {
         </div>
     </div>
 </body>
+
 </html>
