@@ -1,4 +1,12 @@
 <?php
+
+session_start(); 
+
+if (!isset($_SESSION['usuario_id'])) { header('Location: ../index.php'); 
+exit; } 
+$perfil = $_SESSION['id_perfil'];
+$podeGerenciar = ($perfil == 1 || $perfil == 2);
+
 ?>
 
 <!DOCTYPE html>
