@@ -122,6 +122,24 @@ body{
     border-radius:18px;
 }
 
+.section-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:1.5rem;
+    gap:12px;
+}
+
+.section-toolbar h4{
+    margin:0;
+    font-size:1.75rem;
+    font-weight:700;
+}
+
+.section-toolbar .btn{
+    white-space:nowrap;
+}
+
 .form-container{
     background:white;
     padding:30px;
