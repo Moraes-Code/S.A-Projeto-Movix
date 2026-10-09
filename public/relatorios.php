@@ -86,10 +86,12 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <option>Alertas</option>
                             <option>Usuários</option>
                         </select>
-
+ <?php if ($podeGerenciar): ?>
                         <div class="col-md-3 d-flex align-items-end">
                             <button type="button" class="btn btn-sm btn-outline-primary">Gerar relátorio</button>
                         </div>
+                         <?php else: ?>
+                        <?php endif; ?>
                     </div>
                 </div>
 
