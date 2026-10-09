@@ -32,11 +32,8 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h4>Sensores Cadastrados</h4>
                     <?php if ($podeGerenciar): ?>
-                    <button>
-                        Novo Sensor
-                    </button>
-                    <?php else: ?>
-                        <?php endif; ?>
+                    <button type="button">Novo Sensor</button>
+                    <?php endif; ?>
                 </div>
                 <div class="mb-4">
                     <input type="text" class="form-control">
@@ -50,8 +47,9 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <th>Localização</th>
                             <th>Status</th>
                             <?php if ($podeGerenciar): ?>
-                            <th>Ações</th>
+                            <th>Ações</th> 
                             <?php else: ?>
+                                <span>Sem permissão</span>
                             <?php endif; ?>
                         </tr>
                     </thead>
@@ -71,6 +69,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
                                 <?php else: ?>
+                                    <span>Sem permissão</span>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -88,6 +87,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
                                 <?php else: ?>
+                                    <span>Sem permissão</span>
                                 <?php endif; ?>
                         </tr>
                         <tr>

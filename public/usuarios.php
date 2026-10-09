@@ -2,7 +2,6 @@
 session_start();
 require_once '../infra/conexao.php';
 
-// Somente administradores podem acessar esta página
 if (!isset($_SESSION['id_perfil']) || $_SESSION['id_perfil'] != 1) {
     header('Location: dashboard_usuario.php');
     exit;
@@ -197,9 +196,12 @@ $resultado = mysqli_query($conexao, $sql);
                                 <td><?= htmlspecialchars($cargoExibir) ?></td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                    <a href="../funcoes/excluir_usuarios.php?id=<?= (int)($usuario['id'] ?? 0) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário <?= htmlspecialchars($nomeExibir) ?>?');">
-    Excluir
-</a>
+                                    <a href="../funcoes/excluir_usuarios.php?id=<?= (int)($usuario['id'] ?? 0) ?>" 
+                                    class="btn btn-sm btn-danger" 
+                                    onclick="return confirm('Tem certeza que deseja excluir o usuário 
+                                    <?= htmlspecialchars($nomeExibir) ?>?');">
+                                    Excluir
+                                    </a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
