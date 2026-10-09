@@ -85,9 +85,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <option>Usuários</option>
                         </select>
                     </div>
-                    <div class="col-md-3 d-flex align-items-end">
-                        <button type="button" class="btn btn-sm btn-outline-primary">Gerar relátorio</button>
-                    </div>
+        
                 </div>
             </div>
             <div class="table-container">
@@ -101,7 +99,6 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <th>Relatório</th>
                             <th>Data</th>
                             <th>Responsável</th>
-                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,30 +107,21 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <td>Sensores</td>
                             <td>19/06/2026</td>
                             <td>Administrador</td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
-                            </td>
+                           
                         </tr>
                         <tr>
                             <td>Relatório 02</td>
                             <td>Trens</td>
                             <td>24/08/2026</td>
                             <td>Supervisor</td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
-                            </td>
+                            
                         </tr>
                         <tr>
                             <td>Relatório 03</td>
                             <td>Alertas</td>
                             <td>04/04/2026</td>
                             <td>Operador</td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
-                            </td>
+                            
                         </tr>
                     </tbody>
                 </table>
