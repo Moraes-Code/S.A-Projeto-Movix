@@ -1,9 +1,11 @@
 <?php
 
-session_start(); 
+session_start();
 
-if (!isset($_SESSION['usuario_id'])) { header('Location: ../index.php'); 
-exit; } 
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../index.php');
+    exit;
+}
 $perfil = $_SESSION['id_perfil'];
 $podeGerenciar = ($perfil == 1 || $perfil == 2);
 
@@ -84,49 +86,79 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <option>Alertas</option>
                             <option>Usuários</option>
                         </select>
+
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-sm btn-outline-primary">Gerar relátorio</button>
+                        </div>
                     </div>
-        
                 </div>
-            </div>
-            <div class="table-container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h4>Relatórios Disponíveis</h4>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Relatório</th>
-                            <th>Data</th>
-                            <th>Responsável</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Relatório 01</td>
-                            <td>Sensores</td>
-                            <td>19/06/2026</td>
-                            <td>Administrador</td>
-                           
-                        </tr>
-                        <tr>
-                            <td>Relatório 02</td>
-                            <td>Trens</td>
-                            <td>24/08/2026</td>
-                            <td>Supervisor</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>Relatório 03</td>
-                            <td>Alertas</td>
-                            <td>04/04/2026</td>
-                            <td>Operador</td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
+
             </div>
         </div>
+        <div class="table-container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4>Relatórios Disponíveis</h4>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Relatório</th>
+                        <th>Data</th>
+                        <th>Responsável</th>
+                        <?php if ($podeGerenciar): ?>
+                            <th>Ações</th>>
+                        <?php else: ?>
+                        <?php endif; ?>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Relatório 01</td>
+                        <td>Sensores</td>
+                        <td>19/06/2026</td>
+                        <td>Administrador</td>
+
+                        <?php if ($podeGerenciar): ?>
+
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
+                            </td>
+                        <?php else: ?>
+                        <?php endif; ?>
+                    </tr>
+                    <tr>
+                        <td>Relatório 02</td>
+                        <td>Trens</td>
+                        <td>24/08/2026</td>
+                        <td>Supervisor</td>
+
+                        <?php if ($podeGerenciar): ?>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
+                            </td>
+                        <?php else: ?>
+                        <?php endif; ?>
+                    </tr>
+                    <tr>
+                        <td>Relatório 03</td>
+                        <td>Alertas</td>
+                        <td>04/04/2026</td>
+                        <td>Operador</td>
+
+                        <?php if ($podeGerenciar): ?>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
+                            </td>
+                        <?php else: ?>
+                        <?php endif; ?>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     </div>
 </body>
 
