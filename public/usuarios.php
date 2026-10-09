@@ -143,13 +143,11 @@ $resultado = mysqli_query($conexao, $sql);
                             <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(99) 99999-9999" required>
                         </div>
                         <div class="col-md-4">
-    <label for="id_perfil" class="form-label">Perfil</label>
-    <select id="id_perfil" name="id_perfil" class="form-control">
-        <option value="3">Usuário</option>
-        <option value="2">Operário</option>
-        <option value="1">Administrador</option>
-    </select>
-</div>
+                            <label for="id_perfil" class="form-label">Perfil</label>
+                            <select id="id_perfil" name="id_perfil" class="form-control">
+                                <option value="3">Usuário</option>
+                                <option value="2">Operário</option>
+                                <option value="1">Administrador</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -199,9 +197,9 @@ $resultado = mysqli_query($conexao, $sql);
                                 <td><?= htmlspecialchars($cargoExibir) ?></td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                    <a href="excluir_usuarios.php?id=<?= (int)($usuario['id'] ?? 0) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário <?= htmlspecialchars($nomeExibir) ?>?');">
-                                        Excluir
-                                    </a>
+                                    <a href="../funcoes/excluir_usuarios.php?id=<?= (int)($usuario['id'] ?? 0) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário <?= htmlspecialchars($nomeExibir) ?>?');">
+    Excluir
+</a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -217,3 +215,5 @@ $resultado = mysqli_query($conexao, $sql);
 </div>
 </body>
 </html>
+```
+
