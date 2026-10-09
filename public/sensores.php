@@ -1,4 +1,10 @@
 <?php
+session_start(); 
+
+if (!isset($_SESSION['usuario_id'])) { header('Location: ../index.php'); 
+exit; } 
+$perfil = $_SESSION['id_perfil'];
+$podeGerenciar = ($perfil == 1 || $perfil == 2);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -25,9 +31,12 @@
             <div class="table-container">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h4>Sensores Cadastrados</h4>
+                    <?php if ($podeGerenciar): ?>
                     <button>
                         Novo Sensor
                     </button>
+                    <?php else: ?>
+                        <?php endif; ?>
                 </div>
                 <div class="mb-4">
                     <input type="text" class="form-control">
@@ -40,7 +49,10 @@
                             <th>Tipo</th>
                             <th>Localização</th>
                             <th>Status</th>
+                            <?php if ($podeGerenciar): ?>
                             <th>Ações</th>
+                            <?php else: ?>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,8 +67,11 @@
                                 </span>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php if ($podeGerenciar): ?>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php else: ?>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         <tr>
@@ -69,10 +84,11 @@
                                     Atenção
                                 </span>
                             </td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
-                            </td>
+                            <?php if ($podeGerenciar): ?>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php else: ?>
+                                <?php endif; ?>
                         </tr>
                         <tr>
                             <td>SN003</td>
@@ -84,10 +100,11 @@
                                     Offline
                                 </span>
                             </td>
-                            <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
-                            </td>
+                            <?php if ($podeGerenciar): ?>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php else: ?>
+                                <?php endif; ?>
                         </tr>
                     </tbody>
                 </table>
