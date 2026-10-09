@@ -29,10 +29,14 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
         </div>
         <div class="content">
             <div class="table-container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="section-toolbar">
                     <h4>Sensores Cadastrados</h4>
                     <?php if ($podeGerenciar): ?>
                     <button type="button">Novo Sensor</button>
+                    <?php endif; ?>
+                    <button type="button" class="btn btn-sm btn-outline-primary">
+                        Novo Sensor
+                    </button>
                     <?php endif; ?>
                 </div>
                 <div class="mb-4">
@@ -83,12 +87,14 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                     Atenção
                                 </span>
                             </td>
-                            <?php if ($podeGerenciar): ?>
+                            <td>
+                                <?php if ($podeGerenciar): ?>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
                                 <?php else: ?>
                                     <span>Sem permissão</span>
                                 <?php endif; ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>SN003</td>
@@ -100,11 +106,12 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                     Offline
                                 </span>
                             </td>
-                            <?php if ($podeGerenciar): ?>
+                            <td>
+                                <?php if ($podeGerenciar): ?>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
-                                <?php else: ?>
                                 <?php endif; ?>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
