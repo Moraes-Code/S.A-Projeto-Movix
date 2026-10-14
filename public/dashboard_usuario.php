@@ -20,7 +20,7 @@ if (!isset($_SESSION['usuario_id'])) {
 </head>
 
 <body>
-    <?php include '../components/navbar.php'; ?>
+    <?php include '../components/sidebar.php'; ?>
 
     <div class="main">
         <div class="topbar">
