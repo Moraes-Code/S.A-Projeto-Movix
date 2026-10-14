@@ -32,8 +32,6 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                 <div class="section-toolbar">
                     <h4>Sensores Cadastrados</h4>
                     <?php if ($podeGerenciar): ?>
-                    <button type="button">Novo Sensor</button>
-                    <?php endif; ?>
                     <button type="button" class="btn btn-sm btn-outline-primary">
                         Novo Sensor
                     </button>
@@ -51,9 +49,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <th>Localização</th>
                             <th>Status</th>
                             <?php if ($podeGerenciar): ?>
-                            <th>Ações</th> 
-                            <?php else: ?>
-                                <span>Sem permissão</span>
+                            <th>Ações</th>
                             <?php endif; ?>
                         </tr>
                     </thead>
@@ -72,8 +68,6 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                 <?php if ($podeGerenciar): ?>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
-                                <?php else: ?>
-                                    <span>Sem permissão</span>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -91,8 +85,6 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                 <?php if ($podeGerenciar): ?>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
-                                <?php else: ?>
-                                    <span>Sem permissão</span>
                                 <?php endif; ?>
                             </td>
                         </tr>
