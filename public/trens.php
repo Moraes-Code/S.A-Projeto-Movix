@@ -60,7 +60,9 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
             </div>
             <div class="table-container">
                 <h4>Frota de Trens</h4>
+                <?php if ($podeGerenciar): ?>
                 <button type="button" class="btn btn-sm btn-outline-primary">Novo trem</button>
+                <?php endif; ?>
                 <input type="text" placeholder="Pesquisar trem...">
                 <table class="table">
                     <thead>
@@ -71,7 +73,9 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <th>Destino</th>
                             <th>Velocidade</th>
                             <th>Status</th>
+                            <?php if ($podeGerenciar): ?>
                             <th>Ações</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,8 +91,10 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                 </span>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php if ($podeGerenciar): ?>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         <tr>
@@ -103,8 +109,10 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                 </span>
                             </td>
                             <td>
+                                <?php if ($podeGerenciar): ?>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         <tr>
@@ -119,8 +127,10 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                 </span>
                             </td>
                             <td>
+                                <?php if ($podeGerenciar): ?>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
                                 <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     </tbody>
