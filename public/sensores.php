@@ -19,7 +19,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
 </head>
 
 <body>
-    <?php include '../components/navbar.php'; ?>
+    <?php include '../components/sidebar.php'; ?>
     
     <div class="main">
         <div class="topbar">
