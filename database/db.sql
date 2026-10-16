@@ -36,3 +36,13 @@ CREATE TABLE rotas (
         NOT NULL DEFAULT 'Ativa',
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE perfis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
+
+INSERT INTO perfis (id, nome) VALUES
+(1, 'Administrador'),
+(2, 'Operário'),
+(3, 'Usuário');
