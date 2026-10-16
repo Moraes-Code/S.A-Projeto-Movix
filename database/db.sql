@@ -12,12 +12,13 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE trens (
-    id_trem INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(20) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
-    codigo VARCHAR(50) NOT NULL UNIQUE,
-    modelo VARCHAR(100) NOT NULL,
-    status VARCHAR(30) NOT NULL DEFAULT 'Ativo',
-    id_usuario INT NOT NULL,
+    linha VARCHAR(100) NOT NULL,
+    destino VARCHAR(150) NOT NULL,
+    status INT NOT NULL DEFAULT 3,
+    velocidade INT NOT NULL DEFAULT 0
 
     FOREIGN KEY (id_usuario)
         REFERENCES usuarios(id_usuario)
