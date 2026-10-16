@@ -23,3 +23,16 @@ CREATE TABLE trens (
     FOREIGN KEY (id_usuario)
         REFERENCES usuarios(id_usuario)
 );
+
+CREATE TABLE rotas (
+    id_rota INT AUTO_INCREMENT PRIMARY KEY,
+    nome_rota VARCHAR(100) NOT NULL,
+    codigo_rota VARCHAR(50) NOT NULL UNIQUE,
+    origem VARCHAR(100) NOT NULL,
+    destino VARCHAR(100) NOT NULL,
+    distancia DECIMAL(8,2) NOT NULL,
+    tempo_estimado VARCHAR(50) NOT NULL,
+    status ENUM('Ativa', 'Inativa', 'Em manutenção')
+        NOT NULL DEFAULT 'Ativa',
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
