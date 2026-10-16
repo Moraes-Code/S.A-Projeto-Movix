@@ -1,4 +1,3 @@
-```php
 <?php
 
 session_start();
@@ -54,4 +53,3 @@ header('Location: ../public/usuarios.php?msg=erro');
 exit();
 
 ?>
-```
