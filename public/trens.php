@@ -31,6 +31,54 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
             <h3>Gerenciamento de Trens</h3>
         </div>
         <div class="content">
+            <div class="table-container">
+                <h4 class="mb-3">Cadastrar Trens</h4>
+
+                <div class="form-container mb-4">
+                    <form method="POST">
+                        <input type="hidden" name="cadastro_usuario" value="1">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nome" class="form-label">Código</label>
+                                <input type="text" id="nome" name="nome" class="form-control"
+                                    placeholder="Digite o Código" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="usuario" class="form-label">Nome</label>
+                                <input type="text" id="usuario" name="usuario" class="form-control"
+                                    placeholder="Digite o Nome" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="cpf" class="form-label">Linha</label>
+                                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="Ex: Norte, Sul, Leste, Oeste" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="telefone" class="form-label">Destino</label>
+                                <input type="tel" id="telefone" name="telefone" class="form-control"
+                                    placeholder="Ex: São Paulo, Rio de Janeiro, Brasília" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="id_perfil" class="form-label">Status</label>
+                                <select id="id_perfil" name="id_perfil" class="form-control">
+                                    <option value="3">Operando</option>
+                                    <option value="2">Manutenção</option>
+                                    <option value="1">Fora de serviço</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="senha" class="form-label">Velocidade</label>
+                                <input type="password" id="senha" name="senha" class="form-control"
+                                    placeholder="Digite a velocidade" required>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="submit" class="btn btn-primary">Salvar usuário</button>
+                        </div>
+                    </form>
+                </div>
+        <div class="content">
             <div class="row g-4 mb-4">
                 <div class="col-md-3">
                     <div class="card sensor-card">
