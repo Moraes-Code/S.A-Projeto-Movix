@@ -35,12 +35,8 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                     <button type="button" class="btn btn-sm btn-outline-primary">
                         Novo Sensor
                     </button>
-                    <?php endif; ?>
-                    
-                </div>
-                <div class="mb-4">
-                    <input type="text" class="form-control">
-                </div>
+                    <?php endif; ?>  
+                </div>              
                 <table class="table">
                     <thead>
                         <tr>

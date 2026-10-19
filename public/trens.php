@@ -49,6 +49,7 @@ $sql = 'SELECT usuarios.*, perfis.nome AS nome_perfil
             <h3>Gerenciamento de Trens</h3>
         </div>
         <div class="content">
+            <?php if ($podeGerenciar): ?>
             <div class="table-container">
                 <h4 class="mb-3">Cadastrar Trens</h4>
 
@@ -95,6 +96,7 @@ $sql = 'SELECT usuarios.*, perfis.nome AS nome_perfil
                         <div class="d-flex justify-content-end mt-4">
                             <button type="submit" class="btn btn-primary">Salvar trem</button>
                         </div>
+                        <?php endif; ?>
                     </form>
                 </div>
                 <div class="content">
