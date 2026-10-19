@@ -148,8 +148,8 @@ $resultado = mysqli_query($conexao, $sql);
                                         <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#modalUsuario">Editar</button>
                                         <a href="../funcoes/excluir_usuarios.php?id=<?= (int) ($usuario['id'] ?? 0) ?>"
-                                            class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário 
-                                    <?= htmlspecialchars($nomeExibir) ?>?');">
+                                            class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Tem certeza que deseja excluir o usuário <?= htmlspecialchars($nomeExibir) ?>?');">
                                             Excluir
                                         </a>
                                     </td>
