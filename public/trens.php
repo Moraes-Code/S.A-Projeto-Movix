@@ -170,10 +170,10 @@ $sql = 'SELECT usuarios.*, perfis.nome AS nome_perfil
                                                         Editar
                                                     </button>
                                                     <a href="../funcoes/excluir_trens.php?id=<?= (int) ($trem['id'] ?? 0) ?>"
-                                            class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o trem 
-                                    <?= htmlspecialchars($trem['nome']) ?>?');">
-                                            Excluir
-                                        </a>
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Tem certeza que deseja excluir o trem <?= htmlspecialchars($trem['nome'] ?? '', ENT_QUOTES) ?>?');">
+                                                        Excluir
+                                                    </a>
                                                 </td>
                                             <?php endif; ?>
                                         </tr>
