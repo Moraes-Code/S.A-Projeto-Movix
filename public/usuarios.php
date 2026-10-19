@@ -10,7 +10,38 @@ if (!isset($_SESSION['id_perfil']) || $_SESSION['id_perfil'] != 1) {
 $mensagemSucesso = '';
 $mensagemErro = '';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+
+    $id = (int) $_POST['id'];
+    $nome = trim($_POST['nome'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $cpf = trim($_POST['senha'] ?? '');
+    $telefone = trim($_POST['telefone'] ?? '');
+
+    $sql = "UPDATE usuarios
+        SET nome = ?, email = ?, cpf = ?, telefone = ?
+        WHERE id = ?";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param(
+        "ssssi",
+        $nome,
+        $email,
+        $cpf,
+        $telefone,
+        $id
+    );
+
+    if ($stmt->execute()) {
+        header('Location: usuarios.php');
+        exit;
+    } else {
+        $mensagemErro = 'Erro ao atualizar usuário.';
+    }
+}
+
 include("../funcoes/cadastro_usuarios.php");
+
 
 $sql = 'SELECT usuarios.*, perfis.nome AS nome_perfil
         FROM usuarios
@@ -146,7 +177,13 @@ $resultado = mysqli_query($conexao, $sql);
                                     <td><?= htmlspecialchars($cargoExibir) ?></td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                            data-bs-target="#modalUsuario">Editar</button>
+                                            data-bs-target="#modalUsuario" data-id="<?= $usuario['id'] ?>"
+                                            data-nome="<?= htmlspecialchars($usuario['nome'] ?? '', ENT_QUOTES) ?>"
+                                            data-email="<?= htmlspecialchars($usuario['email'] ?? '', ENT_QUOTES) ?>"
+                                            data-cpf="<?= htmlspecialchars($usuario['cpf'] ?? '', ENT_QUOTES) ?>"
+                                            data-telefone="<?= htmlspecialchars($usuario['telefone'] ?? '', ENT_QUOTES) ?>">
+                                            Editar
+                                        </button>
                                         <a href="../funcoes/excluir_usuarios.php?id=<?= (int) ($usuario['id'] ?? 0) ?>"
                                             class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir o usuário 
                                     <?= htmlspecialchars($nomeExibir) ?>?');">
