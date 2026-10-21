@@ -4,7 +4,7 @@ session_start();
 require_once '../infra/conexao.php';
 
 if (!isset($_SESSION['id_perfil']) || (int) $_SESSION['id_perfil'] !== 1) {
-    header('Location: ../public/dashboard_usuario.php');
+    header('Location: ../public/trens.php');
     exit;
 }
 

@@ -3,8 +3,8 @@
 session_start();
 require_once '../infra/conexao.php';
 
-if (!isset($_SESSION['id_perfil']) || $_SESSION['id_perfil'] != 1) {
-    header('Location: dashboard_usuario.php');
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../index.php');
     exit;
 }
 
@@ -16,8 +16,8 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-$perfil = $_SESSION['id_perfil'] ?? 3;
-$podeGerenciar = ($perfil == 1 || $perfil == 2);
+$perfil = (int) ($_SESSION['id_perfil'] ?? 3);
+$podeGerenciar = ($perfil === 1);
 
 // Atualizar trem
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
