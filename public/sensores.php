@@ -64,7 +64,11 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <td>
                                 <?php if ($podeGerenciar): ?>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                    <a href="../funcoes/excluir_sensores.php?id=<?= (int) ($sensor['id'] ?? 0) ?>"
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Tem certeza que deseja excluir o sensor <?= htmlspecialchars($sensor['nome'] ?? '', ENT_QUOTES) ?>?');">
+                                                        Excluir
+                                                    </a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -81,7 +85,11 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <td>
                                 <?php if ($podeGerenciar): ?>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                    <a href="../funcoes/excluir_sensores.php?id=<?= (int) ($sensor['id'] ?? 0) ?>"
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Tem certeza que deseja excluir o sensor <?= htmlspecialchars($sensor['nome'] ?? '', ENT_QUOTES) ?>?');">
+                                                        Excluir
+                                                    </a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -98,7 +106,11 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <td>
                                 <?php if ($podeGerenciar): ?>
                                     <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
-                                    <button type="button" class="btn btn-sm btn-outline-primary">Excluir</button>
+                                    <a href="../funcoes/excluir_sensores.php?id=<?= (int) ($sensor['id'] ?? 0) ?>"
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="return confirm('Tem certeza que deseja excluir o sensor <?= htmlspecialchars($sensor['nome'] ?? '', ENT_QUOTES) ?>?');">
+                                                        Excluir
+                                                    </a>
                                 <?php endif; ?>
                             </td>
                         </tr>
