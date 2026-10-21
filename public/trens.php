@@ -3,6 +3,12 @@
 session_start();
 require_once '../infra/conexao.php';
 
+if (!isset($_SESSION['id_perfil']) || $_SESSION['id_perfil'] != 1) {
+    header('Location: dashboard_usuario.php');
+    exit;
+}
+
+$mensagemSucesso = '';
 $mensagemErro = '';
 
 if (!isset($_SESSION['usuario_id'])) {

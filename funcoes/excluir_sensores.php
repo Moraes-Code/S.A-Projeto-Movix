@@ -1,55 +1,37 @@
-<?php
 
+<?php
 session_start();
 require_once '../infra/conexao.php';
 
-// Somente administradores podem excluir rotas
-if (!isset($_SESSION['id_perfil']) || (int)$_SESSION['id_perfil'] !== 1) {
+if (!isset($_SESSION['id_perfil']) || (int) $_SESSION['id_perfil'] !== 1) {
     header('Location: ../public/dashboard_usuario.php');
-    exit();
+    exit;
 }
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-
-    $idExcluir = intval($_GET['id']);
+    $idExcluir = (int) $_GET['id'];
 
     if ($idExcluir <= 0) {
         header('Location: ../public/sensores.php?msg=erro');
-        exit();
-    }
-
-    $stmtVerifica = mysqli_prepare(
-        $conexao,
-        "SELECT id FROM rotas WHERE id = ?"
-    );
-
-    mysqli_stmt_bind_param($stmtVerifica, "i", $idExcluir);
-    mysqli_stmt_execute($stmtVerifica);
-
-    $resultado = mysqli_stmt_get_result($stmtVerifica);
-
-    if (mysqli_num_rows($resultado) == 0) {
-        header('Location: ../public/sensores.php?msg=nao_encontrado');
-        exit();
+        exit;
     }
 
     $stmt = mysqli_prepare(
         $conexao,
-        "DELETE FROM rotas WHERE id = ?"
+        "DELETE FROM sensores WHERE id = ?"
     );
 
     mysqli_stmt_bind_param($stmt, "i", $idExcluir);
 
-    if (mysqli_stmt_execute($stmt)) {
+    if (mysqli_stmt_execute($stmt) && mysqli_stmt_affected_rows($stmt) > 0) {
         header('Location: ../public/sensores.php?msg=excluido');
-        exit();
-    } else {
-        header('Location: ../public/sensores.php?msg=erro');
-        exit();
+        exit;
     }
+
+    header('Location: ../public/sensores.php?msg=erro');
+    exit;
 }
 
 header('Location: ../public/sensores.php?msg=erro');
-exit();
-
+exit;
 ?>
