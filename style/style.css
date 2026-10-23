@@ -186,3 +186,16 @@ body{
     border-radius:18px;
     color:white;
 }
+
+Cards do Dashboard Adm
+.card-movix {
+    background: #0b1628;
+    color: white;
+    border: none;
+    border-radius: 18px;
+}
+
+.card-movix h5,
+.card-movix p {
+    color: white;
+}
