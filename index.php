@@ -9,7 +9,7 @@ if (isset($_GET['logout'])) {
 include("infra/conexao.php");
 
 if (isset($_SESSION['usuario_id'])) {
-    header('Location: public/usuarios.php');
+    header('Location: public/dashboard_usuario.php');
     exit;
 }
 
@@ -29,6 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usuario = mysqli_fetch_assoc($resultado);
 
         if ($usuario && password_verify($senha, $usuario['senha'])) {
+
+            session_regenerate_id(true);
+
             $_SESSION['usuario_id'] = (int) $usuario['id'];
             $_SESSION['usuario_nome'] = $usuario['nome'];
             $_SESSION['id_perfil'] = (int) $usuario['id_perfil'];
