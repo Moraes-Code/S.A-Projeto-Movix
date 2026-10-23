@@ -188,14 +188,21 @@ body{
 }
 
 Cards do Dashboard Adm
-.card-movix {
-    background: #0b1628;
+.card.dashboard-card.card-movix {
+    background-color: #0b1628;
     color: white;
     border: none;
     border-radius: 18px;
+    min-height: 180px;
 }
 
-.card-movix h5,
-.card-movix p {
+.card.dashboard-card.card-movix h5,
+.card.dashboard-card.card-movix p {
     color: white;
+}
+
+body .main .content .row .card-movix {
+    background-color: #0b1628 !important;
+    color: white !important;
+    border: none;
 }

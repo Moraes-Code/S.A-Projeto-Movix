@@ -67,9 +67,9 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
                 <div class="col-md-6 col-xl-4">
                     <div class="card dashboard-card card-movix p-4 h-100">
-                        <h5>Usuários</h5>
-                        <p>Gerencie os usuários cadastrados no sistema.</p>
-                    </div>
+    <h5>Usuários</h5>
+    <p>Gerencie os usuários cadastrados no sistema.</p>
+</div>
                 </div>
 
                 <div class="col-md-6 col-xl-4">
