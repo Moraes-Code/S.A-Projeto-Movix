@@ -241,16 +241,20 @@ $sql->close();
                                                     data-bs-target="#rota<?= $r['id_rota'] ?>">
                                                     Editar
                                                 </button>
+
                                                 <form method="POST" class="d-inline">
                                                     <input type="hidden" name="token"
                                                         value="<?= limpar($_SESSION['token_rotas']) ?>">
-                                                    <input type="hidden" name="id_rota" value="<?= $r['id_rota'] ?>">
-                                                    <a href="../funcoes/excluir_rotas.php?id=<?= (int) ($r['id_rota'] ?? 0) ?>"
+
+                                                    <input type="hidden" name="id_rota" value="<?= (int) $r['id_rota'] ?>">
+
+                                                    <button type="submit" name="excluir_rota" value="1"
                                                         class="btn btn-sm btn-danger"
-                                                        onclick="return confirm('Tem certeza que deseja excluir a rota <?= htmlspecialchars($r['origem'] ?? '', ENT_QUOTES) ?> - <?= htmlspecialchars($r['destino'] ?? '', ENT_QUOTES) ?>?');">
+                                                        onclick="return confirm('Tem certeza que deseja excluir esta rota?');">
                                                         Excluir
-                                                    </a>
+                                                    </button>
                                                 </form>
+
                                             </td>
                                         <?php endif; ?>
                                     </tr>
