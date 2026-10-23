@@ -5,6 +5,11 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: ../index.php');
     exit;
 }
+
+if (isset($_SESSION['id_perfil']) && (int) $_SESSION['id_perfil'] === 1) {
+    header('Location: dashboard_adm.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

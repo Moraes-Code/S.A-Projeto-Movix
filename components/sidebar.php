@@ -5,7 +5,19 @@
         <small>Centro Ferroviário</small>
     </div>
     <ul>
-        <li><a href="dashboard_usuario.php">Dashboard</a></li>
+        <li>
+            <?php
+            if (isset($_SESSION['id_perfil']) && (int) $_SESSION['id_perfil'] === 1) {
+                ?>
+                <a href="dashboard_adm.php">Dashboard</a>
+                <?php
+            } else {
+                ?>
+                <a href="dashboard_usuario.php">Dashboard</a>
+                <?php
+            }
+            ?>
+        </li>
         <li><a href="monitoramento.php">Monitoramento</a></li>
         <li><a href="alertas.php">Alertas</a></li>
         <li><a href="sensores.php">Sensores</a></li>

@@ -32,7 +32,7 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
         </div>
 
         <ul>
-        <li><a href="dashboard_usuario.php">Dashboard</a></li>
+        <li><a href="dashboard_adm.php">Dashboard</a></li>
         <li><a href="monitoramento.php">Monitoramento</a></li>
         <li><a href="alertas.php">Alertas</a></li>
         <li><a href="sensores.php">Sensores</a></li>

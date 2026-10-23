@@ -9,7 +9,11 @@ if (isset($_GET['logout'])) {
 include("infra/conexao.php");
 
 if (isset($_SESSION['usuario_id'])) {
-    header('Location: public/dashboard_usuario.php');
+    if (($_SESSION['id_perfil'] ?? 0) == 1) {
+        header('Location: public/dashboard_adm.php');
+    } else {
+        header('Location: public/dashboard_usuario.php');
+    }
     exit;
 }
 
@@ -33,10 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_regenerate_id(true);
 
             $_SESSION['usuario_id'] = (int) $usuario['id'];
-            $_SESSION['usuario_nome'] = $usuario['nome'];
-            $_SESSION['id_perfil'] = (int) $usuario['id_perfil'];
-            header('Location: public/dashboard_usuario.php');
-            exit;
+$_SESSION['usuario_nome'] = $usuario['nome'];
+$_SESSION['id_perfil'] = (int) $usuario['id_perfil'];
+
+if ($_SESSION['id_perfil'] == 1) {
+    header('Location: public/dashboard_adm.php');
+} else {
+    header('Location: public/dashboard_usuario.php');
+}
+exit;
         }
 
         $mensagemErro = 'E-mail ou senha inválidos.';
