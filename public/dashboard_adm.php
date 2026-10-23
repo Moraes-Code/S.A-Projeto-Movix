@@ -67,15 +67,21 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
                 <div class="col-md-6 col-xl-4">
                     <div class="card dashboard-card card-movix p-4 h-100">
-    <h5>Usuários</h5>
-    <p>Gerencie os usuários cadastrados no sistema.</p>
-</div>
+                        <h5>Usuários</h5>
+                        <p>Gerencie os usuários cadastrados no sistema.</p>
+                        <a href="usuarios.php" class="btn btn-light mt-auto">
+                            Gerenciar usuários
+                        </a>
+                    </div>
                 </div>
 
                 <div class="col-md-6 col-xl-4">
                     <div class="card dashboard-card card-movix p-4 h-100">
                         <h5>Monitoramento</h5>
                         <p>Acesse a área de acompanhamento ferroviário.</p>
+                        <a href="monitoramento.php" class="btn btn-light mt-auto">
+                            Acessar monitoramento
+                        </a>
                     </div>
                 </div>
 
@@ -83,6 +89,9 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                     <div class="card dashboard-card card-movix p-4 h-100">
                         <h5>Relatórios</h5>
                         <p>Consulte a central de relatórios do sistema.</p>
+                        <a href="relatorios.php" class="btn btn-light mt-auto">
+                            Acessar relatórios
+                        </a>
                     </div>
                 </div>
 
@@ -90,6 +99,9 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                     <div class="card dashboard-card card-movix p-4 h-100">
                         <h5>Trens</h5>
                         <p>Consulte e gerencie os trens cadastrados.</p>
+                        <a href="trens.php" class="btn btn-light mt-auto">
+                            Gerenciar trens
+                        </a>
                     </div>
                 </div>
 
@@ -97,6 +109,9 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                     <div class="card dashboard-card card-movix p-4 h-100">
                         <h5>Sensores</h5>
                         <p>Acesse o cadastro e o gerenciamento dos sensores.</p>
+                        <a href="sensores.php" class="btn btn-light mt-auto">
+                            Gerenciar sensores
+                        </a>
                     </div>
                 </div>
 
@@ -104,14 +119,13 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                     <div class="card dashboard-card card-movix p-4 h-100">
                         <h5>Rotas</h5>
                         <p>Acesse a área de gerenciamento das rotas ferroviárias.</p>
+                        <a href="rotas.php" class="btn btn-light mt-auto">
+                            Gerenciar rotas
+                        </a>
                     </div>
                 </div>
 
             </div>
-
-        </div>
-
-    </div>
 
 </body>
 
