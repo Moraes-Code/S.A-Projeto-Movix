@@ -1,11 +1,39 @@
 <?php
 
-session_start(); 
+session_start();
 
-if (!isset($_SESSION['usuario_id'])) { header('Location: ../index.php'); 
-exit; } 
-$perfil = $_SESSION['id_perfil'];
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../index.php');
+    exit;
+}
+
+require_once '../infra/conexao.php';
+
+$perfil = $_SESSION['id_perfil'] ?? 0;
 $podeGerenciar = ($perfil == 1 || $perfil == 2);
+
+// Contar sensores por status
+$sqlOnline = "SELECT COUNT(*) AS total FROM sensores WHERE status = 'Online'";
+$resultadoOnline = mysqli_query($conexao, $sqlOnline);
+$sensoresOnline = mysqli_fetch_assoc($resultadoOnline)['total'];
+
+// Contar sensores offline
+$sqlOffline = "SELECT COUNT(*) AS total FROM sensores WHERE status = 'Offline'";
+$resultadoOffline = mysqli_query($conexao, $sqlOffline);
+$sensoresOffline = mysqli_fetch_assoc($resultadoOffline)['total'];
+
+// Contar sensores em atenção
+$sqlAtencao = "SELECT COUNT(*) AS total FROM sensores WHERE status = 'Atenção'";
+$resultadoAtencao = mysqli_query($conexao, $sqlAtencao);
+$sensoresAtencao = mysqli_fetch_assoc($resultadoAtencao)['total'];
+
+// Buscar sensores cadastrados
+$sqlSensores = "SELECT id, codigo, nome, localizacao, status FROM sensores ORDER BY id DESC";
+$resultadoSensores = mysqli_query($conexao, $sqlSensores);
+
+// Buscar trens cadastrados
+$sqlTrens = "SELECT codigo, nome, velocidade FROM trens ORDER BY id DESC";
+$resultadoTrens = mysqli_query($conexao, $sqlTrens);
 
 ?>
 
@@ -28,9 +56,6 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
             <div>
                 <h3>Central de Monitoramento</h3>
             </div>
-            <div>
-                <button>Atualizado agora</button>
-            </div>
         </div>
         <div class="content">
             <div class="row g-4">
@@ -38,7 +63,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                     <div class="card  online">
                         <div class="card-body">
                             <h5>Sensores Online</h5>
-                            <h1>142</h1>
+                            <h1><?= $sensoresOnline ?></h1>
                         </div>
                     </div>
                 </div>
@@ -46,7 +71,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                     <div class="card warning">
                         <div class="card-body">
                             <h5> Em Atenção</h5>
-                            <h1>08</h1>
+                            <h1><?= $sensoresAtencao ?></h1>
                         </div>
                     </div>
                 </div>
@@ -54,7 +79,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                     <div class="card offline">
                         <div class="card-body">
                             <h5>Offline</h5>
-                            <h1>03</h1>
+                            <h1><?= $sensoresOffline ?></h1>
                         </div>
                     </div>
                 </div>
@@ -136,21 +161,16 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>09:42</td>
-                                    <td>Falha detectada no Sensor SN003</td>
-                                    <td>Linha Centro</td>
-                                </tr>
-                                <tr>
-                                    <td>09:35</td>
-                                    <td>Trem 004 entrou em operação</td>
-                                    <td>Estação Sul</td>
-                                </tr>
-                                <tr>
-                                    <td>09:28</td>
-                                    <td>Alerta de temperatura resolvido</td>
-                                    <td>Linha Norte</td>
-                                </tr>
+                                <?php while ($sensor = mysqli_fetch_assoc($resultadoSensores)): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($sensor['codigo']) ?></td>
+                                        <td><?= htmlspecialchars($sensor['nome']) ?></td>
+                                        <td><?= htmlspecialchars($sensor['localizacao']) ?></td>
+                                        <td>
+                                            <span><?= htmlspecialchars($sensor['status']) ?></span>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
