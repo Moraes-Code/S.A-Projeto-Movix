@@ -87,9 +87,13 @@ $resultadoTrens = mysqli_query($conexao, $sqlTrens);
             <div class="row mt-4">
                 <div class="col-lg-7">
                     <div class="table-container">
-                        <h4 class="mb-4">
-                            Sensores Monitorados
-                        </h4>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="mb-0">Sensores Monitorados</h4>
+
+                            <a href="sensores.php" class="btn btn-sm btn-outline-primary">
+                                Ver
+                            </a>
+                        </div>
                         <table class="table">
                             <thead>
                                 <tr>
