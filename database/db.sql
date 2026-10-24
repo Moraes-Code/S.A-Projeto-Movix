@@ -9,6 +9,9 @@ CREATE TABLE usuarios (
     senha VARCHAR(255) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
     telefone VARCHAR(20) NOT NULL
+    id_perfil INT NOT NULL DEFAULT 3,
+    FOREIGN KEY (id_perfil)
+        REFERENCES perfis(id)
 );
 
 CREATE TABLE trens (
@@ -18,10 +21,12 @@ CREATE TABLE trens (
     linha VARCHAR(100) NOT NULL,
     destino VARCHAR(150) NOT NULL,
     status INT NOT NULL DEFAULT 3,
-    velocidade INT NOT NULL DEFAULT 0
+    velocidade INT NOT NULL DEFAULT 0,
+    id_usuario INT NULL,
 
     FOREIGN KEY (id_usuario)
         REFERENCES usuarios(id_usuario)
+        ON DELETE SET NULL
 );
 
 CREATE TABLE rotas (
