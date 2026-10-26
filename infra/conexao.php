@@ -5,7 +5,7 @@ $usuario = "root";
 $senha = "";
 $banco = "movix";
 
-$conexao = new mysqli($host, $usuario, $senha, $banco,3312);
+$conexao = new mysqli($host, $usuario, $senha, $banco,3311);
 
 if ($conexao->connect_error) {
     die("Erro na conexão com o banco de dados: " . $conexao->connect_error);

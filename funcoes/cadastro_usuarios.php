@@ -1,4 +1,3 @@
-
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_usuario'])) {
 
@@ -44,7 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_usuario'])) 
             );
 
             if (mysqli_stmt_execute($stmt)) {
-                header('Location: usuarios.php?msg=sucesso');
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['mensagem_sucesso'] = 'Usuário cadastrado com sucesso!';
+                header('Location: usuarios.php');
                 exit;
             } else {
                 $mensagemErro = 'Não foi possível cadastrar o usuário. Tente novamente.';

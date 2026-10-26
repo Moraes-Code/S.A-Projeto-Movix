@@ -42,6 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
 
 include("../funcoes/cadastro_usuarios.php");
 
+if (isset($_SESSION['mensagem_sucesso'])) {
+    $mensagemSucesso = $_SESSION['mensagem_sucesso'];
+    unset($_SESSION['mensagem_sucesso']);
+}
+
+if (isset($_SESSION['mensagem_erro'])) {
+    $mensagemErro = $_SESSION['mensagem_erro'];
+    unset($_SESSION['mensagem_erro']);
+}
 
 $sql = 'SELECT usuarios.*, perfis.nome AS nome_perfil
         FROM usuarios
@@ -91,6 +100,19 @@ $resultado = mysqli_query($conexao, $sql);
         <div class="content">
             <div class="table-container">
                 <h4 class="mb-3">Cadastrar Usuarios</h4>
+                <?php if (!empty($mensagemSucesso)): ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?= htmlspecialchars($mensagemSucesso) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($mensagemErro)): ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?= htmlspecialchars($mensagemErro) ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                    </div>
+                <?php endif; ?>
 
                 <div class="form-container mb-4">
                     <form method="POST">
