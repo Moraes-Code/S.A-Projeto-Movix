@@ -56,6 +56,7 @@ Código	Regra de negócio
 Nota sobre a numeração: a relação recebida não contém uma descrição para RN 03; por isso, a numeração original foi preservada.
 
 Algumas regras ainda precisam de parâmetros definidos antes de serem implementadas, como o limite de peso da bagagem, o período que caracteriza atraso, o prazo permitido para remarcação e o tempo para cancelar uma reserva após falha de pagamento.
+
 5. Requisitos funcionais
 Os requisitos funcionais descrevem as ações e os serviços que o sistema deve oferecer aos usuários.
 Código	Requisito funcional
@@ -112,6 +113,7 @@ As tecnologias presentes no projeto MOVIX incluem:
 - Visual Studio Code como editor.
 - Git e GitHub para versionamento.
 A utilização de cada tecnologia e a implementação dos requisitos devem ser confirmadas na versão atual do código.
+
 8. Estrutura do projeto
 A organização de referência do repositório inclui os seguintes diretórios e arquivos:
 S.A-Projeto-Movix/
@@ -133,29 +135,38 @@ S.A-Projeto-Movix/
 ├── index.php
 └── README.md
 A estrutura pode variar conforme as alterações realizadas no desenvolvimento. Consulte os arquivos existentes no repositório antes de adicionar ou mover páginas.
+
 9. Como executar localmente
 Pré-requisitos
 - XAMPP instalado.
 - Apache e MySQL disponíveis.
 - Navegador atualizado.
 - Projeto clonado ou baixado do GitHub.
-Passo 1 — Clonar o repositório
+
+Passo 1 — Clonar o repositório.
 git clone https://github.com/Moraes-Code/S.A-Projeto-Movix.git
-Passo 2 — Colocar o projeto no XAMPP
+
+Passo 2 — Colocar o projeto no XAMPP.
 Coloque a pasta do projeto no diretório htdocs, por exemplo:
 C:\xampp\htdocs\S.A-Projeto-Movix
-Passo 3 — Iniciar os serviços
+
+Passo 3 — Iniciar os serviços.
 Abra o painel do XAMPP e inicie o Apache e o MySQL.
-Passo 4 — Configurar o banco de dados
+
+Passo 4 — Configurar o banco de dados.
+
 1. Acesse http://localhost/phpmyadmin.
 2. Consulte o arquivo database/db.sql.
 3. Importe o SQL para criar o banco e as tabelas definidos no arquivo.
 4. Confira se o nome do banco, a porta, o usuário e a senha correspondem à configuração de infra/conexao.php.
 5. Verifique se as tabelas e colunas correspondem às consultas executadas pelo PHP.
-Passo 5 — Abrir o sistema
+
+Passo 5 — Abrir o sistema.
 Acesse:
 http://localhost/S.A-Projeto-Movix/
+
 A execução correta depende de o banco de dados estar configurado e de as páginas e funcionalidades necessárias estarem implementadas.
+
 10. Segurança e proteção de dados
 Para atender aos requisitos de segurança e privacidade, o desenvolvimento deve considerar:
 - Armazenamento de senhas com password_hash() e verificação com password_verify().
