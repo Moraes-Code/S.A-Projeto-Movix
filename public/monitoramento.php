@@ -12,28 +12,25 @@ require_once '../infra/conexao.php';
 $perfil = $_SESSION['id_perfil'] ?? 0;
 $podeGerenciar = ($perfil == 1 || $perfil == 2);
 
-// Contar sensores por status
 $sqlOnline = "SELECT COUNT(*) AS total FROM sensores WHERE status = 'Online'";
 $resultadoOnline = mysqli_query($conexao, $sqlOnline);
 $sensoresOnline = mysqli_fetch_assoc($resultadoOnline)['total'];
 
-// Contar sensores offline
 $sqlOffline = "SELECT COUNT(*) AS total FROM sensores WHERE status = 'Offline'";
 $resultadoOffline = mysqli_query($conexao, $sqlOffline);
 $sensoresOffline = mysqli_fetch_assoc($resultadoOffline)['total'];
 
-// Contar sensores em atenção
 $sqlAtencao = "SELECT COUNT(*) AS total FROM sensores WHERE status = 'Atenção'";
 $resultadoAtencao = mysqli_query($conexao, $sqlAtencao);
 $sensoresAtencao = mysqli_fetch_assoc($resultadoAtencao)['total'];
 
-// Buscar sensores cadastrados
 $sqlSensores = "SELECT id, codigo, nome, localizacao, status FROM sensores ORDER BY id DESC";
 $resultadoSensores = mysqli_query($conexao, $sqlSensores);
 
-// Buscar trens cadastrados
-$sqlTrens = "SELECT codigo, nome, velocidade FROM trens ORDER BY id DESC";
+$sqlTrens = "SELECT codigo, nome, velocidade, status FROM trens ORDER BY id DESC";
 $resultadoTrens = mysqli_query($conexao, $sqlTrens);
+
+$trens = mysqli_fetch_all($resultadoTrens, MYSQLI_ASSOC);
 
 ?>
 
@@ -147,31 +144,41 @@ $resultadoTrens = mysqli_query($conexao, $sqlTrens);
 
                     </div>
                 </div>
+
                 <div class="col-lg-5">
                     <div class="table-container">
-                        <h4 class="mb-4">
-                            Trens em Operação
-                        </h4>
-                        <div class="status-item">
-                            <span>Trem 001</span>
-                            <strong>80 km/h</strong>
-                        </div>
-                        <div class="status-item">
-                            <span>Trem 002</span>
-                            <strong>72 km/h</strong>
-                        </div>
-                        <div class="status-item">
-                            <span>Trem 003</span>
-                            <strong>Parado</strong>
-                        </div>
-                        <div class="status-item">
-                            <span>Trem 004</span>
-                            <strong>65 km/h</strong>
-                        </div>
+                        <h4 class="mb-4">Trens em Operação</h4>
+
+                        <?php if (count($trens) > 0): ?>
+                            <?php foreach ($trens as $trem): ?>
+                                <div class="status-item">
+                                    <span>
+                                        <?= htmlspecialchars($trem['nome'], ENT_QUOTES, 'UTF-8') ?>
+                                        (<?= htmlspecialchars($trem['codigo'], ENT_QUOTES, 'UTF-8') ?>)
+                                    </span>
+
+                                    <strong>
+                                        <?php if ((int) $trem['status'] === 3): ?>
+                                            <?= (int) $trem['velocidade'] ?> km/h
+                                        <?php elseif ((int) $trem['status'] === 2): ?>
+                                            Manutenção
+                                        <?php elseif ((int) $trem['status'] === 1): ?>
+                                            Fora de serviço
+                                        <?php else: ?>
+                                            Desconhecido
+                                        <?php endif; ?>
+                                    </strong>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>Nenhum trem cadastrado.</p>
+                        <?php endif; ?>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 </body>
+
 </html>
