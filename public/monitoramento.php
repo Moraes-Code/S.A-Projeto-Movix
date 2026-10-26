@@ -94,36 +94,57 @@ $resultadoTrens = mysqli_query($conexao, $sqlTrens);
                                 Ver
                             </a>
                         </div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Local</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>SN001</td>
-                                    <td>Sensor Norte</td>
-                                    <td>KM 25</td>
-                                    <td><span>Online</span></td>
-                                </tr>
-                                <tr>
-                                    <td>SN002</td>
-                                    <td>Sensor Sul</td>
-                                    <td>KM 47</td>
-                                    <td><span>Atenção</span></td>
-                                </tr>
-                                <tr>
-                                    <td>SN003</td>
-                                    <td>Sensor Centro</td>
-                                    <td>KM 80</td>
-                                    <td><span>Offline</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="col-lg-7">
+                            <div class="table-container">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                </div>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Local</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php while ($sensor = mysqli_fetch_assoc($resultadoSensores)): ?>
+                                            <tr>
+                                                <td>
+                                                    <?= htmlspecialchars($sensor['codigo'], ENT_QUOTES, 'UTF-8') ?>
+                                                </td>
+
+                                                <td>
+                                                    <?= htmlspecialchars($sensor['nome'], ENT_QUOTES, 'UTF-8') ?>
+                                                </td>
+
+                                                <td>
+                                                    <?= htmlspecialchars($sensor['localizacao'], ENT_QUOTES, 'UTF-8') ?>
+                                                </td>
+
+                                                <td>
+                                                    <span>
+                                                        <?= htmlspecialchars($sensor['status'], ENT_QUOTES, 'UTF-8') ?>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php endwhile; ?>
+
+                                        <?php if (mysqli_num_rows($resultadoSensores) === 0): ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center">
+                                                    Nenhum sensor cadastrado.
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -150,38 +171,7 @@ $resultadoTrens = mysqli_query($conexao, $sqlTrens);
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-lg-12">
-                    <div class="table-container">
-                        <h4 class="mb-4">
-                            Eventos Recentes
-                        </h4>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Horário</th>
-                                    <th>Evento</th>
-                                    <th>Local</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while ($sensor = mysqli_fetch_assoc($resultadoSensores)): ?>
-                                    <tr>
-                                        <td><?= htmlspecialchars($sensor['codigo']) ?></td>
-                                        <td><?= htmlspecialchars($sensor['nome']) ?></td>
-                                        <td><?= htmlspecialchars($sensor['localizacao']) ?></td>
-                                        <td>
-                                            <span><?= htmlspecialchars($sensor['status']) ?></span>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </body>
-
 </html>
