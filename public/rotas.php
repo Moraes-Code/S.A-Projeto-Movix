@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 );
                 $sql->execute();
                 $sql->close();
+                $_SESSION['mensagem_rotas'] = 'Rota cadastrada com sucesso!';
             }
         }
         header('Location: rotas.php');
