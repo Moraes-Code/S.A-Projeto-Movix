@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 require_once '../infra/conexao.php';
@@ -107,19 +106,19 @@ $resultado = mysqli_query($conexao, $sql);
             <?php if ($podeGerenciar): ?>
                 <div class="table-container">
                     <h4 class="mb-3">Cadastrar Trem</h4>
-                <?php if (!empty($mensagemSucesso)): ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <?= htmlspecialchars($mensagemSucesso) ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-                    </div>
-                <?php endif; ?>
+                    <?php if (!empty($mensagemSucesso)): ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= htmlspecialchars($mensagemSucesso) ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                        </div>
+                    <?php endif; ?>
 
-                <?php if (!empty($mensagemErro)): ?>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <?= htmlspecialchars($mensagemErro) ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-                    </div>
-                <?php endif; ?>
+                    <?php if (!empty($mensagemErro)): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= htmlspecialchars($mensagemErro) ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="form-container mb-4">
                         <form method="POST">
@@ -128,27 +127,25 @@ $resultado = mysqli_query($conexao, $sql);
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label for="codigo" class="form-label">Código</label>
-                                    <input type="text" id="codigo" name="codigo"
-                                        class="form-control" placeholder="Digite o Código" required>
+                                    <input type="text" id="codigo" name="codigo" class="form-control"
+                                        placeholder="Digite o Código" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="nome" class="form-label">Nome</label>
-                                    <input type="text" id="nome" name="nome"
-                                        class="form-control" placeholder="Digite o Nome" required>
+                                    <input type="text" id="nome" name="nome" class="form-control"
+                                        placeholder="Digite o Nome" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="linha" class="form-label">Linha</label>
-                                    <input type="text" id="linha" name="linha"
-                                        class="form-control"
+                                    <input type="text" id="linha" name="linha" class="form-control"
                                         placeholder="Ex: Norte, Sul, Leste, Oeste" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="destino" class="form-label">Destino</label>
-                                    <input type="text" id="destino" name="destino"
-                                        class="form-control"
+                                    <input type="text" id="destino" name="destino" class="form-control"
                                         placeholder="Ex: São Paulo, Rio de Janeiro, Brasília" required>
                                 </div>
 
@@ -163,8 +160,8 @@ $resultado = mysqli_query($conexao, $sql);
 
                                 <div class="col-md-6">
                                     <label for="velocidade" class="form-label">Velocidade</label>
-                                    <input type="number" id="velocidade" name="velocidade"
-                                        class="form-control" placeholder="Digite a velocidade" required>
+                                    <input type="number" id="velocidade" name="velocidade" class="form-control"
+                                        placeholder="Digite a velocidade" required>
                                 </div>
                             </div>
 
@@ -272,12 +269,8 @@ $resultado = mysqli_query($conexao, $sql);
 
                                     <?php if ($podeGerenciar): ?>
                                         <td>
-                                            <button
-                                                type="button"
-                                                class="btn btn-sm btn-outline-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalTrem"
-                                                data-id="<?= (int) $trem['id'] ?>"
+                                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modalTrem" data-id="<?= (int) $trem['id'] ?>"
                                                 data-codigo="<?= htmlspecialchars($trem['codigo'], ENT_QUOTES) ?>"
                                                 data-nome="<?= htmlspecialchars($trem['nome'], ENT_QUOTES) ?>"
                                                 data-linha="<?= htmlspecialchars($trem['linha'], ENT_QUOTES) ?>"
@@ -317,4 +310,5 @@ $resultado = mysqli_query($conexao, $sql);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
