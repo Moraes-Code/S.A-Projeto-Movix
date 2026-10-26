@@ -49,16 +49,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_trem'])) {
             );
 
             if (mysqli_stmt_execute($stmt)) {
-                mysqli_stmt_close($stmt);
-                mysqli_stmt_close($verifica);
-
-                header('Location: trens.php?msg=sucesso');
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['mensagem_sucesso'] = 'Trem cadastrado com sucesso!';
+                header('Location: trens.php');
                 exit;
             } else {
                 $mensagemErro = 'Não foi possível cadastrar o trem. Tente novamente.';
             }
-
-            mysqli_stmt_close($stmt);
+                mysqli_stmt_close($stmt);
         }
 
         mysqli_stmt_close($verifica);
