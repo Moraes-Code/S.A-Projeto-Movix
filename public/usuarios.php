@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $id = (int) $_POST['id'];
     $nome = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
-    $cpf = trim($_POST['senha'] ?? '');
+    $cpf = trim($_POST['cpf'] ?? '');
     $telefone = trim($_POST['telefone'] ?? '');
 
     $sql = "UPDATE usuarios
