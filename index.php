@@ -118,11 +118,7 @@ exit;
 
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </form>
-                    <p class="mt-3 text-center">
-                        Não tem uma conta?
-                        <a href="public/cadastro.php">
-                            Criar conta
-                        </a>
+                   
                     </p>
                 </div>
             </div>

@@ -2,16 +2,21 @@ CREATE DATABASE movix;
 
 USE movix;
 
+CREATE TABLE perfis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL DEFAULT '',
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
-    telefone VARCHAR(20) NOT NULL
+    telefone VARCHAR(20) NOT NULL,
     id_perfil INT NOT NULL DEFAULT 3,
-    FOREIGN KEY (id_perfil)
-        REFERENCES perfis(id)
+    
+    FOREIGN KEY (id_perfil) REFERENCES perfis(id)
 );
 
 CREATE TABLE trens (
@@ -24,9 +29,7 @@ CREATE TABLE trens (
     velocidade INT NOT NULL DEFAULT 0,
     id_usuario INT NULL,
 
-    FOREIGN KEY (id_usuario)
-        REFERENCES usuarios(id_usuario)
-        ON DELETE SET NULL
+    FOREIGN KEY (id_usuario)  REFERENCES usuarios(id)
 );
 
 CREATE TABLE rotas (
@@ -51,10 +54,6 @@ CREATE TABLE sensores (
     status VARCHAR(20) NOT NULL DEFAULT 'Online'
 );
 
-CREATE TABLE perfis (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL
-);
 
 INSERT INTO perfis (id, nome) VALUES
 (1, 'Administrador'),
