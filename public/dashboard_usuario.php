@@ -33,7 +33,10 @@ if (isset($_SESSION['id_perfil']) && (int) $_SESSION['id_perfil'] === 1) {
                 <h3>Dashboard Geral</h3>
             </div>
         </div>
+        
         <div class="content">
+            <?php include __DIR__ . '/../components/clima.php'; ?>
+
             <div class="row g-4">
                 <div class="col-lg-3">
                     <div class="card sensor-card">
@@ -121,5 +124,6 @@ if (isset($_SESSION['id_perfil']) && (int) $_SESSION['id_perfil'] === 1) {
         </div>
     </div>
 </body>
+
 
 </html>
