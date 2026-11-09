@@ -8,7 +8,7 @@ CREATE TABLE usuarios (
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     cpf VARCHAR(14) NOT NULL UNIQUE,
-    telefone VARCHAR(20) NOT NULL
+    telefone VARCHAR(20) NOT NULL,
     id_perfil INT NOT NULL DEFAULT 3,
     FOREIGN KEY (id_perfil)
         REFERENCES perfis(id)
