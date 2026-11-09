@@ -1,4 +1,4 @@
-CREATE DATABASE movix;
+CREATE DATABASE IF NOT EXISTS movix;
 
 USE movix;
 
@@ -6,6 +6,11 @@ CREATE TABLE perfis (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL
 );
+
+INSERT INTO perfis (id, nome) VALUES
+(1, 'Administrador'),
+(2, 'Operário'),
+(3, 'Usuário');
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,21 +20,8 @@ CREATE TABLE usuarios (
     cpf VARCHAR(14) NOT NULL UNIQUE,
     telefone VARCHAR(20) NOT NULL,
     id_perfil INT NOT NULL DEFAULT 3,
-    
+
     FOREIGN KEY (id_perfil) REFERENCES perfis(id)
-);
-
-CREATE TABLE trens (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    codigo VARCHAR(20) NOT NULL UNIQUE,
-    nome VARCHAR(100) NOT NULL,
-    linha VARCHAR(100) NOT NULL,
-    destino VARCHAR(150) NOT NULL,
-    status INT NOT NULL DEFAULT 3,
-    velocidade INT NOT NULL DEFAULT 0,
-    id_usuario INT NULL,
-
-    FOREIGN KEY (id_usuario)  REFERENCES usuarios(id)
 );
 
 CREATE TABLE rotas (
@@ -42,7 +34,23 @@ CREATE TABLE rotas (
     tempo_estimado VARCHAR(50) NOT NULL,
     status ENUM('Ativa', 'Inativa', 'Em manutenção')
         NOT NULL DEFAULT 'Ativa',
-    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_usuario INT NOT NULL,
+
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+CREATE TABLE trens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(20) NOT NULL UNIQUE,
+    nome VARCHAR(100) NOT NULL,
+    linha VARCHAR(100) NOT NULL,
+    destino VARCHAR(150) NOT NULL,
+    status INT NOT NULL DEFAULT 3,
+    velocidade INT NOT NULL DEFAULT 0,
+    id_rota INT NOT NULL,
+
+    FOREIGN KEY (id_rota) REFERENCES rotas(id_rota)
 );
 
 CREATE TABLE sensores (
@@ -51,11 +59,8 @@ CREATE TABLE sensores (
     nome VARCHAR(100) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     localizacao VARCHAR(100) NOT NULL,
-    status VARCHAR(20) NOT NULL DEFAULT 'Online'
+    status VARCHAR(20) NOT NULL DEFAULT 'Online',
+    id_trem INT NOT NULL,
+
+    FOREIGN KEY (id_trem) REFERENCES trens(id)
 );
-
-
-INSERT INTO perfis (id, nome) VALUES
-(1, 'Administrador'),
-(2, 'Operário'),
-(3, 'Usuário');
