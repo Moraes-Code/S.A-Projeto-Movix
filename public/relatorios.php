@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -6,6 +7,7 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: ../index.php');
     exit;
 }
+
 $perfil = $_SESSION['id_perfil'];
 $podeGerenciar = ($perfil == 1 || $perfil == 2);
 
@@ -17,21 +19,29 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatórios - MOVIX</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
+
     <?php include '../components/sidebar.php'; ?>
+
     <div class="main">
+
         <div class="topbar">
             <div>
                 <h3>Central de Relatórios</h3>
             </div>
         </div>
+
         <div class="content">
+
+            <!-- Indicadores -->
             <div class="row g-4 mb-4">
+
                 <div class="col-md-3">
                     <div class="card sensor-card">
                         <div class="card-body">
@@ -40,6 +50,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
                     <div class="card trem-card">
                         <div class="card-body">
@@ -48,6 +59,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
                     <div class="card alerta-card">
                         <div class="card-body">
@@ -56,6 +68,7 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
                     <div class="card usuario-card">
                         <div class="card-body">
@@ -64,20 +77,26 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                         </div>
                     </div>
                 </div>
+
             </div>
+
+            <!-- Filtros de Relatório -->
             <div class="table-container mb-4">
-                <h4>
-                    Filtros de Relatório
-                </h4>
+
+                <h4>Filtros de Relatório</h4>
+
                 <div class="row">
+
                     <div class="col-md-3">
                         <label>Data Inicial</label>
                         <input type="date">
                     </div>
+
                     <div class="col-md-3">
                         <label>Data Final</label>
                         <input type="date">
                     </div>
+
                     <div class="col-md-3">
                         <label>Tipo</label>
                         <select>
@@ -86,34 +105,49 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                             <option>Alertas</option>
                             <option>Usuários</option>
                         </select>
-                        <?php if ($podeGerenciar): ?>
-                            <div class="col-md-3 d-flex align-items-end">
-                                <button type="button" class="btn btn-sm btn-outline-primary">Gerar relátorio</button>
-                            </div>
-                        <?php else: ?>
-                        <?php endif; ?>
                     </div>
+
+                    <?php if ($podeGerenciar): ?>
+
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-sm btn-outline-primary text-nowrap">
+                                Gerar relatório
+                            </button>
+                        </div>
+
+                    <?php endif; ?>
+
                 </div>
 
             </div>
+
         </div>
+
+        <!-- Relatórios Disponíveis -->
         <div class="table-container">
+
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4>Relatórios Disponíveis</h4>
             </div>
+
             <table class="table">
+
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Relatório</th>
                         <th>Data</th>
                         <th>Responsável</th>
+
                         <?php if ($podeGerenciar): ?>
-                            <th>Ações</th>>
-                        <?php else: ?>
+                            <th>Ações</th>
                         <?php endif; ?>
+
+                    </tr>
                 </thead>
+
                 <tbody>
+
                     <tr>
                         <td>Relatório 01</td>
                         <td>Sensores</td>
@@ -121,14 +155,19 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
                         <td>Administrador</td>
 
                         <?php if ($podeGerenciar): ?>
-
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                    PDF
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                    Excel
+                                </button>
                             </td>
-                        <?php else: ?>
                         <?php endif; ?>
+
                     </tr>
+
                     <tr>
                         <td>Relatório 02</td>
                         <td>Trens</td>
@@ -137,12 +176,18 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
 
                         <?php if ($podeGerenciar): ?>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                    PDF
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                    Excel
+                                </button>
                             </td>
-                        <?php else: ?>
                         <?php endif; ?>
+
                     </tr>
+
                     <tr>
                         <td>Relatório 03</td>
                         <td>Alertas</td>
@@ -151,17 +196,26 @@ $podeGerenciar = ($perfil == 1 || $perfil == 2);
 
                         <?php if ($podeGerenciar): ?>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-primary">PDF</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Excel</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                    PDF
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                    Excel
+                                </button>
                             </td>
-                        <?php else: ?>
                         <?php endif; ?>
+
                     </tr>
+
                 </tbody>
+
             </table>
+
         </div>
+
     </div>
-    </div>
+
 </body>
 
 </html>
