@@ -204,3 +204,63 @@ Próximas atividades recomendadas:
 7. Preparar evidências para a apresentação do sistema.
 13. Finalidade acadêmica
 O MOVIX é um projeto acadêmico voltado à aplicação prática de conhecimentos de desenvolvimento de sistemas, programação web, banco de dados, segurança, documentação e trabalho em equipe.
+
+Etapa – Identidade Visual e Experiência do Usuário
+
+Nesta etapa da Situação de Aprendizagem Ferrorama, a equipe deverá aprimorar o frontend do MOVIX, desenvolvendo uma interface visualmente consistente, original e relacionada ao contexto ferroviário.
+
+O objetivo é melhorar a experiência do usuário, organizar as informações e estabelecer uma identidade visual própria para o sistema, evitando interfaces genéricas e demonstrando planejamento e criatividade no desenvolvimento.
+
+Objetivos da etapa
+
+Aprimorar o design das páginas do sistema.
+
+Padronizar cores, fontes, botões e componentes.
+
+Melhorar a navegação e a organização das informações.
+
+Desenvolver uma identidade visual original para o MOVIX.
+
+Aplicar elementos visuais relacionados ao contexto ferroviário.
+
+Garantir uma boa experiência de uso e responsividade.
+
+Identidade visual
+
+O projeto mantém uma identidade baseada em tons de azul, representando tecnologia, segurança e o ambiente ferroviário.
+
+Elemento
+
+Cor
+
+Azul principal
+
+#0D1B2A
+
+Azul secundário
+
+#1B4F72
+
+Azul de destaque
+
+#5DADE2
+
+Fundo claro
+
+#F4F6F9
+
+Verde
+
+#22C55E
+
+Vermelho
+
+#EF4444
+
+Amarelo
+
+#F59E0B
+
+Resultado esperado
+
+Ao final desta etapa, o MOVIX deverá apresentar uma interface mais organizada, intuitiva e profissional, mantendo sua identidade visual em todas as páginas e proporcionando uma melhor experiência aos usuários.
