@@ -14,6 +14,12 @@ function limpar($texto)
 {
     return htmlspecialchars($texto ?? '', ENT_QUOTES, 'UTF-8');
 }
+
+$sqlTrens = $conexao->prepare("SELECT id, codigo, nome FROM trens ORDER BY nome ASC");
+$sqlTrens->execute();
+$trens = $sqlTrens->get_result()->fetch_all(MYSQLI_ASSOC);
+$sqlTrens->close();
+
 $mensagem = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (
