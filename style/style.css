@@ -182,9 +182,16 @@ body{
 }
 
 .monitor-card{
+    background-color:#FFFFFF;
     border:none;
     border-radius:18px;
-    color:white;
+    color:#0D1B2A;
+}
+
+.monitor-card h2,
+.monitor-card h6,
+.monitor-card small{
+    color:#0D1B2A;
 }
 
 Cards do Dashboard Adm
