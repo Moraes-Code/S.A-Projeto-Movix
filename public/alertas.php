@@ -13,12 +13,20 @@ if (!isset($_SESSION['usuario_id'])) {
 // Resolver alerta
 if (isset($_POST['resolver_alerta'])) {
 
-    $id = $_POST['id_alerta'];
+    $id = filter_input(INPUT_POST, 'id_alerta', FILTER_VALIDATE_INT);
 
-    $sql = "UPDATE alertas SET status = 'Resolvido' WHERE id_alerta = ?";
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
+    if ($id) {
+        $sql = "UPDATE alertas SET status = 'Resolvido' WHERE id_alerta = ?";
+        $stmt = $conexao->prepare($sql);
+
+        if (!$stmt) {
+            die("Erro ao preparar atualização: " . $conexao->error);
+        }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+    }
 
     header("Location: alertas.php");
     exit;
@@ -28,6 +36,36 @@ if (isset($_POST['resolver_alerta'])) {
 $gravidade = $_GET['gravidade'] ?? '';
 $status = $_GET['status'] ?? '';
 
+$gravidadesValidas = ['Critico', 'Atencao', 'Informativo'];
+$statusValidos = ['Pendente', 'Resolvido'];
+
+if (!in_array($gravidade, $gravidadesValidas, true)) {
+    $gravidade = '';
+}
+
+if (!in_array($status, $statusValidos, true)) {
+    $status = '';
+}
+
+// Consulta dos indicadores
+$sqlResumo = "
+    SELECT
+        COUNT(*) AS total,
+        COUNT(CASE WHEN gravidade = 'Critico' THEN 1 END) AS criticos,
+        COUNT(CASE WHEN status = 'Pendente' THEN 1 END) AS pendentes,
+        COUNT(CASE WHEN status = 'Resolvido' THEN 1 END) AS resolvidos
+    FROM alertas
+";
+
+$resumo = $conexao->query($sqlResumo);
+
+if (!$resumo) {
+    die("Erro ao consultar os alertas: " . $conexao->error);
+}
+
+$dados = $resumo->fetch_assoc();
+
+// Consulta da tabela
 $sql = "SELECT * FROM alertas WHERE 1=1";
 
 if ($gravidade != '') {
@@ -42,17 +80,9 @@ $sql .= " ORDER BY data_hora DESC";
 
 $resultado = $conexao->query($sql);
 
-// Indicadores
-$resumo = $conexao->query("
-    SELECT
-        COUNT(*) AS total,
-        SUM(gravidade = 'Critico') AS criticos,
-        SUM(status = 'Pendente') AS pendentes,
-        SUM(status = 'Resolvido') AS resolvidos
-    FROM alertas
-");
-
-$dados = $resumo->fetch_assoc();
+if (!$resultado) {
+    die("Erro ao listar alertas: " . $conexao->error);
+}
 
 ?>
 
@@ -182,7 +212,7 @@ $dados = $resumo->fetch_assoc();
 
                         <tbody>
 
-                            <?php if ($resultado && $resultado->num_rows > 0): ?>
+                            <?php if ($resultado->num_rows > 0): ?>
 
                                 <?php while ($alerta = $resultado->fetch_assoc()): ?>
 
@@ -191,6 +221,7 @@ $dados = $resumo->fetch_assoc();
 
                                         <td>
                                             <strong><?= htmlspecialchars($alerta['titulo']) ?></strong>
+
                                             <details>
                                                 <summary class="text-primary small">Ver descrição</summary>
                                                 <small><?= htmlspecialchars($alerta['descricao']) ?></small>
@@ -199,7 +230,9 @@ $dados = $resumo->fetch_assoc();
 
                                         <td><?= htmlspecialchars($alerta['equipamento']) ?></td>
 
-                                        <td><?= date('d/m/Y H:i', strtotime($alerta['data_hora'])) ?></td>
+                                        <td>
+                                            <?= date('d/m/Y H:i', strtotime($alerta['data_hora'])) ?>
+                                        </td>
 
                                         <td>
                                             <?php if ($alerta['gravidade'] == 'Critico'): ?>
@@ -221,6 +254,7 @@ $dados = $resumo->fetch_assoc();
 
                                         <td>
                                             <?php if ($alerta['status'] == 'Pendente'): ?>
+
                                                 <form method="POST">
                                                     <input type="hidden" name="id_alerta" value="<?= $alerta['id_alerta'] ?>">
 
@@ -228,8 +262,11 @@ $dados = $resumo->fetch_assoc();
                                                         Resolver
                                                     </button>
                                                 </form>
+
                                             <?php else: ?>
+
                                                 <span class="text-success">Concluído</span>
+
                                             <?php endif; ?>
                                         </td>
                                     </tr>
@@ -260,4 +297,3 @@ $dados = $resumo->fetch_assoc();
 
 </body>
 </html>
-
