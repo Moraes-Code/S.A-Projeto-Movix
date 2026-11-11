@@ -16,26 +16,10 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
 <body>
 
-    <div class="sidebar">
-
-        <div class="logo-area">
-            <img src="../assets/imgs/logo_movix_semfundoazul.png" alt="Logo MOVIX">
-            <h3>MOVIX</h3>
-            <small>Centro Ferroviário</small>
-        </div>
-
-        <ul>
-            <li><a href="dashboard_adm.php">Dashboard</a></li>
-            <li><a href="monitoramento.php">Monitoramento</a></li>
-            <li><a href="alertas.php">Alertas</a></li>
-            <li><a href="sensores.php">Sensores</a></li>
-            <li><a href="usuarios.php">Usuários</a></li>
-            <li><a href="rotas.php">Rotas</a></li>
-        </ul>
-
-        <div class="botao-sair">
-            <a href="../index.php?logout=1">Sair</a>
-        </div>
+    <?php include '../components/sidebar.php'; ?>
+    <div class="botao-sair">
+        <a href="../index.php?logout=1">Sair</a>
+    </div>
 
     </div>
 
@@ -55,8 +39,8 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
 
             <div class="row g-4 mb-4">
-    <div class="col-12 col-md-6 col-xl-4">
-        <div class="card shadow-sm border-0 p-4 h-100" style="min-height: 130px;">
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="card shadow-sm border-0 p-4 h-100" style="min-height: 130px;">
                         <h5 class="card-title">Clima em Joinville</h5>
 
                         <div class="d-flex align-items-center justify-content-between gap-3">
