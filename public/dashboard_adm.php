@@ -15,16 +15,9 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 </head>
 
 <body>
-
     <?php include '../components/sidebar.php'; ?>
-    <div class="botao-sair">
-        <a href="../index.php?logout=1">Sair</a>
     </div>
-
-    </div>
-
     <div class="main">
-
         <div class="topbar">
             <div>
                 <h3>Dashboard Administrativo</h3>
@@ -34,10 +27,7 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                 </p>
             </div>
         </div>
-
         <div class="content">
-
-
             <div class="row g-4 mb-4">
                 <div class="col-12 col-md-6 col-xl-4">
                     <div class="card shadow-sm border-0 p-4 h-100" style="min-height: 130px;">

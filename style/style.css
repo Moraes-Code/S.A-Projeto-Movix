@@ -20,15 +20,20 @@ body{
     background:linear-gradient(180deg, #edf4fb 0%, #e7eef8 100%);
 }
 
-.sidebar{
-    position:fixed;
-    width:260px;
-    height:100vh;
-    background:linear-gradient(180deg, #0b1628 0%, #0d1b2a 100%);
-    border-right:1px solid rgba(93,173,226,0.22);
-    box-shadow:16px 0 30px rgba(11,22,40,0.18);
-    padding:20px 16px;
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #0b1628 0%, #0d1b2a 100%);
+    border-right: 1px solid rgba(93,173,226,0.22);
+    box-shadow: 16px 0 30px rgba(11,22,40,0.18);
+    padding: 20px 16px;
+    z-index: 1000;
 }
+
 
 .logo-area{
     text-align:center;
