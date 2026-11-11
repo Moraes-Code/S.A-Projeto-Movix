@@ -182,16 +182,9 @@ body{
 }
 
 .monitor-card{
-    background-color:#FFFFFF;
     border:none;
     border-radius:18px;
-    color:#0D1B2A;
-}
-
-.monitor-card h2,
-.monitor-card h6,
-.monitor-card small{
-    color:#0D1B2A;
+    color:white;
 }
 
 Cards do Dashboard Adm
@@ -213,5 +206,3 @@ body .main .content .row .card-movix {
     color: white !important;
     border: none;
 }
-
-

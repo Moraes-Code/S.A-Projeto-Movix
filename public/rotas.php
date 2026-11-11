@@ -14,12 +14,6 @@ function limpar($texto)
 {
     return htmlspecialchars($texto ?? '', ENT_QUOTES, 'UTF-8');
 }
-
-$sqlTrens = $conexao->prepare("SELECT id, codigo, nome FROM trens ORDER BY nome ASC");
-$sqlTrens->execute();
-$trens = $sqlTrens->get_result()->fetch_all(MYSQLI_ASSOC);
-$sqlTrens->close();
-
 $mensagem = '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (
@@ -41,9 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $codigo = trim($_POST['codigo_rota'] ?? '');
             $origem = trim($_POST['origem'] ?? '');
             $destino = trim($_POST['destino'] ?? '');
-
-            $id_trem = !empty($_POST['id_trem']) ? (int) $_POST['id_trem'] : null;
-
             $distancia = (float) str_replace(',', '.', $_POST['distancia'] ?? '0');
             $tempo = trim($_POST['tempo_estimado'] ?? '');
             $status = $_POST['status'] ?? '';
@@ -80,19 +71,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $sql = $conexao->prepare(
                     "INSERT INTO rotas
                     (nome_rota, codigo_rota, origem, destino,
-                    distancia, tempo_estimado, status, id_trem)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                    distancia, tempo_estimado, status)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)"
                 );
                 $sql->bind_param(
-                    'ssssdssi',
+                    'ssssdss',
                     $nome,
                     $codigo,
                     $origem,
                     $destino,
                     $distancia,
                     $tempo,
-                    $status,
-                    $id_trem
+                    $status
                 );
                 $sql->execute();
                 $sql->close();
@@ -189,19 +179,6 @@ $sql->close();
                                 <div class="col-md-4">
                                     <label class="form-label">Tempo Estimado</label>
                                     <input name="tempo_estimado" class="form-control" placeholder="Ex.: 2 horas" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Trem associado</label>
-                                    <select name="id_trem" class="form-select">
-                                        <option value="">Selecione um trem</option>
-
-                                        <?php foreach ($trens as $trem): ?>
-                                            <option value="<?= $trem['id'] ?>">
-                                                <?= limpar($trem['codigo']) ?> - <?= limpar($trem['nome']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
-
-                                    </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Status</label>

@@ -55,8 +55,6 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
         <div class="content">
 
-        <?php include __DIR__ . '/../components/clima.php'; ?>
-
             <div class="mb-4">
                 <h4>Painel de controle</h4>
 

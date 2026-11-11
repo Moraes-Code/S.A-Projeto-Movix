@@ -31,8 +31,6 @@ if (isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-
-
 $mensagemErro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
