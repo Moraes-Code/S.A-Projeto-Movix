@@ -187,13 +187,18 @@ body{
     color:white;
 }
 
-Cards do Dashboard Adm
+
+/* Cards do Dashboard Administrativo */
+
 .card.dashboard-card.card-movix {
     background-color: #0b1628;
     color: white;
     border: none;
-    border-radius: 18px;
-    min-height: 180px;
+    border-radius: 16px;
+    min-height: 155px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .card.dashboard-card.card-movix h5,
@@ -201,8 +206,22 @@ Cards do Dashboard Adm
     color: white;
 }
 
-body .main .content .row .card-movix {
-    background-color: #0b1628 !important;
-    color: white !important;
-    border: none;
+.card.dashboard-card.card-movix .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+.dashboard-card p {
+    margin-bottom: 15px;
+}
+
+/* Card do clima */
+
+#btn-atualizar-clima {
+    white-space: nowrap;
+}
+
+#clima-temperatura {
+    font-size: 2rem;
+    font-weight: 700;
 }
