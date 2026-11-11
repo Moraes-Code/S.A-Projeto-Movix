@@ -24,6 +24,7 @@
         <?php if (isset($_SESSION['id_perfil']) && $_SESSION['id_perfil'] == 1) { ?>
             <li><a href="usuarios.php">Usuários</a></li>
         <?php } ?>
+        <li><a href="rotas.php">Rotas</a></li>
         <div class="botao-sair">
             <a href="../index.php?logout=1">Sair</a>
         </div>
