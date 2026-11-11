@@ -85,6 +85,7 @@ $resultado = mysqli_query($conexao, $sql);
 <body>
 
     <?php include '../components/sidebar.php'; ?>
+    <?php include '../components/notificacao.php'; ?>
 
     <div class="main">
 

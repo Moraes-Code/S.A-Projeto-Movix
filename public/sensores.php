@@ -189,6 +189,7 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
 <body>
 
     <?php include '../components/sidebar.php'; ?>
+    <?php include '../components/notificacao.php'; ?>
 
     <div class="main">
 
