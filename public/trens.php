@@ -104,7 +104,7 @@ $resultado = mysqli_query($conexao, $sql);
             <?php endif; ?>
 
             <?php if ($podeGerenciar): ?>
-                <div class="table-container">
+                <div class="table-container mb-4">
                     <h4 class="mb-3">Cadastrar Trem</h4>
                     <?php if (!empty($mensagemSucesso)): ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -173,58 +173,6 @@ $resultado = mysqli_query($conexao, $sql);
                 </div>
             <?php endif; ?>
 
-            <div class="row g-4 mb-4">
-                <div class="col-md-3">
-                    <div class="card sensor-card">
-                        <div class="card-body">
-                            <h6>Operando</h6>
-                            <h2>
-                                <?php
-                                $contagem = mysqli_query(
-                                    $conexao,
-                                    "SELECT COUNT(*) AS total FROM trens WHERE status = 3"
-                                );
-                                echo mysqli_fetch_assoc($contagem)['total'];
-                                ?>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card trem-card">
-                        <div class="card-body">
-                            <h6>Manutenção</h6>
-                            <h2>
-                                <?php
-                                $contagem = mysqli_query(
-                                    $conexao,
-                                    "SELECT COUNT(*) AS total FROM trens WHERE status = 2"
-                                );
-                                echo mysqli_fetch_assoc($contagem)['total'];
-                                ?>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card alerta-card">
-                        <div class="card-body">
-                            <h6>Fora de serviço</h6>
-                            <h2>
-                                <?php
-                                $contagem = mysqli_query(
-                                    $conexao,
-                                    "SELECT COUNT(*) AS total FROM trens WHERE status = 1"
-                                );
-                                echo mysqli_fetch_assoc($contagem)['total'];
-                                ?>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="table-container">
                 <h4>Frota de Trens</h4>
