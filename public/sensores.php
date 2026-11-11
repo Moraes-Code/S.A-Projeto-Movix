@@ -17,8 +17,6 @@ $tipoMensagem = 'success';
 
 $mostrarTodos = isset($_GET['todos']) && $_GET['todos'] == '1';
 
-$editar = null;
-
 // CADASTRAR SENSOR
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar_sensor'])) {
 
@@ -61,7 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['salvar_sensor'])) {
         );
 
         if (mysqli_stmt_execute($stmt)) {
-            $mensagem = 'Sensor cadastrado com sucesso!';
+            header('Location: sensores.php');
+            exit;
         } else {
             $mensagem = 'Erro ao cadastrar. Verifique se o ID já existe.';
             $tipoMensagem = 'danger';
@@ -116,7 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['atualizar_sensor'])) 
         );
 
         if (mysqli_stmt_execute($stmt)) {
-            $mensagem = 'Sensor atualizado com sucesso!';
+            header('Location: sensores.php' . ($mostrarTodos ? '?todos=1' : ''));
+            exit;
         } else {
             $mensagem = 'Erro ao atualizar o sensor. Verifique o ID.';
             $tipoMensagem = 'danger';
@@ -143,7 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir_sensor'])) {
         mysqli_stmt_bind_param($stmt, "i", $id);
 
         if (mysqli_stmt_execute($stmt)) {
-            $mensagem = 'Sensor excluído com sucesso!';
+            header('Location: sensores.php' . ($mostrarTodos ? '?todos=1' : ''));
+            exit;
         } else {
             $mensagem = 'Erro ao excluir o sensor.';
             $tipoMensagem = 'danger';
@@ -151,23 +152,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir_sensor'])) {
 
         mysqli_stmt_close($stmt);
     }
-}
-
-// BUSCAR SENSOR PARA EDIÇÃO
-if (isset($_GET['editar']) && $podeGerenciar) {
-
-    $idEditar = (int) $_GET['editar'];
-
-    $sqlEditar = "SELECT * FROM sensores WHERE id = ?";
-    $stmtEditar = mysqli_prepare($conexao, $sqlEditar);
-
-    mysqli_stmt_bind_param($stmtEditar, "i", $idEditar);
-    mysqli_stmt_execute($stmtEditar);
-
-    $resultadoEditar = mysqli_stmt_get_result($stmtEditar);
-    $editar = mysqli_fetch_assoc($resultadoEditar);
-
-    mysqli_stmt_close($stmtEditar);
 }
 
 // CONTAR SENSORES
@@ -226,17 +210,11 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
 
             <?php if ($podeGerenciar): ?>
 
-                <h4 class="mb-3">
-                    <?= $editar ? 'Editar Sensor' : 'Cadastrar Sensores' ?>
-                </h4>
+                <h4 class="mb-3">Cadastrar Sensores</h4>
 
                 <div class="form-container mb-4">
 
-                    <form method="POST" action="sensores.php<?= $mostrarTodos ? '?todos=1' : '' ?>">
-
-                        <?php if ($editar): ?>
-                            <input type="hidden" name="id" value="<?= (int) $editar['id'] ?>">
-                        <?php endif; ?>
+                    <form method="POST" action="sensores.php">
 
                         <div class="row g-3">
 
@@ -248,7 +226,6 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
                                     name="codigo"
                                     class="form-control"
                                     placeholder="Ex: SN001"
-                                    value="<?= htmlspecialchars($editar['codigo'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                     required>
                             </div>
 
@@ -260,20 +237,17 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
                                     name="nome"
                                     class="form-control"
                                     placeholder="Digite o nome do sensor"
-                                    value="<?= htmlspecialchars($editar['nome'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                     required>
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">Tipo</label>
 
-                                <input
-                                    type="text"
-                                    name="tipo"
-                                    class="form-control"
-                                    placeholder="Ex: Temperatura"
-                                    value="<?= htmlspecialchars($editar['tipo'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-                                    required>
+                                <select name="tipo" class="form-control" required>
+                                    <option value="Temperatura">Temperatura</option>
+                                    <option value="Vibração">Vibração</option>
+                                    <option value="Pressão">Pressão</option>
+                                </select>
                             </div>
 
                             <div class="col-md-6">
@@ -284,7 +258,6 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
                                     name="localizacao"
                                     class="form-control"
                                     placeholder="Ex: KM 25"
-                                    value="<?= htmlspecialchars($editar['localizacao'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                                     required>
                             </div>
 
@@ -292,48 +265,18 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
                                 <label class="form-label">Status</label>
 
                                 <select name="status" class="form-control" required>
-
-                                    <?php
-                                    $statusAtual = $editar['status'] ?? 'Online';
-                                    ?>
-
-                                    <option value="Online" <?= $statusAtual === 'Online' ? 'selected' : '' ?>>
-                                        Online
-                                    </option>
-
-                                    <option value="Atenção" <?= $statusAtual === 'Atenção' ? 'selected' : '' ?>>
-                                        Atenção
-                                    </option>
-
-                                    <option value="Offline" <?= $statusAtual === 'Offline' ? 'selected' : '' ?>>
-                                        Offline
-                                    </option>
-
+                                    <option value="Online">Online</option>
+                                    <option value="Atenção">Atenção</option>
+                                    <option value="Offline">Offline</option>
                                 </select>
                             </div>
 
                         </div>
 
                         <div class="text-end mt-4">
-
-                            <?php if ($editar): ?>
-
-                                <button type="submit" name="atualizar_sensor" class="btn btn-primary">
-                                    Salvar alterações
-                                </button>
-
-                                <a href="sensores.php<?= $mostrarTodos ? '?todos=1' : '' ?>" class="btn btn-secondary">
-                                    Cancelar
-                                </a>
-
-                            <?php else: ?>
-
-                                <button type="submit" name="salvar_sensor" class="btn btn-primary">
-                                    Salvar sensor
-                                </button>
-
-                            <?php endif; ?>
-
+                            <button type="submit" name="salvar_sensor" class="btn btn-primary">
+                                Salvar sensor
+                            </button>
                         </div>
 
                     </form>
@@ -404,11 +347,19 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
 
                                             <td class="text-nowrap">
 
-                                                <a
-                                                    href="sensores.php?editar=<?= (int) $sensor['id'] ?><?= $mostrarTodos ? '&todos=1' : '' ?>"
-                                                    class="btn btn-sm btn-outline-primary">
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm btn-outline-primary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modalSensor"
+                                                    data-id="<?= (int) $sensor['id'] ?>"
+                                                    data-codigo="<?= htmlspecialchars($sensor['codigo'], ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-nome="<?= htmlspecialchars($sensor['nome'], ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-tipo="<?= htmlspecialchars($sensor['tipo'], ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-localizacao="<?= htmlspecialchars($sensor['localizacao'], ENT_QUOTES, 'UTF-8') ?>"
+                                                    data-status="<?= htmlspecialchars($sensor['status'], ENT_QUOTES, 'UTF-8') ?>">
                                                     Editar
-                                                </a>
+                                                </button>
 
                                                 <form method="POST" action="sensores.php<?= $mostrarTodos ? '?todos=1' : '' ?>" class="d-inline"
                                                     onsubmit="return confirm('Deseja realmente excluir este sensor?')">
@@ -479,7 +430,100 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
 
     </div>
 
+    <?php if ($podeGerenciar): ?>
+
+        <div class="modal fade" id="modalSensor" tabindex="-1" aria-labelledby="modalSensorLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="modalSensorLabel">Editar Sensor</h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="sensores.php<?= $mostrarTodos ? '?todos=1' : '' ?>" method="POST">
+
+                            <input type="hidden" id="modal-id" name="id">
+                            <input type="hidden" name="atualizar_sensor" value="1">
+
+                            <div class="mb-3">
+                                <label for="modal-codigo" class="form-label">ID</label>
+                                <input type="text" class="form-control" id="modal-codigo" name="codigo" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="modal-nome" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="modal-nome" name="nome" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="modal-tipo" class="form-label">Tipo</label>
+                                <select class="form-control" id="modal-tipo" name="tipo" required>
+                                    <option value="Temperatura">Temperatura</option>
+                                    <option value="Vibração">Vibração</option>
+                                    <option value="Pressão">Pressão</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="modal-localizacao" class="form-label">Localização</label>
+                                <input type="text" class="form-control" id="modal-localizacao" name="localizacao" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="modal-status" class="form-label">Status</label>
+                                <select class="form-control" id="modal-status" name="status" required>
+                                    <option value="Online">Online</option>
+                                    <option value="Atenção">Atenção</option>
+                                    <option value="Offline">Offline</option>
+                                </select>
+                            </div>
+
+                            <div class="modal-footer px-0 pb-0">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+
+                                <button type="submit" class="btn btn-primary">
+                                    Atualizar
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    <?php endif; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('modalSensor');
+
+            if (!modal) return;
+
+            modal.addEventListener('show.bs.modal', function (event) {
+                const botao = event.relatedTarget;
+
+                document.getElementById('modal-id').value = botao.dataset.id;
+                document.getElementById('modal-codigo').value = botao.dataset.codigo;
+                document.getElementById('modal-nome').value = botao.dataset.nome;
+                document.getElementById('modal-tipo').value = botao.dataset.tipo;
+                document.getElementById('modal-localizacao').value = botao.dataset.localizacao;
+                document.getElementById('modal-status').value = botao.dataset.status;
+            });
+        });
+    </script>
 
 </body>
 </html>

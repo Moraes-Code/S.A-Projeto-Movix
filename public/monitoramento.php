@@ -93,58 +93,6 @@ $trens = $resultadoTrens
 
         <div class="content">
 
-            <!-- CLIMA -->
-            <div class="row g-4 mb-4">
-
-                <div class="col-12 col-md-6 col-xl-4">
-
-                    <div class="card shadow-sm border-0 p-4 h-100" style="min-height: 130px;">
-
-                        <h5 class="card-title">Clima em Joinville</h5>
-
-                        <div class="d-flex align-items-center justify-content-between gap-3">
-
-                            <div class="d-flex align-items-center gap-3">
-
-                                <div>
-                                    <h2 class="text-primary mb-0" id="clima-temperatura">
-                                        -- °C
-                                    </h2>
-                                </div>
-
-                                <div>
-                                    <p class="fw-bold mb-1" id="clima-condicao">
-                                        Carregando...
-                                    </p>
-
-                                    <small class="text-muted d-block" id="clima-local">
-                                        Joinville, SC
-                                    </small>
-
-                                    <small class="text-muted d-block" id="clima-atualizacao"></small>
-                                </div>
-
-                            </div>
-
-                            <button type="button"
-                                class="btn btn-sm btn-outline-primary"
-                                id="btn-atualizar-clima">
-                                Atualizar
-                            </button>
-
-                        </div>
-
-                        <div class="alert alert-warning mt-3 mb-0 d-none" id="clima-erro">
-                            Não foi possível carregar o clima. Tente novamente mais tarde.
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
             <!-- INDICADORES -->
             <div class="row g-4 mb-4">
 
