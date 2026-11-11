@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once '../infra/conexao.php';
@@ -13,11 +14,6 @@ $mensagemErro = '';
 if (isset($_SESSION['mensagem_sucesso'])) {
     $mensagemSucesso = $_SESSION['mensagem_sucesso'];
     unset($_SESSION['mensagem_sucesso']);
-}
-
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: ../index.php');
-    exit;
 }
 
 $perfil = (int) ($_SESSION['id_perfil'] ?? 3);
@@ -91,6 +87,7 @@ $resultado = mysqli_query($conexao, $sql);
     <?php include '../components/sidebar.php'; ?>
 
     <div class="main">
+
         <div class="topbar">
             <h3>Gerenciamento de Trens</h3>
         </div>
@@ -104,8 +101,11 @@ $resultado = mysqli_query($conexao, $sql);
             <?php endif; ?>
 
             <?php if ($podeGerenciar): ?>
+
                 <div class="table-container mb-4">
+
                     <h4 class="mb-3">Cadastrar Trem</h4>
+
                     <?php if (!empty($mensagemSucesso)): ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <?= htmlspecialchars($mensagemSucesso) ?>
@@ -113,18 +113,14 @@ $resultado = mysqli_query($conexao, $sql);
                         </div>
                     <?php endif; ?>
 
-                    <?php if (!empty($mensagemErro)): ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= htmlspecialchars($mensagemErro) ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
-                        </div>
-                    <?php endif; ?>
-
                     <div class="form-container mb-4">
+
                         <form method="POST">
+
                             <input type="hidden" name="cadastro_trem" value="1">
 
                             <div class="row g-3">
+
                                 <div class="col-md-6">
                                     <label for="codigo" class="form-label">Código</label>
                                     <input type="text" id="codigo" name="codigo" class="form-control"
@@ -163,92 +159,150 @@ $resultado = mysqli_query($conexao, $sql);
                                     <input type="number" id="velocidade" name="velocidade" class="form-control"
                                         placeholder="Digite a velocidade" required>
                                 </div>
+
                             </div>
 
                             <div class="d-flex justify-content-end mt-4">
-                                <button type="submit" class="btn btn-primary">Salvar trem</button>
+                                <button type="submit" class="btn btn-primary">
+                                    Salvar trem
+                                </button>
                             </div>
+
                         </form>
+
                     </div>
+
                 </div>
+
             <?php endif; ?>
 
-
             <div class="table-container">
+
                 <h4>Frota de Trens</h4>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>Linha</th>
-                            <th>Destino</th>
-                            <th>Velocidade</th>
-                            <th>Status</th>
+                <div class="table-responsive">
 
-                            <?php if ($podeGerenciar): ?>
-                                <th>Ações</th>
-                            <?php endif; ?>
-                        </tr>
-                    </thead>
+                    <table class="table">
 
-                    <tbody>
-                        <?php if ($resultado && mysqli_num_rows($resultado) > 0): ?>
-                            <?php while ($trem = mysqli_fetch_assoc($resultado)): ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($trem['codigo']) ?></td>
-                                    <td><?= htmlspecialchars($trem['nome']) ?></td>
-                                    <td><?= htmlspecialchars($trem['linha']) ?></td>
-                                    <td><?= htmlspecialchars($trem['destino']) ?></td>
-                                    <td><?= (int) $trem['velocidade'] ?> km/h</td>
-
-                                    <td>
-                                        <?php
-                                        $statusNomes = [
-                                            3 => 'Operando',
-                                            2 => 'Manutenção',
-                                            1 => 'Fora de serviço'
-                                        ];
-
-                                        echo $statusNomes[$trem['status']] ?? 'Desconhecido';
-                                        ?>
-                                    </td>
-
-                                    <?php if ($podeGerenciar): ?>
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modalTrem" data-id="<?= (int) $trem['id'] ?>"
-                                                data-codigo="<?= htmlspecialchars($trem['codigo'], ENT_QUOTES) ?>"
-                                                data-nome="<?= htmlspecialchars($trem['nome'], ENT_QUOTES) ?>"
-                                                data-linha="<?= htmlspecialchars($trem['linha'], ENT_QUOTES) ?>"
-                                                data-destino="<?= htmlspecialchars($trem['destino'], ENT_QUOTES) ?>"
-                                                data-velocidade="<?= (int) $trem['velocidade'] ?>"
-                                                data-status="<?= (int) $trem['status'] ?>">
-                                                Editar
-                                            </button>
-
-                                            <a href="../funcoes/excluir_trens.php?id=<?= (int) $trem['id'] ?>"
-                                                class="btn btn-sm btn-danger"
-                                                onclick="return confirm('Tem certeza que deseja excluir o trem <?= htmlspecialchars($trem['nome'], ENT_QUOTES) ?>?');">
-                                                Excluir
-                                            </a>
-                                        </td>
-                                    <?php endif; ?>
-                                </tr>
-                            <?php endwhile; ?>
-                        <?php else: ?>
+                        <thead>
                             <tr>
-                                <td colspan="<?= $podeGerenciar ? 7 : 6 ?>" class="text-center">
-                                    Nenhum trem cadastrado.
-                                </td>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Linha</th>
+                                <th>Destino</th>
+                                <th>Velocidade</th>
+                                <th>Status</th>
+
+                                <?php if ($podeGerenciar): ?>
+                                    <th>Ações</th>
+                                <?php endif; ?>
                             </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+
+                            <?php
+                            $contador = 0;
+                            ?>
+
+                            <?php if ($resultado && mysqli_num_rows($resultado) > 0): ?>
+
+                                <?php while ($trem = mysqli_fetch_assoc($resultado)): ?>
+
+                                    <?php
+                                    $classeOculta = ($contador >= 10) ? 'trem-oculto d-none' : '';
+                                    ?>
+
+                                    <tr class="<?= $classeOculta ?>">
+
+                                        <td><?= htmlspecialchars($trem['codigo']) ?></td>
+
+                                        <td><?= htmlspecialchars($trem['nome']) ?></td>
+
+                                        <td><?= htmlspecialchars($trem['linha']) ?></td>
+
+                                        <td><?= htmlspecialchars($trem['destino']) ?></td>
+
+                                        <td><?= (int) $trem['velocidade'] ?> km/h</td>
+
+                                        <td>
+                                            <?php
+                                            $statusNomes = [
+                                                3 => 'Operando',
+                                                2 => 'Manutenção',
+                                                1 => 'Fora de serviço'
+                                            ];
+
+                                            echo $statusNomes[$trem['status']] ?? 'Desconhecido';
+                                            ?>
+                                        </td>
+
+                                        <?php if ($podeGerenciar): ?>
+
+                                            <td>
+
+                                                <button type="button"
+                                                    class="btn btn-sm btn-outline-primary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modalTrem"
+                                                    data-id="<?= (int) $trem['id'] ?>"
+                                                    data-codigo="<?= htmlspecialchars($trem['codigo'], ENT_QUOTES) ?>"
+                                                    data-nome="<?= htmlspecialchars($trem['nome'], ENT_QUOTES) ?>"
+                                                    data-linha="<?= htmlspecialchars($trem['linha'], ENT_QUOTES) ?>"
+                                                    data-destino="<?= htmlspecialchars($trem['destino'], ENT_QUOTES) ?>"
+                                                    data-velocidade="<?= (int) $trem['velocidade'] ?>"
+                                                    data-status="<?= (int) $trem['status'] ?>">
+                                                    Editar
+                                                </button>
+
+                                                <a href="../funcoes/excluir_trens.php?id=<?= (int) $trem['id'] ?>"
+                                                    class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Tem certeza que deseja excluir este trem?');">
+                                                    Excluir
+                                                </a>
+
+                                            </td>
+
+                                        <?php endif; ?>
+
+                                    </tr>
+
+                                    <?php $contador++; ?>
+
+                                <?php endwhile; ?>
+
+                            <?php else: ?>
+
+                                <tr>
+                                    <td colspan="<?= $podeGerenciar ? 7 : 6 ?>" class="text-center">
+                                        Nenhum trem cadastrado.
+                                    </td>
+                                </tr>
+
+                            <?php endif; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <?php if ($contador > 10): ?>
+
+                    <div class="text-center mt-3">
+
+                        <button type="button" class="btn btn-outline-primary" id="btnVerMaisTrens">
+                            Ver mais
+                        </button>
+
+                    </div>
+
+                <?php endif; ?>
+
             </div>
 
         </div>
+
     </div>
 
     <?php if ($podeGerenciar): ?>
@@ -256,6 +310,30 @@ $resultado = mysqli_query($conexao, $sql);
     <?php endif; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        const btnVerMaisTrens = document.getElementById('btnVerMaisTrens');
+
+        if (btnVerMaisTrens) {
+
+            btnVerMaisTrens.addEventListener('click', function () {
+
+                const trensOcultos = document.querySelectorAll('.trem-oculto');
+
+                const estaOculto = trensOcultos[0].classList.contains('d-none');
+
+                trensOcultos.forEach(function (trem) {
+                    trem.classList.toggle('d-none');
+                });
+
+                btnVerMaisTrens.textContent = estaOculto ? 'Ver menos' : 'Ver mais';
+
+            });
+
+        }
+
+    </script>
 
 </body>
 
