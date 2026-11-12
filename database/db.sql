@@ -62,7 +62,7 @@ CREATE TABLE sensores (
     tipo VARCHAR(50) NOT NULL,
     localizacao VARCHAR(100) NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'Online',
-    id_trem INT NOT NULL,
+    id_trem INT NULL,
 
     FOREIGN KEY (id_trem) REFERENCES trens(id)
 );
