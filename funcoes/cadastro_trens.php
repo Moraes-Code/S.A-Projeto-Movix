@@ -31,21 +31,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_trem'])) {
 
         } else {
 
+            // Pega a primeira rota disponível no banco para associar ao trem automaticamente
+            $resRota = mysqli_query($conexao, "SELECT id_rota FROM rotas ORDER BY id_rota ASC LIMIT 1");
+            $rotaRow = mysqli_fetch_assoc($resRota);
+            $id_rota = $rotaRow['id_rota'] ?? 1;
+
             $stmt = mysqli_prepare(
                 $conexao,
-                'INSERT INTO trens (codigo, nome, linha, destino, status, velocidade)
-                 VALUES (?, ?, ?, ?, ?, ?)'
+                'INSERT INTO trens (codigo, nome, linha, destino, status, velocidade, id_rota)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)'
             );
 
             mysqli_stmt_bind_param(
                 $stmt,
-                'ssssii',
+                'ssssiii',
                 $codigo,
                 $nome,
                 $linha,
                 $destino,
                 $status,
-                $velocidade
+                $velocidade,
+                $id_rota
             );
 
             if (mysqli_stmt_execute($stmt)) {
@@ -58,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_trem'])) {
             } else {
                 $mensagemErro = 'Não foi possível cadastrar o trem. Tente novamente.';
             }
-                mysqli_stmt_close($stmt);
+            mysqli_stmt_close($stmt);
         }
 
         mysqli_stmt_close($verifica);

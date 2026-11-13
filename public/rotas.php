@@ -109,6 +109,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $tempo,
                     $status
                 );
+                $id_usuario = $_SESSION['usuario_id'] ?? 1;
+                $sql = $conexao->prepare(
+                    "INSERT INTO rotas
+                    (nome_rota, codigo_rota, origem, destino,
+                    distancia, tempo_estimado, status, id_usuario)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                );
+
+                $sql->bind_param(
+                    'ssssdssi',
+                    $nome,
+                    $codigo,
+                    $origem,
+                    $destino,
+                    $distancia,
+                    $tempo,
+                    $status,
+                    $id_usuario
+                );
 
                 $sql->execute();
                 $sql->close();
