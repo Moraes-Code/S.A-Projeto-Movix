@@ -20,6 +20,18 @@ function limpar($texto)
     return htmlspecialchars((string) ($texto ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
+// PREPARAR CONSULTAS COM VERIFICAÇÃO DE ERRO
+function prepararConsulta($conexao, $consulta)
+{
+    $sql = $conexao->prepare($consulta);
+
+    if (!$sql) {
+        die("Erro ao preparar consulta SQL: " . $conexao->error);
+    }
+
+    return $sql;
+}
+
 // CADASTRAR, EDITAR E EXCLUIR ROTAS
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -38,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $id = (int) ($_POST['id_rota'] ?? 0);
 
-            $sql = $conexao->prepare(
+            $sql = prepararConsulta(
+                $conexao,
                 "DELETE FROM rotas WHERE id_rota = ?"
             );
 
@@ -81,7 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $id = (int) ($_POST['id_rota'] ?? 0);
 
-                $sql = $conexao->prepare(
+                $sql = prepararConsulta(
+                    $conexao,
                     "UPDATE rotas SET
                     nome_rota = ?,
                     codigo_rota = ?,
@@ -118,7 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // CADASTRAR ROTA
                 $id_usuario = (int) $_SESSION['usuario_id'];
 
-                $sql = $conexao->prepare(
+                $sql = prepararConsulta(
+                    $conexao,
                     "INSERT INTO rotas
                     (nome_rota, codigo_rota, origem, destino,
                     distancia, tempo_estimado, status, id_usuario)
@@ -185,7 +200,8 @@ if ($pesquisa !== '') {
 
     $termo = "%{$pesquisa}%";
 
-    $sql = $conexao->prepare(
+    $sql = prepararConsulta(
+        $conexao,
         "SELECT r.*, u.nome AS nome_responsavel
         FROM rotas r
         INNER JOIN usuarios u ON r.id_usuario = u.id
@@ -200,7 +216,8 @@ if ($pesquisa !== '') {
 
 } else {
 
-    $sql = $conexao->prepare(
+    $sql = prepararConsulta(
+        $conexao,
         "SELECT r.*, u.nome AS nome_responsavel
         FROM rotas r
         INNER JOIN usuarios u ON r.id_usuario = u.id
@@ -209,7 +226,15 @@ if ($pesquisa !== '') {
 }
 
 $sql->execute();
-$rotas = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+
+$resultadoRotas = $sql->get_result();
+
+if (!$resultadoRotas) {
+    die("Erro ao buscar as rotas: " . $sql->error);
+}
+
+$rotas = $resultadoRotas->fetch_all(MYSQLI_ASSOC);
+
 $sql->close();
 ?>
 
