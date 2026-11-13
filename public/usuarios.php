@@ -12,7 +12,7 @@ function limpar($texto)
 {
     return htmlspecialchars($texto ?? '', ENT_QUOTES, 'UTF-8');
 }
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['excluir_usuario']) || isset($_POST['editar_usuario'])))  {
     if (!isset($_POST['token']) || !hash_equals($_SESSION['token_usuarios'], $_POST['token'])) {
         exit('Acesso não permitido.');
     }
