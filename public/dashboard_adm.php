@@ -63,7 +63,15 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                 <div class="col-12">
                     <div class="card shadow-sm border-0 p-4 h-100 mapa-card">
                         <p class="mapa-titulo">Mapa de Joinville</p>
-                        <div id="mapa-movix" aria-label="Mapa de Joinville"></div>
+                        <div class="mapa-area">
+                            <iframe
+                                class="mapa-iframe"
+                                title="Mapa de Joinville"
+                                loading="lazy"
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=-48.9600%2C-26.4200%2C-48.7000%2C-26.1600&amp;layer=mapnik&amp;marker=-26.3044%2C-48.8487"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -130,7 +138,6 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
             </div>
 
-            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
             <script>
                 function carregarClima() {
                     const botao = document.getElementById('btn-atualizar-clima');
@@ -164,12 +171,6 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                             botao.disabled = false;
                         });
                 }
-
-                var mapa = L.map('mapa-movix').setView([-26.3044, -48.8487], 12);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; OpenStreetMap contributors'
-                }).addTo(mapa);
 
                 document.getElementById('btn-atualizar-clima').addEventListener('click', carregarClima);
                 carregarClima();
