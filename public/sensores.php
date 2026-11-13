@@ -123,8 +123,8 @@ $resultadoSensores = mysqli_query($conexao, $sqlSensores);
         </div>
         <div class="content">
             <?php if ($podeGerenciar): ?>
-                <h4 class="mb-3">Cadastrar Sensores</h4>
                 <div class="form-container mb-4">
+                    <h4 class="mb-3">Cadastrar Sensores</h4>
                     <form method="POST" action="sensores.php">
                         <div class="row g-3">
                             <div class="col-md-6">
