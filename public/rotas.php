@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once '../infra/conexao.php';
@@ -7,8 +8,8 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 
-$perfil = $_SESSION['id_perfil'] ?? 0;
-$podeGerenciar = ($perfil == 1);
+$perfil = (int) ($_SESSION['id_perfil'] ?? 0);
+$podeGerenciar = ($perfil === 1);
 
 if (!isset($_SESSION['token_rotas'])) {
     $_SESSION['token_rotas'] = bin2hex(random_bytes(32));
@@ -16,10 +17,12 @@ if (!isset($_SESSION['token_rotas'])) {
 
 function limpar($texto)
 {
-    return htmlspecialchars($texto ?? '', ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars((string) ($texto ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// CADASTRAR, EDITAR E EXCLUIR ROTAS
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     if (
         !$podeGerenciar ||
         !isset($_POST['token']) ||
@@ -29,20 +32,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     try {
-        if (isset($_POST['excluir_rota'])) {
-            $id = (int) $_POST['id_rota'];
 
-            $sql = $conexao->prepare("DELETE FROM rotas WHERE id_rota = ?");
+        // EXCLUIR ROTA
+        if (isset($_POST['excluir_rota'])) {
+
+            $id = (int) ($_POST['id_rota'] ?? 0);
+
+            $sql = $conexao->prepare(
+                "DELETE FROM rotas WHERE id_rota = ?"
+            );
+
             $sql->bind_param('i', $id);
             $sql->execute();
             $sql->close();
 
             $_SESSION['notificacao'] = [
-                'tipo' => 'danger',
+                'tipo' => 'success',
                 'mensagem' => 'Rota excluída com sucesso!'
             ];
 
         } else {
+
             $nome = trim($_POST['nome_rota'] ?? '');
             $codigo = trim($_POST['codigo_rota'] ?? '');
             $origem = trim($_POST['origem'] ?? '');
@@ -52,23 +62,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $status = $_POST['status'] ?? '';
 
             if (
-                $nome == '' || $codigo == '' || $origem == '' ||
-                $destino == '' || $tempo == '' || $distancia <= 0
+                $nome === '' ||
+                $codigo === '' ||
+                $origem === '' ||
+                $destino === '' ||
+                $tempo === '' ||
+                $distancia <= 0
             ) {
-                throw new Exception('Preencha todos os campos.');
+                throw new Exception('Preencha todos os campos corretamente.');
             }
 
-            if (!in_array($status, ['Ativa', 'Inativa', 'Em manutenção'])) {
+            if (!in_array($status, ['Ativa', 'Inativa', 'Em manutenção'], true)) {
                 throw new Exception('Status inválido.');
             }
 
+            // EDITAR ROTA
             if (isset($_POST['editar_rota'])) {
-                $id = (int) $_POST['id_rota'];
+
+                $id = (int) ($_POST['id_rota'] ?? 0);
 
                 $sql = $conexao->prepare(
-                    "UPDATE rotas SET nome_rota=?, codigo_rota=?, origem=?,
-                    destino=?, distancia=?, tempo_estimado=?, status=?
-                    WHERE id_rota=?"
+                    "UPDATE rotas SET
+                    nome_rota = ?,
+                    codigo_rota = ?,
+                    origem = ?,
+                    destino = ?,
+                    distancia = ?,
+                    tempo_estimado = ?,
+                    status = ?
+                    WHERE id_rota = ?"
                 );
 
                 $sql->bind_param(
@@ -92,24 +114,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ];
 
             } else {
-                $sql = $conexao->prepare(
-                    "INSERT INTO rotas
-                    (nome_rota, codigo_rota, origem, destino,
-                    distancia, tempo_estimado, status)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)"
-                );
 
-                $sql->bind_param(
-                    'ssssdss',
-                    $nome,
-                    $codigo,
-                    $origem,
-                    $destino,
-                    $distancia,
-                    $tempo,
-                    $status
-                );
-                $id_usuario = $_SESSION['usuario_id'] ?? 1;
+                // CADASTRAR ROTA
+                $id_usuario = (int) $_SESSION['usuario_id'];
+
                 $sql = $conexao->prepare(
                     "INSERT INTO rotas
                     (nome_rota, codigo_rota, origem, destino,
@@ -143,17 +151,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
 
     } catch (mysqli_sql_exception $erro) {
+
+        $mensagemErro = 'Não foi possível concluir a operação. Verifique se o código já existe ou se há trens vinculados à rota.';
+
+        if ($erro->getCode() == 1062) {
+            $mensagemErro = 'Esse código de rota já existe.';
+        }
+
         $_SESSION['notificacao'] = [
             'tipo' => 'danger',
-            'mensagem' => ($erro->getCode() == 1062)
-                ? 'Esse código de rota já existe.'
-                : 'Erro ao salvar os dados.'
+            'mensagem' => $mensagemErro
         ];
 
         header('Location: rotas.php');
         exit;
 
     } catch (Exception $erro) {
+
         $_SESSION['notificacao'] = [
             'tipo' => 'warning',
             'mensagem' => $erro->getMessage()
@@ -164,20 +178,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+// PESQUISAR ROTAS
 $pesquisa = trim($_GET['pesquisa'] ?? '');
 
-if ($pesquisa != '') {
-    $termo = "%$pesquisa%";
+if ($pesquisa !== '') {
+
+    $termo = "%{$pesquisa}%";
 
     $sql = $conexao->prepare(
-        "SELECT * FROM rotas WHERE nome_rota LIKE ? OR codigo_rota LIKE ?
-        OR origem LIKE ? OR destino LIKE ? ORDER BY id_rota DESC"
+        "SELECT r.*, u.nome AS nome_responsavel
+        FROM rotas r
+        INNER JOIN usuarios u ON r.id_usuario = u.id
+        WHERE r.nome_rota LIKE ?
+        OR r.codigo_rota LIKE ?
+        OR r.origem LIKE ?
+        OR r.destino LIKE ?
+        ORDER BY r.id_rota DESC"
     );
 
     $sql->bind_param('ssss', $termo, $termo, $termo, $termo);
 
 } else {
-    $sql = $conexao->prepare("SELECT * FROM rotas ORDER BY id_rota DESC");
+
+    $sql = $conexao->prepare(
+        "SELECT r.*, u.nome AS nome_responsavel
+        FROM rotas r
+        INNER JOIN usuarios u ON r.id_usuario = u.id
+        ORDER BY r.id_rota DESC"
+    );
 }
 
 $sql->execute();
@@ -211,12 +239,15 @@ $sql->close();
         </div>
 
         <div class="content">
+
             <div class="table-container">
 
                 <?php if ($podeGerenciar): ?>
+
                     <h4 class="mb-3">Cadastrar Rotas</h4>
 
                     <div class="form-container mb-4">
+
                         <form method="POST">
 
                             <input type="hidden" name="token" value="<?= limpar($_SESSION['token_rotas']) ?>">
@@ -225,37 +256,38 @@ $sql->close();
 
                                 <div class="col-md-6">
                                     <label class="form-label">Nome da Rota</label>
-                                    <input name="nome_rota" class="form-control" placeholder="Digite o nome da rota"
-                                        required>
+                                    <input name="nome_rota" class="form-control"
+                                        placeholder="Digite o nome da rota" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label">Código da Rota</label>
-                                    <input name="codigo_rota" class="form-control" placeholder="Digite o código da rota"
-                                        required>
+                                    <input name="codigo_rota" class="form-control"
+                                        placeholder="Digite o código da rota" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label">Origem</label>
-                                    <input name="origem" class="form-control" placeholder="Digite a estação de origem"
-                                        required>
+                                    <input name="origem" class="form-control"
+                                        placeholder="Digite a estação de origem" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label">Destino</label>
-                                    <input name="destino" class="form-control" placeholder="Digite a estação de destino"
-                                        required>
+                                    <input name="destino" class="form-control"
+                                        placeholder="Digite a estação de destino" required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">Distância (km)</label>
-                                    <input type="number" name="distancia" class="form-control" min="0.1" step="0.1"
-                                        placeholder="Ex.: 150" required>
+                                    <input type="number" name="distancia" class="form-control"
+                                        min="0.1" step="0.1" required>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">Tempo Estimado</label>
-                                    <input name="tempo_estimado" class="form-control" placeholder="Ex.: 2 horas" required>
+                                    <input name="tempo_estimado" class="form-control"
+                                        placeholder="Ex.: 2 horas" required>
                                 </div>
 
                                 <div class="col-md-4">
@@ -274,7 +306,9 @@ $sql->close();
                             </div>
 
                         </form>
+
                     </div>
+
                 <?php endif; ?>
 
                 <h4 class="mb-3">Rotas cadastradas</h4>
@@ -282,7 +316,8 @@ $sql->close();
                 <form method="GET" class="row mb-4">
 
                     <div class="col-md-8">
-                        <input name="pesquisa" class="form-control" placeholder="Pesquisar rota"
+                        <input name="pesquisa" class="form-control"
+                            placeholder="Pesquisar rota"
                             value="<?= limpar($pesquisa) ?>">
                     </div>
 
@@ -290,7 +325,7 @@ $sql->close();
                         <button class="btn btn-primary">Pesquisar</button>
                     </div>
 
-                    <?php if ($pesquisa != ''): ?>
+                    <?php if ($pesquisa !== ''): ?>
                         <div class="col-auto">
                             <a href="rotas.php" class="btn btn-secondary">Limpar</a>
                         </div>
@@ -299,6 +334,7 @@ $sql->close();
                 </form>
 
                 <div class="table-responsive">
+
                     <table class="table">
 
                         <thead>
@@ -309,6 +345,7 @@ $sql->close();
                                 <th>Destino</th>
                                 <th>Distância</th>
                                 <th>Tempo Estimado</th>
+                                <th>Responsável</th>
                                 <th>Status</th>
 
                                 <?php if ($podeGerenciar): ?>
@@ -331,15 +368,18 @@ $sql->close();
                                         <td><?= limpar($r['codigo_rota']) ?></td>
                                         <td><?= limpar($r['origem']) ?></td>
                                         <td><?= limpar($r['destino']) ?></td>
-                                        <td><?= number_format($r['distancia'], 1, ',', '.') ?> km</td>
+                                        <td><?= number_format((float) $r['distancia'], 1, ',', '.') ?> km</td>
                                         <td><?= limpar($r['tempo_estimado']) ?></td>
+                                        <td><?= limpar($r['nome_responsavel']) ?></td>
                                         <td><?= limpar($r['status']) ?></td>
 
                                         <?php if ($podeGerenciar): ?>
+
                                             <td class="text-nowrap">
 
-                                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#rota<?= $r['id_rota'] ?>">
+                                                <button type="button" class="btn btn-sm btn-outline-primary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#rota<?= (int) $r['id_rota'] ?>">
                                                     Editar
                                                 </button>
 
@@ -348,7 +388,8 @@ $sql->close();
                                                     <input type="hidden" name="token"
                                                         value="<?= limpar($_SESSION['token_rotas']) ?>">
 
-                                                    <input type="hidden" name="id_rota" value="<?= (int) $r['id_rota'] ?>">
+                                                    <input type="hidden" name="id_rota"
+                                                        value="<?= (int) $r['id_rota'] ?>">
 
                                                     <button type="submit" name="excluir_rota" value="1"
                                                         class="btn btn-sm btn-danger"
@@ -359,6 +400,7 @@ $sql->close();
                                                 </form>
 
                                             </td>
+
                                         <?php endif; ?>
 
                                     </tr>
@@ -370,7 +412,7 @@ $sql->close();
                             <?php else: ?>
 
                                 <tr>
-                                    <td colspan="<?= $podeGerenciar ? 8 : 7 ?>" class="text-center">
+                                    <td colspan="<?= $podeGerenciar ? 9 : 8 ?>" class="text-center">
                                         Nenhuma rota encontrada.
                                     </td>
                                 </tr>
@@ -380,17 +422,21 @@ $sql->close();
                         </tbody>
 
                     </table>
+
                 </div>
 
                 <?php if (count($rotas) > 10): ?>
+
                     <div class="text-center mt-3">
                         <button type="button" class="btn btn-outline-primary" id="btnVerMaisRotas">
                             Ver mais
                         </button>
                     </div>
+
                 <?php endif; ?>
 
             </div>
+
         </div>
     </div>
 
@@ -398,7 +444,7 @@ $sql->close();
 
         <?php foreach ($rotas as $r): ?>
 
-            <div class="modal fade" id="rota<?= $r['id_rota'] ?>" tabindex="-1">
+            <div class="modal fade" id="rota<?= (int) $r['id_rota'] ?>" tabindex="-1">
 
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -412,27 +458,33 @@ $sql->close();
 
                             <div class="modal-body">
 
-                                <input type="hidden" name="token" value="<?= limpar($_SESSION['token_rotas']) ?>">
+                                <input type="hidden" name="token"
+                                    value="<?= limpar($_SESSION['token_rotas']) ?>">
 
                                 <input type="hidden" name="editar_rota" value="1">
-                                <input type="hidden" name="id_rota" value="<?= $r['id_rota'] ?>">
+
+                                <input type="hidden" name="id_rota"
+                                    value="<?= (int) $r['id_rota'] ?>">
 
                                 <label class="form-label">Nome da Rota</label>
-                                <input name="nome_rota" class="form-control mb-3" value="<?= limpar($r['nome_rota']) ?>"
-                                    required>
+                                <input name="nome_rota" class="form-control mb-3"
+                                    value="<?= limpar($r['nome_rota']) ?>" required>
 
                                 <label class="form-label">Código da Rota</label>
-                                <input name="codigo_rota" class="form-control mb-3" value="<?= limpar($r['codigo_rota']) ?>"
-                                    required>
+                                <input name="codigo_rota" class="form-control mb-3"
+                                    value="<?= limpar($r['codigo_rota']) ?>" required>
 
                                 <label class="form-label">Origem</label>
-                                <input name="origem" class="form-control mb-3" value="<?= limpar($r['origem']) ?>" required>
+                                <input name="origem" class="form-control mb-3"
+                                    value="<?= limpar($r['origem']) ?>" required>
 
                                 <label class="form-label">Destino</label>
-                                <input name="destino" class="form-control mb-3" value="<?= limpar($r['destino']) ?>" required>
+                                <input name="destino" class="form-control mb-3"
+                                    value="<?= limpar($r['destino']) ?>" required>
 
                                 <label class="form-label">Distância (km)</label>
-                                <input type="number" name="distancia" class="form-control mb-3" min="0.1" step="0.1"
+                                <input type="number" name="distancia" class="form-control mb-3"
+                                    min="0.1" step="0.1"
                                     value="<?= limpar($r['distancia']) ?>" required>
 
                                 <label class="form-label">Tempo Estimado</label>
@@ -443,9 +495,12 @@ $sql->close();
                                 <select name="status" class="form-select">
 
                                     <?php foreach (['Ativa', 'Inativa', 'Em manutenção'] as $s): ?>
-                                        <option value="<?= limpar($s) ?>" <?= $r['status'] == $s ? 'selected' : '' ?>>
+
+                                        <option value="<?= limpar($s) ?>"
+                                            <?= $r['status'] === $s ? 'selected' : '' ?>>
                                             <?= limpar($s) ?>
                                         </option>
+
                                     <?php endforeach; ?>
 
                                 </select>
@@ -453,6 +508,7 @@ $sql->close();
                             </div>
 
                             <div class="modal-footer">
+
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                     Cancelar
                                 </button>
@@ -460,6 +516,7 @@ $sql->close();
                                 <button class="btn btn-primary">
                                     Salvar alterações
                                 </button>
+
                             </div>
 
                         </form>
@@ -479,22 +536,19 @@ $sql->close();
         const btnVerMaisRotas = document.getElementById('btnVerMaisRotas');
 
         if (btnVerMaisRotas) {
-            btnVerMaisRotas.addEventListener('click', function () {
-                const rotasOcultas = document.querySelectorAll('.rota-oculta');
 
-                rotasOcultas.forEach(function (rota) {
+            btnVerMaisRotas.addEventListener('click', function () {
+
+                document.querySelectorAll('.rota-oculta').forEach(function (rota) {
                     rota.classList.toggle('d-none');
                 });
 
-                if (this.innerText === 'Ver mais') {
-                    this.innerText = 'Ver menos';
-                } else {
-                    this.innerText = 'Ver mais';
-                }
+                this.innerText = this.innerText === 'Ver mais' ? 'Ver menos' : 'Ver mais';
+
             });
+
         }
     </script>
 
 </body>
-
 </html>
