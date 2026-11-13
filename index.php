@@ -20,7 +20,9 @@ if (isset($_GET['logout'])) {
 include("infra/conexao.php");
 
 
-/** ... */
+
+
+
 
 if (isset($_SESSION['usuario_id'])) {
     if (($_SESSION['id_perfil'] ?? 0) == 1) {

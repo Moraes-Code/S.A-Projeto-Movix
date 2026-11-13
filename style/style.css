@@ -220,7 +220,11 @@ body{
     margin-bottom: 15px;
 }
 
-/* Card do clima */
+
+
+.clima-card {
+    min-height: 130px;
+}
 
 #btn-atualizar-clima {
     white-space: nowrap;
@@ -229,4 +233,25 @@ body{
 #clima-temperatura {
     font-size: 2rem;
     font-weight: 700;
+}
+
+.mapa-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.mapa-titulo {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0d1b2a;
+}
+
+#mapa-movix {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(13, 27, 42, 0.12);
 }

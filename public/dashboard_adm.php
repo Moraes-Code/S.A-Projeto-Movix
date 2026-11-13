@@ -11,6 +11,7 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
     <title>Dashboard Administrativo - MOVIX</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="../style/style.css?v=2">
 </head>
 
@@ -30,7 +31,7 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
         <div class="content">
             <div class="row g-4 mb-4">
                 <div class="col-12 col-md-6 col-xl-4">
-                    <div class="card shadow-sm border-0 p-4 h-100" style="min-height: 130px;">
+                    <div class="card shadow-sm border-0 p-4 h-100 clima-card">
                         <h5 class="card-title">Clima em Joinville</h5>
 
                         <div class="d-flex align-items-center justify-content-between gap-3">
@@ -58,6 +59,14 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                 </div>
             </div>
 
+            <div class="row g-4 mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm border-0 p-4 h-100 mapa-card">
+                        <p class="mapa-titulo">Mapa de Joinville</p>
+                        <div id="mapa-movix" aria-label="Mapa de Joinville"></div>
+                    </div>
+                </div>
+            </div>
 
             <div class="mb-4">
                 <h4>Painel de controle</h4>
@@ -121,47 +130,49 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
             </div>
 
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
             <script>
                 function carregarClima() {
                     const botao = document.getElementById('btn-atualizar-clima');
+                    const temperatura = document.getElementById('clima-temperatura');
+                    const condicao = document.getElementById('clima-condicao');
+                    const local = document.getElementById('clima-local');
+                    const atualizacao = document.getElementById('clima-atualizacao');
+                    const erro = document.getElementById('clima-erro');
 
                     botao.disabled = true;
 
-                    fetch('../funcoes/clima.php?t=' + new Date().getTime(), {
-                        cache: 'no-store'
-                    })
+                    fetch('../funcoes/clima.php?t=' + Date.now())
                         .then(function (resposta) {
                             if (!resposta.ok) throw new Error('Erro');
                             return resposta.json();
                         })
                         .then(function (dados) {
                             if (!dados.ok) throw new Error('Erro');
-
-                            document.getElementById('clima-temperatura').textContent =
-                                Math.round(dados.temperatura) + ' °C';
-
-                            document.getElementById('clima-condicao').textContent = dados.condicao;
-                            document.getElementById('clima-local').textContent = dados.local;
-
-                            document.getElementById('clima-atualizacao').textContent =
-                                'Atualizado em ' + dados.atualizado_em;
-
-                            document.getElementById('clima-erro').classList.add('d-none');
+                            temperatura.textContent = Math.round(dados.temperatura) + ' °C';
+                            condicao.textContent = dados.condicao;
+                            local.textContent = dados.local;
+                            atualizacao.textContent = 'Atualizado em ' + dados.atualizado_em;
+                            erro.classList.add('d-none');
                         })
                         .catch(function () {
-                            document.getElementById('clima-temperatura').textContent = '-- °C';
-                            document.getElementById('clima-condicao').textContent = 'Clima indisponível';
-                            document.getElementById('clima-erro').classList.remove('d-none');
+                            temperatura.textContent = '-- °C';
+                            condicao.textContent = 'Clima indisponível';
+                            erro.classList.remove('d-none');
                         })
                         .finally(function () {
                             botao.disabled = false;
                         });
                 }
 
+                var mapa = L.map('mapa-movix').setView([-26.3044, -48.8487], 12);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(mapa);
+
                 document.getElementById('btn-atualizar-clima').addEventListener('click', carregarClima);
-
                 carregarClima();
-
                 setInterval(carregarClima, 10 * 60 * 1000);
             </script>
 
