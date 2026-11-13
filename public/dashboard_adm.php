@@ -11,7 +11,6 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
     <title>Dashboard Administrativo - MOVIX</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="../style/style.css?v=2">
 </head>
 
@@ -54,17 +53,6 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
                         <div class="alert alert-warning mt-3 mb-0 d-none" id="clima-erro">
                             Não foi possível carregar o clima. Tente novamente mais tarde.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row g-4 mb-4">
-                <div class="col-12">
-                    <div class="card shadow-sm border-0 p-4 h-100 mapa-card">
-                        <p class="mapa-titulo">Mapa de Joinville</p>
-                        <div class="mapa-area">
-                            <div id="mapa-movix" aria-label="Mapa de Joinville"></div>
                         </div>
                     </div>
                 </div>
@@ -132,7 +120,6 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
 
             </div>
 
-            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
             <script>
                 function carregarClima() {
                     const botao = document.getElementById('btn-atualizar-clima');
@@ -166,16 +153,6 @@ require_once __DIR__ . '/../funcoes/protecao_admin.php';
                             botao.disabled = false;
                         });
                 }
-
-                var mapa = L.map('mapa-movix', {
-                    attributionControl: false,
-                    zoomControl: true
-                }).setView([-26.3044, -48.8487], 12);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    noWrap: true
-                }).addTo(mapa);
 
                 document.getElementById('btn-atualizar-clima').addEventListener('click', carregarClima);
                 carregarClima();
