@@ -4,25 +4,12 @@ session_start();
 if (isset($_GET['logout'])) {
     $_SESSION = array();
 
-    if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-            $params["path"], $params["domain"],
-            $params["secure"], $params["httponly"]
-        );
-    }
-
     session_destroy();
 
     header('Location: index.php');
     exit;
 }
 include("infra/conexao.php");
-
-
-
-
-
 
 if (isset($_SESSION['usuario_id'])) {
     if (($_SESSION['id_perfil'] ?? 0) == 1) {
@@ -53,15 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_regenerate_id(true);
 
             $_SESSION['usuario_id'] = (int) $usuario['id'];
-$_SESSION['usuario_nome'] = $usuario['nome'];
-$_SESSION['id_perfil'] = (int) $usuario['id_perfil'];
+            $_SESSION['usuario_nome'] = $usuario['nome'];
+            $_SESSION['id_perfil'] = (int) $usuario['id_perfil'];
 
-if ($_SESSION['id_perfil'] == 1) {
-    header('Location: public/dashboard_adm.php');
-} else {
-    header('Location: public/dashboard_usuario.php');
-}
-exit;
+            if ($_SESSION['id_perfil'] == 1) {
+                header('Location: public/dashboard_adm.php');
+            } else {
+                header('Location: public/dashboard_usuario.php');
+            }
+            exit;
         }
 
         $mensagemErro = 'E-mail ou senha inválidos.';
@@ -77,7 +64,7 @@ exit;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movix - Gestão Ferroviária Inteligente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
@@ -123,7 +110,7 @@ exit;
 
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </form>
-                   
+
                     </p>
                 </div>
             </div>
