@@ -180,10 +180,3 @@ ORDER BY u.id, r.id_rota, t.id, s.id;
 -- CONSULTAS PARA CONFERIR AS TABELAS
 -- ============================================
 
-SHOW TABLES;
-
-DESCRIBE perfis;
-DESCRIBE usuarios;
-DESCRIBE rotas;
-DESCRIBE trens;
-DESCRIBE sensores;

@@ -1,6 +1,4 @@
 <?php
-// Este arquivo é incluído por public/trens.php.
-// A sessão e a conexão já foram iniciadas na página principal.
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cadastro_trem'])) {
     $codigo = trim($_POST['codigo'] ?? '');
