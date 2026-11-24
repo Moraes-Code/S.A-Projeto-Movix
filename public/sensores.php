@@ -17,19 +17,14 @@ if (!isset($_SESSION['token_sensores'])) {
     $_SESSION['token_sensores'] = bin2hex(random_bytes(32));
 }
 
-function limpar($texto)
-{
+function limpar($texto) {
     return htmlspecialchars((string) ($texto ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-// CADASTRAR, EDITAR E EXCLUIR SENSORES
+// CADASTRAR, EDITAR E EXCLUIR
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if (
-        !$podeGerenciar ||
-        !isset($_POST['token']) ||
-        !hash_equals($_SESSION['token_sensores'], $_POST['token'])
-    ) {
+    if (!$podeGerenciar || !hash_equals($_SESSION['token_sensores'], $_POST['token'] ?? '')) {
         exit('Você não tem permissão para realizar esta ação.');
     }
 
@@ -39,30 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tipo = trim($_POST['tipo'] ?? '');
     $localizacao = trim($_POST['localizacao'] ?? '');
     $status = trim($_POST['status'] ?? 'Online');
-
-    $id_trem = (isset($_POST['id_trem']) && $_POST['id_trem'] !== '')
-        ? (int) $_POST['id_trem']
-        : null;
-
-    $statusPermitidos = ['Online', 'Offline', 'Atenção'];
-    $tiposPermitidos = ['Temperatura', 'Vibração', 'Pressão'];
+    $id_rota = (int) ($_POST['id_rota'] ?? 0);
 
     try {
 
-        // EXCLUIR SENSOR
         if (isset($_POST['excluir_sensor'])) {
 
-            if ($id <= 0) {
-                throw new Exception('Sensor inválido.');
-            }
-
-            $stmt = $conexao->prepare(
-                "DELETE FROM sensores WHERE id = ?"
-            );
-
-            $stmt->bind_param('i', $id);
-            $stmt->execute();
-            $stmt->close();
+            $sql = $conexao->prepare("DELETE FROM sensores WHERE id = ?");
+            $sql->bind_param('i', $id);
+            $sql->execute();
+            $sql->close();
 
             $_SESSION['notificacao'] = [
                 'tipo' => 'success',
@@ -71,66 +52,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         } else {
 
-            if (
-                $codigo === '' ||
-                $nome === '' ||
-                $localizacao === '' ||
-                !in_array($tipo, $tiposPermitidos, true) ||
-                !in_array($status, $statusPermitidos, true)
-            ) {
-                throw new Exception('Preencha todos os campos corretamente.');
+            if ($codigo === '' || $nome === '' || $localizacao === '' || $id_rota <= 0) {
+                throw new Exception('Preencha todos os campos.');
             }
 
-            // VERIFICAR SE O TREM EXISTE
-            if ($id_trem !== null) {
-
-                $verifica = $conexao->prepare(
-                    "SELECT id FROM trens WHERE id = ?"
-                );
-
-                $verifica->bind_param('i', $id_trem);
-                $verifica->execute();
-
-                $tremExiste = $verifica->get_result()->num_rows > 0;
-
-                $verifica->close();
-
-                if (!$tremExiste) {
-                    throw new Exception('O trem selecionado não existe.');
-                }
+            if (!in_array($tipo, ['Temperatura', 'Vibração', 'Pressão'], true)) {
+                throw new Exception('Tipo de sensor inválido.');
             }
 
-            // ATUALIZAR SENSOR
+            if (!in_array($status, ['Online', 'Offline', 'Atenção'], true)) {
+                throw new Exception('Status inválido.');
+            }
+
+            // VERIFICAR ROTA
+            $verifica = $conexao->prepare("SELECT id_rota FROM rotas WHERE id_rota = ?");
+            $verifica->bind_param('i', $id_rota);
+            $verifica->execute();
+
+            $rotaExiste = $verifica->get_result()->num_rows > 0;
+            $verifica->close();
+
+            if (!$rotaExiste) {
+                throw new Exception('A rota selecionada não existe.');
+            }
+
+            // EDITAR SENSOR
             if (isset($_POST['atualizar_sensor'])) {
 
-                if ($id <= 0) {
-                    throw new Exception('Sensor inválido.');
-                }
-
-                $stmt = $conexao->prepare(
-                    "UPDATE sensores
-                    SET codigo = ?,
-                    nome = ?,
-                    tipo = ?,
-                    localizacao = ?,
-                    status = ?,
-                    id_trem = ?
-                    WHERE id = ?"
-                );
-
-                $stmt->bind_param(
-                    'sssssii',
-                    $codigo,
-                    $nome,
-                    $tipo,
-                    $localizacao,
-                    $status,
-                    $id_trem,
-                    $id
-                );
-
-                $stmt->execute();
-                $stmt->close();
+                $sql = $conexao->prepare("UPDATE sensores SET codigo=?, nome=?, tipo=?, localizacao=?, status=?, id_rota=? WHERE id=?");
+                $sql->bind_param('sssssii', $codigo, $nome, $tipo, $localizacao, $status, $id_rota, $id);
+                $sql->execute();
+                $sql->close();
 
                 $_SESSION['notificacao'] = [
                     'tipo' => 'success',
@@ -138,26 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ];
 
             // CADASTRAR SENSOR
-            } elseif (isset($_POST['salvar_sensor'])) {
+            } else {
 
-                $stmt = $conexao->prepare(
-                    "INSERT INTO sensores
-                    (codigo, nome, tipo, localizacao, status, id_trem)
-                    VALUES (?, ?, ?, ?, ?, ?)"
-                );
-
-                $stmt->bind_param(
-                    'sssssi',
-                    $codigo,
-                    $nome,
-                    $tipo,
-                    $localizacao,
-                    $status,
-                    $id_trem
-                );
-
-                $stmt->execute();
-                $stmt->close();
+                $sql = $conexao->prepare("INSERT INTO sensores (codigo, nome, tipo, localizacao, status, id_rota) VALUES (?, ?, ?, ?, ?, ?)");
+                $sql->bind_param('sssssi', $codigo, $nome, $tipo, $localizacao, $status, $id_rota);
+                $sql->execute();
+                $sql->close();
 
                 $_SESSION['notificacao'] = [
                     'tipo' => 'success',
@@ -170,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $_SESSION['notificacao'] = [
             'tipo' => 'danger',
-            'mensagem' => ($erro->getCode() == 1062)
+            'mensagem' => $erro->getCode() == 1062
                 ? 'Já existe um sensor com esse código.'
                 : 'Não foi possível realizar a operação.'
         ];
@@ -187,31 +125,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// BUSCAR TRENS PARA O SELECT
-$trens = [];
-
-$resultadoTrens = $conexao->query(
-    "SELECT id, codigo, nome FROM trens ORDER BY codigo"
-);
-
-if ($resultadoTrens) {
-    $trens = $resultadoTrens->fetch_all(MYSQLI_ASSOC);
-}
+// BUSCAR ROTAS
+$resultadoRotas = $conexao->query("SELECT id_rota, nome_rota, codigo_rota FROM rotas ORDER BY nome_rota");
+$rotas = $resultadoRotas ? $resultadoRotas->fetch_all(MYSQLI_ASSOC) : [];
 
 // CONTAR SENSORES
-$sqlTotal = $conexao->query(
-    "SELECT COUNT(*) AS total FROM sensores"
-);
-
+$sqlTotal = $conexao->query("SELECT COUNT(*) AS total FROM sensores");
 $totalSensores = (int) ($sqlTotal->fetch_assoc()['total'] ?? 0);
 
-// LISTAR SENSORES E SEUS TRENS
+// LISTAR SENSORES
 $sqlSensores = "
-    SELECT s.*,
-    t.codigo AS codigo_trem,
-    t.nome AS nome_trem
+    SELECT s.*, r.nome_rota, r.codigo_rota
     FROM sensores s
-    LEFT JOIN trens t ON s.id_trem = t.id
+    LEFT JOIN rotas r ON s.id_rota = r.id_rota
     ORDER BY s.id DESC
 ";
 
@@ -220,10 +146,7 @@ if (!$mostrarTodos) {
 }
 
 $resultadoSensores = $conexao->query($sqlSensores);
-
-$sensores = $resultadoSensores
-    ? $resultadoSensores->fetch_all(MYSQLI_ASSOC)
-    : [];
+$sensores = $resultadoSensores ? $resultadoSensores->fetch_all(MYSQLI_ASSOC) : [];
 
 ?>
 
@@ -262,21 +185,18 @@ $sensores = $resultadoSensores
 
                     <form method="POST" action="sensores.php">
 
-                        <input type="hidden" name="token"
-                            value="<?= limpar($_SESSION['token_sensores']) ?>">
+                        <input type="hidden" name="token" value="<?= limpar($_SESSION['token_sensores']) ?>">
 
                         <div class="row g-3">
 
                             <div class="col-md-6">
                                 <label class="form-label">Código</label>
-                                <input type="text" name="codigo" class="form-control"
-                                    placeholder="Ex: SN001" required>
+                                <input type="text" name="codigo" class="form-control" placeholder="Ex: SN001" required>
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control"
-                                    placeholder="Digite o nome do sensor" required>
+                                <input type="text" name="nome" class="form-control" placeholder="Digite o nome do sensor" required>
                             </div>
 
                             <div class="col-md-6">
@@ -290,8 +210,7 @@ $sensores = $resultadoSensores
 
                             <div class="col-md-6">
                                 <label class="form-label">Localização</label>
-                                <input type="text" name="localizacao" class="form-control"
-                                    placeholder="Ex: KM 25" required>
+                                <input type="text" name="localizacao" class="form-control" placeholder="Ex: KM 25" required>
                             </div>
 
                             <div class="col-md-6">
@@ -304,18 +223,14 @@ $sensores = $resultadoSensores
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">Trem relacionado</label>
+                                <label class="form-label">Rota relacionada</label>
+                                <select name="id_rota" class="form-select" required>
+                                    <option value="">Selecione uma rota</option>
 
-                                <select name="id_trem" class="form-select">
-
-                                    <option value="">Sem trem vinculado</option>
-
-                                    <?php foreach ($trens as $trem): ?>
-
-                                        <option value="<?= (int) $trem['id'] ?>">
-                                            <?= limpar($trem['codigo'] . ' - ' . $trem['nome']) ?>
+                                    <?php foreach ($rotas as $rota): ?>
+                                        <option value="<?= (int) $rota['id_rota'] ?>">
+                                            <?= limpar($rota['codigo_rota'] . ' - ' . $rota['nome_rota']) ?>
                                         </option>
-
                                     <?php endforeach; ?>
 
                                 </select>
@@ -358,7 +273,7 @@ $sensores = $resultadoSensores
                                 <th>Tipo</th>
                                 <th>Localização</th>
                                 <th>Status</th>
-                                <th>Trem relacionado</th>
+                                <th>Rota relacionada</th>
 
                                 <?php if ($podeGerenciar): ?>
                                     <th>Ações</th>
@@ -373,18 +288,12 @@ $sensores = $resultadoSensores
                                 <?php foreach ($sensores as $sensor): ?>
 
                                     <tr>
-
                                         <td><?= limpar($sensor['codigo']) ?></td>
                                         <td><?= limpar($sensor['nome']) ?></td>
                                         <td><?= limpar($sensor['tipo']) ?></td>
                                         <td><?= limpar($sensor['localizacao']) ?></td>
                                         <td><?= limpar($sensor['status']) ?></td>
-
-                                        <td>
-                                            <?= $sensor['id_trem'] === null
-                                                ? 'Não vinculado'
-                                                : limpar($sensor['codigo_trem'] . ' - ' . $sensor['nome_trem']) ?>
-                                        </td>
+                                        <td><?= limpar($sensor['codigo_rota'] . ' - ' . $sensor['nome_rota']) ?></td>
 
                                         <?php if ($podeGerenciar): ?>
 
@@ -398,11 +307,8 @@ $sensores = $resultadoSensores
 
                                                 <form method="POST" class="d-inline">
 
-                                                    <input type="hidden" name="token"
-                                                        value="<?= limpar($_SESSION['token_sensores']) ?>">
-
-                                                    <input type="hidden" name="id"
-                                                        value="<?= (int) $sensor['id'] ?>">
+                                                    <input type="hidden" name="token" value="<?= limpar($_SESSION['token_sensores']) ?>">
+                                                    <input type="hidden" name="id" value="<?= (int) $sensor['id'] ?>">
 
                                                     <button type="submit" name="excluir_sensor" value="1"
                                                         class="btn btn-sm btn-danger"
@@ -439,14 +345,9 @@ $sensores = $resultadoSensores
                 <?php if ($totalSensores > 10): ?>
 
                     <div class="text-center mt-3">
-
-                        <a href="sensores.php<?= $mostrarTodos ? '' : '?todos=1' ?>"
-                            class="btn btn-outline-primary">
-
+                        <a href="sensores.php<?= $mostrarTodos ? '' : '?todos=1' ?>" class="btn btn-outline-primary">
                             <?= $mostrarTodos ? 'Ver menos' : 'Ver mais' ?>
-
                         </a>
-
                     </div>
 
                 <?php endif; ?>
@@ -465,8 +366,7 @@ $sensores = $resultadoSensores
                 <div class="modal-dialog">
                     <div class="modal-content">
 
-                        <form method="POST"
-                            action="sensores.php<?= $mostrarTodos ? '?todos=1' : '' ?>">
+                        <form method="POST" action="sensores.php<?= $mostrarTodos ? '?todos=1' : '' ?>">
 
                             <div class="modal-header">
                                 <h5 class="modal-title fw-bold">Editar Sensor</h5>
@@ -475,71 +375,56 @@ $sensores = $resultadoSensores
 
                             <div class="modal-body">
 
-                                <input type="hidden" name="token"
-                                    value="<?= limpar($_SESSION['token_sensores']) ?>">
-
-                                <input type="hidden" name="id"
-                                    value="<?= (int) $sensor['id'] ?>">
-
+                                <input type="hidden" name="token" value="<?= limpar($_SESSION['token_sensores']) ?>">
+                                <input type="hidden" name="id" value="<?= (int) $sensor['id'] ?>">
                                 <input type="hidden" name="atualizar_sensor" value="1">
 
                                 <label class="form-label">Código</label>
-                                <input type="text" class="form-control mb-3"
-                                    name="codigo" value="<?= limpar($sensor['codigo']) ?>" required>
+                                <input type="text" class="form-control mb-3" name="codigo"
+                                    value="<?= limpar($sensor['codigo']) ?>" required>
 
                                 <label class="form-label">Nome</label>
-                                <input type="text" class="form-control mb-3"
-                                    name="nome" value="<?= limpar($sensor['nome']) ?>" required>
+                                <input type="text" class="form-control mb-3" name="nome"
+                                    value="<?= limpar($sensor['nome']) ?>" required>
 
                                 <label class="form-label">Tipo</label>
-
                                 <select class="form-select mb-3" name="tipo" required>
 
                                     <?php foreach (['Temperatura', 'Vibração', 'Pressão'] as $tipo): ?>
-
                                         <option value="<?= limpar($tipo) ?>"
                                             <?= $sensor['tipo'] === $tipo ? 'selected' : '' ?>>
                                             <?= limpar($tipo) ?>
                                         </option>
-
                                     <?php endforeach; ?>
 
                                 </select>
 
                                 <label class="form-label">Localização</label>
-                                <input type="text" class="form-control mb-3"
-                                    name="localizacao" value="<?= limpar($sensor['localizacao']) ?>" required>
+                                <input type="text" class="form-control mb-3" name="localizacao"
+                                    value="<?= limpar($sensor['localizacao']) ?>" required>
 
                                 <label class="form-label">Status</label>
-
                                 <select class="form-select mb-3" name="status" required>
 
                                     <?php foreach (['Online', 'Atenção', 'Offline'] as $status): ?>
-
                                         <option value="<?= limpar($status) ?>"
                                             <?= $sensor['status'] === $status ? 'selected' : '' ?>>
                                             <?= limpar($status) ?>
                                         </option>
-
                                     <?php endforeach; ?>
 
                                 </select>
 
-                                <label class="form-label">Trem relacionado</label>
+                                <label class="form-label">Rota relacionada</label>
+                                <select name="id_rota" class="form-select" required>
 
-                                <select name="id_trem" class="form-select">
+                                    <option value="">Selecione uma rota</option>
 
-                                    <option value="">Sem trem vinculado</option>
-
-                                    <?php foreach ($trens as $trem): ?>
-
-                                        <option value="<?= (int) $trem['id'] ?>"
-                                            <?= (int) ($sensor['id_trem'] ?? 0) === (int) $trem['id'] ? 'selected' : '' ?>>
-
-                                            <?= limpar($trem['codigo'] . ' - ' . $trem['nome']) ?>
-
+                                    <?php foreach ($rotas as $rota): ?>
+                                        <option value="<?= (int) $rota['id_rota'] ?>"
+                                            <?= (int) $sensor['id_rota'] === (int) $rota['id_rota'] ? 'selected' : '' ?>>
+                                            <?= limpar($rota['codigo_rota'] . ' - ' . $rota['nome_rota']) ?>
                                         </option>
-
                                     <?php endforeach; ?>
 
                                 </select>
@@ -547,7 +432,6 @@ $sensores = $resultadoSensores
                             </div>
 
                             <div class="modal-footer">
-
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                     Cancelar
                                 </button>
@@ -555,7 +439,6 @@ $sensores = $resultadoSensores
                                 <button type="submit" class="btn btn-primary">
                                     Atualizar
                                 </button>
-
                             </div>
 
                         </form>
