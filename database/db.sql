@@ -1,7 +1,6 @@
 
 -- ============================================
 -- MOVIX - GESTAO FERROVIARIA INTELIGENTE
--- BANCO DE DADOS COMPLETO E CORRIGIDO
 -- ============================================
 
 CREATE DATABASE IF NOT EXISTS movix
