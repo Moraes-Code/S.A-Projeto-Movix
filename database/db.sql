@@ -1,7 +1,8 @@
 
 -- ============================================
 -- MOVIX - GESTAO FERROVIARIA INTELIGENTE
--- BANCO DE DADOS COMPLETO E CORRIGIDO
+-- BANCO DE DADOS COMPLETO
+-- ESTRUTURA CORRIGIDA
 -- ============================================
 
 CREATE DATABASE IF NOT EXISTS movix
@@ -11,14 +12,14 @@ COLLATE utf8mb4_unicode_ci;
 USE movix;
 
 -- ============================================
--- REMOVER TABELAS ANTIGAS
+-- REMOVER TABELAS
 -- ============================================
 
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS sensores;
-DROP TABLE IF EXISTS trens;
 DROP TABLE IF EXISTS rotas;
+DROP TABLE IF EXISTS trens;
 DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS perfis;
 
@@ -65,8 +66,36 @@ CREATE TABLE usuarios (
 
 
 -- ============================================
+-- TABELA: TRENS
+-- Cada trem pertence a um usuario
+-- ============================================
+
+CREATE TABLE trens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(20) NOT NULL UNIQUE,
+    nome VARCHAR(100) NOT NULL,
+    linha VARCHAR(100) NOT NULL,
+    destino VARCHAR(150) NOT NULL,
+
+    status INT NOT NULL DEFAULT 3,
+    velocidade INT NOT NULL DEFAULT 0,
+
+    id_usuario INT NOT NULL,
+
+    INDEX idx_trens_usuario (id_usuario),
+
+    CONSTRAINT fk_trens_usuarios
+        FOREIGN KEY (id_usuario)
+        REFERENCES usuarios(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+-- ============================================
 -- TABELA: ROTAS
--- Cada rota possui seus dados de trajeto
+-- Cada rota pertence a um trem
 -- ============================================
 
 CREATE TABLE rotas (
@@ -84,42 +113,15 @@ CREATE TABLE rotas (
         'Em manutenção'
     ) NOT NULL DEFAULT 'Ativa',
 
-    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    id_trem INT NOT NULL,
 
+    INDEX idx_rotas_trem (id_trem),
 
--- ============================================
--- TABELA: TRENS
--- Cada trem pertence a um usuario
--- e possui uma rota
--- ============================================
-
-CREATE TABLE trens (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    codigo VARCHAR(20) NOT NULL UNIQUE,
-    nome VARCHAR(100) NOT NULL,
-    linha VARCHAR(100) NOT NULL,
-    destino VARCHAR(150) NOT NULL,
-
-    status INT NOT NULL DEFAULT 3,
-    velocidade INT NOT NULL DEFAULT 0,
-
-    id_usuario INT NOT NULL,
-    id_rota INT NOT NULL,
-
-    INDEX idx_trens_usuario (id_usuario),
-    INDEX idx_trens_rota (id_rota),
-
-    CONSTRAINT fk_trens_usuarios
-        FOREIGN KEY (id_usuario)
-        REFERENCES usuarios(id)
-        ON UPDATE CASCADE
-        ON DELETE RESTRICT,
-
-    CONSTRAINT fk_trens_rotas
-        FOREIGN KEY (id_rota)
-        REFERENCES rotas(id_rota)
+    CONSTRAINT fk_rotas_trens
+        FOREIGN KEY (id_trem)
+        REFERENCES trens(id)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 
@@ -154,7 +156,7 @@ CREATE TABLE sensores (
 
 
 -- ============================================
--- CONSULTA: VISUALIZAR RELACIONAMENTOS
+-- CONSULTA: VISUALIZAR TODOS OS RELACIONAMENTOS
 -- ============================================
 
 SELECT
@@ -183,7 +185,7 @@ LEFT JOIN trens t
     ON u.id = t.id_usuario
 
 LEFT JOIN rotas r
-    ON t.id_rota = r.id_rota
+    ON t.id = r.id_trem
 
 LEFT JOIN sensores s
     ON r.id_rota = s.id_rota
@@ -192,7 +194,7 @@ ORDER BY u.id, t.id, r.id_rota, s.id;
 
 
 -- ============================================
--- CONSULTAS PARA CONFERIR AS TABELAS
+-- CONFERIR AS TABELAS
 -- ============================================
 
 SHOW TABLES;
