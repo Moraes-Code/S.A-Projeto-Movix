@@ -1,7 +1,7 @@
 
 -- ============================================
 -- MOVIX - GESTAO FERROVIARIA INTELIGENTE
--- Banco de dados completo
+-- BANCO DE DADOS COMPLETO E CORRIGIDO
 -- ============================================
 
 CREATE DATABASE IF NOT EXISTS movix
@@ -11,10 +11,25 @@ COLLATE utf8mb4_unicode_ci;
 USE movix;
 
 -- ============================================
+-- REMOVER TABELAS ANTIGAS
+-- ============================================
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS sensores;
+DROP TABLE IF EXISTS trens;
+DROP TABLE IF EXISTS rotas;
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS perfis;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- ============================================
 -- TABELA: PERFIS
 -- ============================================
 
-CREATE TABLE IF NOT EXISTS perfis (
+CREATE TABLE perfis (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -22,16 +37,14 @@ CREATE TABLE IF NOT EXISTS perfis (
 INSERT INTO perfis (id, nome) VALUES
 (1, 'Administrador'),
 (2, 'Operário'),
-(3, 'Usuário')
-ON DUPLICATE KEY UPDATE
-nome = VALUES(nome);
+(3, 'Usuário');
 
 
 -- ============================================
 -- TABELA: USUARIOS
 -- ============================================
 
-CREATE TABLE IF NOT EXISTS usuarios (
+CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
@@ -53,10 +66,10 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 -- ============================================
 -- TABELA: ROTAS
--- Cada rota possui um usuario responsavel
+-- Cada rota possui seus dados de trajeto
 -- ============================================
 
-CREATE TABLE IF NOT EXISTS rotas (
+CREATE TABLE rotas (
     id_rota INT AUTO_INCREMENT PRIMARY KEY,
     nome_rota VARCHAR(100) NOT NULL,
     codigo_rota VARCHAR(50) NOT NULL UNIQUE,
@@ -71,27 +84,18 @@ CREATE TABLE IF NOT EXISTS rotas (
         'Em manutenção'
     ) NOT NULL DEFAULT 'Ativa',
 
-    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    id_usuario INT NOT NULL,
-
-    INDEX idx_rotas_usuario (id_usuario),
-
-    CONSTRAINT fk_rotas_usuarios
-        FOREIGN KEY (id_usuario)
-        REFERENCES usuarios(id)
-        ON UPDATE CASCADE
-        ON DELETE RESTRICT
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 -- ============================================
 -- TABELA: TRENS
--- Cada trem pertence a uma rota
+-- Cada trem pertence a um usuario
+-- e possui uma rota
 -- ============================================
 
-CREATE TABLE IF NOT EXISTS trens (
+CREATE TABLE trens (
     id INT AUTO_INCREMENT PRIMARY KEY,
     codigo VARCHAR(20) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
@@ -101,9 +105,17 @@ CREATE TABLE IF NOT EXISTS trens (
     status INT NOT NULL DEFAULT 3,
     velocidade INT NOT NULL DEFAULT 0,
 
+    id_usuario INT NOT NULL,
     id_rota INT NOT NULL,
 
+    INDEX idx_trens_usuario (id_usuario),
     INDEX idx_trens_rota (id_rota),
+
+    CONSTRAINT fk_trens_usuarios
+        FOREIGN KEY (id_usuario)
+        REFERENCES usuarios(id)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
 
     CONSTRAINT fk_trens_rotas
         FOREIGN KEY (id_rota)
@@ -116,10 +128,10 @@ CREATE TABLE IF NOT EXISTS trens (
 
 -- ============================================
 -- TABELA: SENSORES
--- Cada sensor pode estar associado a um trem
+-- Cada sensor pertence a uma rota
 -- ============================================
 
-CREATE TABLE IF NOT EXISTS sensores (
+CREATE TABLE sensores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     codigo VARCHAR(20) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL,
@@ -128,13 +140,13 @@ CREATE TABLE IF NOT EXISTS sensores (
 
     status VARCHAR(20) NOT NULL DEFAULT 'Online',
 
-    id_trem INT NULL,
+    id_rota INT NOT NULL,
 
-    INDEX idx_sensores_trem (id_trem),
+    INDEX idx_sensores_rota (id_rota),
 
-    CONSTRAINT fk_sensores_trens
-        FOREIGN KEY (id_trem)
-        REFERENCES trens(id)
+    CONSTRAINT fk_sensores_rotas
+        FOREIGN KEY (id_rota)
+        REFERENCES rotas(id_rota)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 
@@ -149,12 +161,15 @@ SELECT
     u.id AS id_usuario,
     u.nome AS usuario_responsavel,
     p.nome AS perfil,
-    r.id_rota,
-    r.nome_rota,
-    r.codigo_rota,
+
     t.id AS id_trem,
     t.codigo AS codigo_trem,
     t.nome AS nome_trem,
+
+    r.id_rota,
+    r.nome_rota,
+    r.codigo_rota,
+
     s.id AS id_sensor,
     s.codigo AS codigo_sensor,
     s.nome AS nome_sensor
@@ -164,19 +179,26 @@ FROM usuarios u
 INNER JOIN perfis p
     ON u.id_perfil = p.id
 
-LEFT JOIN rotas r
-    ON u.id = r.id_usuario
-
 LEFT JOIN trens t
-    ON r.id_rota = t.id_rota
+    ON u.id = t.id_usuario
+
+LEFT JOIN rotas r
+    ON t.id_rota = r.id_rota
 
 LEFT JOIN sensores s
-    ON t.id = s.id_trem
+    ON r.id_rota = s.id_rota
 
-ORDER BY u.id, r.id_rota, t.id, s.id;
+ORDER BY u.id, t.id, r.id_rota, s.id;
 
 
 -- ============================================
 -- CONSULTAS PARA CONFERIR AS TABELAS
 -- ============================================
 
+SHOW TABLES;
+
+DESCRIBE usuarios;
+DESCRIBE trens;
+DESCRIBE rotas;
+DESCRIBE sensores;
+DESCRIBE perfis;
